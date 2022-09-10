@@ -1,6 +1,6 @@
 # Factored Cognition Primer
 
-In this tutorial we'll get language models to do complex tasks by composing together multiple reasoning steps.
+In this tutorial we'll get language models to do complex reasoning tasks by composing together many reasoning steps.
 
 ## What is factored cognition?
 
