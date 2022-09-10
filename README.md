@@ -4,9 +4,9 @@ In this tutorial we'll get language models like GTP-3 to do complex reasoning ta
 
 ## What is factored cognition?
 
-Factored cognition refers to the idea of breaking down (or factoring) sophisticated learning and reasoning tasks into many small and mostly independent tasks.
+[Factored cognition](https://ought.org/research/factored-cognition) refers to the idea of breaking down (or factoring) sophisticated learning and reasoning tasks into many small and mostly independent tasks.
 
-We'll call programs that describe how to break down a specific task _recipes_.
+We'll call programs that describe how to break down a kind of task _recipes_.
 
 ## Why factored cognition?
 
