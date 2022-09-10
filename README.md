@@ -1,6 +1,6 @@
 ---
 cover: >-
-  https://images.unsplash.com/photo-1530293959042-0aac487c21e3?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHwyfHx3aGl0ZSUyMGJsdWV8ZW58MHx8fHwxNjYyODM4MDA5&ixlib=rb-1.2.1&q=80
+  https://images.unsplash.com/photo-1481026469463-66327c86e544?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw2fHxibHVlJTIwd2hpdGV8ZW58MHx8fHwxNjYyODM4MTE4&ixlib=rb-1.2.1&q=80
 coverY: 0
 ---
 
