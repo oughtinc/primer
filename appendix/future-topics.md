@@ -30,3 +30,4 @@
 * Other ideas
   * Recipe components we've written, e.g. paragraph ranking
   * Agent methods: Relevance etc
+  * See [Ought ML reading list](https://docs.google.com/document/d/1Z1mQ47FqzNBzNvalWgSnyGph7A4Q7MndOEqsqv\_mto0/edit)
