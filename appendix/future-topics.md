@@ -3,6 +3,8 @@
 * Filters, Verifiers, and Critiques
 * Tool Use
   * WebGPT
+* Compositionality
+  * Amplification + WebGPT
 * Kinds of Machine Agents
   * OpenAIReasoning
   * Chain-of-thought + plurality voting
@@ -20,6 +22,7 @@
   * Selection-Inference
   * Maeutic prompting
 * Diffusion
+  * Improvement Operators
 * Distillation
 * Conditioning
   * Relation to probabilistic generative models
