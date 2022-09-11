@@ -1,12 +1,5 @@
 # Finding relevant paragraphs
 
-
-
-In this recipe we'll take a simple approach:
-
-1. Classify for each paragraph whether it answers the question or not
-2. Take the paragraphs with the highest probability of answering the question and ask a model to answer the question given those paragraphs. For this step we can use the QA recipe from above.
-
 ## Classifying individual paragraphs using `classify`
 
 Let's start by just classifying whether the first paragraph answers a question. To do this, we'll use a new agent method, `classify`. It takes a prompt and a list of choices, and returns a choice, a choice probability, and for some agent implementations an explanation.
