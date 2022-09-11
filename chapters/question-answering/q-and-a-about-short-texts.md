@@ -1,51 +1,4 @@
----
-description: Call an agent
----
-
-# Question Answering
-
-Now let's make our first recipe `qa.py` that calls out to an agent.
-
-### Context-free question-answering
-
-```python
-from ice.recipe import Recipe
-
-
-def make_qa_prompt(question: str) -> str:
-    return f"""Answer the following question:
-
-Question: "{question}"
-Answer: "
-""".strip()
-
-
-class QA(Recipe):
-    async def run(self, *, question: str = "What is happening on 9/9/2022?"):
-        prompt = make_qa_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
-```
-
-We can run recipes in different modes, which controls what type of agent is used. Some examples:
-
-* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-* `human`: Elicit answers from you using a command-line interface.
-* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
-
-You specify the mode like this:
-
-```shell
-scripts/run-recipe.sh -r qa.py -t -m human
-```
-
-Try running your recipe in different modes.
-
-{% hint style="info" %}
-Because the agent's `answer` method is async, we use `await` when we call it.
-{% endhint %}
-
-### Answering questions about short texts
+# Q\&A about short texts
 
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
 
@@ -84,7 +37,7 @@ You should see a response like this:
 A hackathon is happening on 9/9/2022.
 ```
 
-### Exercises
+## Exercises
 
 1. Instead of answering directly, add "Let's think step by step" as a prefix to the answer part of the prompt. This is often referred to as chain-of-thought prompting.
 2. After getting the answer, add another step that shows the question and answer to the agent and asks it to improve the answer.
