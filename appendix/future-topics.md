@@ -1,6 +1,6 @@
 # Future Topics
 
-* Filters, Verifiers and Critiques
+* Filters, Verifiers, and Critiques
 * Tool Use
   * WebGPT
 * Kinds of Machine Agents
