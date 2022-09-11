@@ -4,8 +4,8 @@
 
 ## Intro
 
-* [Factored cognition](intro/factored-cognition.md)
-* [Before we start](before-we-start.md)
+* [Factored Cognition](intro/factored-cognition.md)
+* [Before We Start](before-we-start.md)
 
 ## Chapters
 
