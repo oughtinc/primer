@@ -6,7 +6,6 @@ description: Answering given subquestion answers
 
 We need an equivalent of `make_qa_prompt` that optionally takes a list of subquestions and answers and provides those in the prompt. Let's introduce a type `Subs` for pairs of questions and answers and extend `make_qa_prompt` to use it if given:
 
-{% code overflow="wrap" %}
 ```python
 Question = str
 Answer = str
@@ -28,7 +27,6 @@ Question: "{question}"
 Answer: "
 """.strip()
 ```
-{% endcode %}
 
 Now we can render prompts like this:
 

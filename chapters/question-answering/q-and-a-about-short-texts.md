@@ -2,7 +2,6 @@
 
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
 
-{% code overflow="wrap" %}
 ```python
 from ice.recipe import Recipe
 
@@ -31,7 +30,6 @@ class QA(Recipe):
         answer = (await self.agent().answer(prompt=prompt)).strip('" ')
         return answer
 ```
-{% endcode %}
 
 You should see a response like this:
 
