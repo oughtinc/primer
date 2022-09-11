@@ -6,7 +6,7 @@
 ## Chapters
 
 * [Hello World](chapters/hello-world.md)
-* [Question Answering](chapters/question-answering/README.md)
+* [Question Answering](chapters/question-answering.md)
   * [Q\&A without context](chapters/question-answering/q-and-a-without-context.md)
   * [Q\&A about short texts](chapters/question-answering/q-and-a-about-short-texts.md)
 * [Debate](chapters/debate.md)

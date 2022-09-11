@@ -6,7 +6,7 @@ description: Answering the question given the top paragraphs with subrecipes
 
 Now all we have to do is combine the paragraph finder with the question-answering recipe we built earlier on.
 
-We could just paste in the code from [the question-answering recipe](../question-answering/#answering-questions-about-short-texts). However, we can also _directly_ reuse it as a subrecipe. If you have the code in `qa.py`, we can directly import and use it:
+We could just paste in the code from [the question-answering recipe](../question-answering.md#answering-questions-about-short-texts). However, we can also _directly_ reuse it as a subrecipe. If you have the code in `qa.py`, we can directly import and use it:
 
 ```python
 from ice.recipe import Recipe

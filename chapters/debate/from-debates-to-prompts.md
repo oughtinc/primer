@@ -1,7 +1,5 @@
 # From debates to prompts
 
-
-
 A prompt is a debate with some instructions and a prefix for a new response. We create it like this:
 
 ```python
