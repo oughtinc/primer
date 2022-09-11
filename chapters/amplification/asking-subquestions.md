@@ -2,6 +2,7 @@
 
 Let's start by making a recipe that returns subquestions given a question:
 
+{% code overflow="wrap" %}
 ```python
 from ice.recipe import Recipe
 
@@ -23,6 +24,7 @@ class Subquestions(Recipe):
         subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
         return subquestions
 ```
+{% endcode %}
 
 If we save this as `subquestions.py` and run it...
 
