@@ -1,6 +1,6 @@
-# Before we start
+# Before We Start
 
-The recipes in this tutorial are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you'd like to follow along with the implementation (strongly recommended), set it up first.
+The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you'd like to follow along with the implementation (strongly recommended), set it up first.
 
 ## Prerequisites
 

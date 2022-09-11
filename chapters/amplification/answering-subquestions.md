@@ -1,12 +1,12 @@
 # Answering subquestions
 
-Now we want to use the subquestions recipe to help a question-answerer like the one we built early on in this tutorial. We can start with the question-answerer we built earlier and modify it as follows:
+Now we want to use the subquestions recipe to help a question-answerer like [the one we built early on](../question-answering/q-and-a-about-short-texts.md) in the primer. We can start with the question-answerer we built earlier and modify it as follows:
 
 1. Add a call to the subquestions recipe to generate subquestions
 2. Use `map_async` to answer all the subquestions in parallel
 3. Provide answers from subquestions as advice in the overall question-answering prompt
 
-Let's start with (1) and (2), reusing the subquestions subrecipe:
+Let's start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
 
 ```python
 from ice.recipe import Recipe
