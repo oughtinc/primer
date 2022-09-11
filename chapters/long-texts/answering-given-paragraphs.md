@@ -60,7 +60,7 @@ The study population was children 1 to 59 months of age who weighed at least 38
 
 Take a look at the trace to see how it all fits together.
 
-### Exercises
+## Exercises
 
 1. We're taking a fixed number of paragraphs (3) and sticking them into the prompt. This will sometimes result in prompt space not being used well, and sometimes it will overflow. Modify the recipe to use as many paragraphs as can fit into the prompt. (Hint: A prompt for current models has space for 2048 tokens. A token is about 3.5 characters.)
 2. We're classifying paragraphs individually, but it could be better to do ranking by showing the model pairs of paragraphs and ask it which better answers the question. Implement this as an alternative.

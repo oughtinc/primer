@@ -7,7 +7,10 @@
 
 * [Hello World](chapters/hello-world.md)
 * [Question Answering](chapters/question-answering.md)
-* [Debate](chapters/debate.md)
+* [Debate](chapters/debate/README.md)
+  * [Representing debates](chapters/debate/representing-debates.md)
+  * [From debates to prompts](chapters/debate/from-debates-to-prompts.md)
+  * [The debate recipe](chapters/debate/the-debate-recipe.md)
 * [Long Texts](chapters/long-texts/README.md)
   * [Loading paper text](chapters/long-texts/loading-paper-text.md)
   * [Finding relevant paragraphs](chapters/long-texts/finding-relevant-paragraphs.md)
