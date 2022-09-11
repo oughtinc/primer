@@ -1,6 +1,6 @@
 # Future Topics
 
-* Filters and Verifiers
+* Filters, Verifiers and Critiques
 * Tool Use
   * WebGPT
 * Kinds of Machine Agents
@@ -15,9 +15,12 @@
   * Trace debugger, zooming in on flaws
   * Automated evaluation of results against gold standards
 * Deduction
+  * Chain of thought
+  * StaR
   * Selection-Inference
   * Maeutic prompting
 * Diffusion
+* Distillation
 * Conditioning
   * Relation to probabilistic generative models
 * Memory
