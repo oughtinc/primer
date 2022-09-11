@@ -1,7 +1,11 @@
 # Table of contents
 
 * [Factored Cognition Primer](README.md)
-* [Before we start](before-we-start.md)
+
+## Intro
+
+* [Factored cognition](intro/factored-cognition.md)
+* [Before we start](intro/before-we-start.md)
 
 ## Chapters
 
