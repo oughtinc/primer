@@ -12,7 +12,7 @@ You'll see how to:
 
 * Amplify language model reasoning through recursive question-answering and debate
 * Reason about long texts by combining search and generation
-* Run decomposition recipes quickly by parallelizing language model calls
-* Quickly debug recipes by zooming in on failures
+* Run decompositions quickly by parallelizing language model calls
+* Debug recipes by zooming in on failures
 * Interface with different kinds of language models
 * Build human-in-the-loop agents
