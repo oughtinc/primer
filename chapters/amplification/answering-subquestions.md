@@ -1,7 +1,5 @@
 # Answering subquestions
 
-
-
 Now we want to use the subquestions recipe to help a question-answerer like the one we built early on in this tutorial. We can start with the question-answerer we built earlier and modify it as follows:
 
 1. Add a call to the subquestions recipe to generate subquestions
