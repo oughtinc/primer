@@ -8,6 +8,6 @@ Let's implement debate to see how recipes can compose together multiple calls to
 
 To do so, we'll talk about
 
-1. How to represent debates as lists of turns
-2. How to render debates to prompts
-3. How to iteratively call agents with these prompts, building up the debate step by step
+1. How to [represent debates](debate/representing-debates.md) as lists of turns
+2. How to [render debates](debate/from-debates-to-prompts.md) to prompts
+3. How to [write a recipe](debate/the-debate-recipe.md) that iteratively calls agents with these prompts, building up the debate step by step
