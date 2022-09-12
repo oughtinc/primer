@@ -1,8 +1,10 @@
 # Future Topics
 
-* Filters, Verifiers, and Critiques
+* Critiques and Filters
 * Tool Use
   * WebGPT
+* Calibration
+  * Sample many times, show to model, get p(true)
 * Compositionality
   * Amplification + WebGPT
 * Kinds of Machine Agents
@@ -18,7 +20,7 @@
   * Automated evaluation of results against gold standards
 * Deduction
   * Chain of thought
-  * StaR
+  * STaR
   * Selection-Inference
   * Maeutic prompting
 * Diffusion
