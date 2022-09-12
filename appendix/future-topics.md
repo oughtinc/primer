@@ -18,6 +18,9 @@
   * Result tables vs gold standards
   * Trace debugger, zooming in on flaws
   * Automated evaluation of results against gold standards
+* Real-world examples
+  * Placebo
+  * Adherence
 * Deduction
   * Chain of thought
   * STaR
