@@ -17,7 +17,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 2.  Install NodeJS and the required Node packages:
 
     ```shell
-    cd ice/
+    cd ice/ui
     nvm install
     nvm use
     npm install
