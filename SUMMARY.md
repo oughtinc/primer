@@ -26,6 +26,9 @@
   * [Answering subquestions](chapters/amplification/answering-subquestions.md)
   * [One-step amplification](chapters/amplification/one-step-amplification.md)
   * [Recursive amplification](chapters/amplification/recursive-amplification.md)
+* [Verifiers](chapters/verifiers/README.md)
+  * [Checking answers](chapters/verifiers/checking-answers.md)
+  * [Checking reasoning steps](chapters/verifiers/checking-reasoning-steps.md)
 
 ## Appendix
 
