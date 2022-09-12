@@ -17,7 +17,10 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 2.  Install NodeJS and the required Node packages:
 
     ```shell
-    (cd ice/ui && nvm install && nvm use && npm install)
+    cd ice/
+    nvm install
+    nvm use
+    npm install
     ```
 
 ## Run the ICE server
@@ -25,6 +28,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 Start ICE in a separate terminal and leave it running:&#x20;
 
 ```shell
-cd ice && scripts/run-local.sh
+cd ice
+scripts/run-local.sh
 ```
 
