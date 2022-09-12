@@ -150,3 +150,4 @@ The more difficult the math, the lower the probability the model assigns to the 
 ## Exercises
 
 1. How could you use the probabilities we get for each step? One idea is to use a model to resample steps that are wrong. Can you use this to answer questions more correctly?
+2. If we multiply the probabilities above to get the probability that the argument overall is correct, we get $$0.76 \cdot 0.57 \cdot 0.51 \cdot 0.83 = 0.18$$. In general, the more steps, the lower we should expect the product probability to be. If we can't get high probability by [just checking the answer](checking-answers.md), and we can't get it by checking many steps, how can we ever confidently conclude that an answer is correct? What does your answer to this question mean for how to implement and check reasoning using language models?
