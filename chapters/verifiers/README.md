@@ -1,3 +1,7 @@
+---
+description: Sometimes evaluation is easier than generation
+---
+
 # Verifiers
 
 It's often easier to tell whether a solution is correct than to come up with it. We can use this to improve the quality of responses. As a first step, let's use it to check the quality of responses. We'll try two versions:
