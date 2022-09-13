@@ -1,12 +1,16 @@
 # Future Topics
 
-* Critiques and Filters
+* Deduction
+  * Chain of thought
+  * Selection-Inference
+  * (STaR)
 * Action Selection
   * WebGPT
+* Composition
+  * Amplification + WebGPT
+* Critiques and Filters
 * Calibration
   * Sample many times, show to model, get p(true)
-* Compositionality
-  * Amplification + WebGPT
 * Kinds of Machine Agents
   * OpenAIReasoning
   * Chain-of-thought + plurality voting
@@ -21,11 +25,6 @@
 * Real-world examples
   * Placebo
   * Adherence
-* Deduction
-  * Chain of thought
-  * STaR
-  * Selection-Inference
-  * Maeutic prompting
 * Diffusion
   * Improvement Operators
 * Distillation
@@ -35,4 +34,5 @@
 * Other ideas
   * Recipe components we've written, e.g. paragraph ranking
   * Agent methods: Relevance etc
+  * Maeutic prompting
   * See [Ought ML reading list](https://docs.google.com/document/d/1Z1mQ47FqzNBzNvalWgSnyGph7A4Q7MndOEqsqv\_mto0/edit)
