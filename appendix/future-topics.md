@@ -1,10 +1,8 @@
 # Future Topics
 
 * Critiques and Filters
-* Tool Use
-  * WebGPT
-  * Python (cf. [this](https://twitter.com/sergeykarayev/status/1569377881440276481/photo/1))
 * Action Selection
+  * WebGPT
 * Calibration
   * Sample many times, show to model, get p(true)
 * Compositionality

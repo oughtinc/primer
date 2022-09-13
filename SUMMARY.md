@@ -29,6 +29,9 @@
 * [Verifiers](chapters/verifiers/README.md)
   * [Checking answers](chapters/verifiers/checking-answers.md)
   * [Checking reasoning steps](chapters/verifiers/checking-reasoning-steps.md)
+* [Tool Use](chapters/tool-use/README.md)
+  * [Web search](chapters/tool-use/web-search.md)
+  * [Interpreters](chapters/tool-use/interpreters.md)
 
 ## Appendix
 
