@@ -18,5 +18,6 @@ You'll learn how to:
 * Interface with different kinds of language models
 * Build human-in-the-loop agents
 * Use verification of answers and reasoning steps to improve responses
+* Test whether I can merge updates after requiring approvals
 
-The book focuses on techniques that are likely to remain relevant for better language models, and perhaps will even become more useful.
+The book focuses on techniques that are likely to remain relevant for better language models.

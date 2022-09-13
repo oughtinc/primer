@@ -5,11 +5,8 @@
   * Selection-Inference
   * (STaR)
 * Action Selection
-  * One-shot
-  * Iterated
-    * WebGPT
+  * WebGPT
 * Composition
-  * Amplification as a special case
   * Amplification + WebGPT
 * Critiques and Filters
 * Calibration
