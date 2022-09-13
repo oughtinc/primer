@@ -32,10 +32,7 @@
 * [Tool Use](chapters/tool-use/README.md)
   * [Web search](chapters/tool-use/web-search.md)
   * [Interpreters](chapters/tool-use/interpreters.md)
-
-***
-
-* [Chain of Thought](chain-of-thought.md)
+* [Chain of Thought](chapters/chain-of-thought.md)
 
 ## Appendix
 
