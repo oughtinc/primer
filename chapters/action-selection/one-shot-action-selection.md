@@ -213,7 +213,7 @@ $ scripts/run-recipe.sh -r action.py -t --args '{"question": "What is sqrt(2^8)?
 
 {% code overflow="wrap" %}
 ```
-scripts/run-recipe.sh -r action.py -t --args '{"question": "Is transhumanism desirable?"}'
+$ scripts/run-recipe.sh -r action.py -t --args '{"question": "Is transhumanism desirable?"}'
 
 It is up to each individual to decide whether or not they believe transhumanism is desirable.
 ```
@@ -226,7 +226,7 @@ These are better answers than we'd get without augmentation.
 1.  Add an action type for debate:
 
     {% code overflow="wrap" %}
-    ```
+    ```python
     Action(
       name="Debate",
       description='Run a debate. This is helpful if the question is a pro/con question that involves involves different perspectives, arguments, and evidence, such as "Should marijuana be legalized?" or "Is veganism better for the environment?".'
