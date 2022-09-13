@@ -8,7 +8,7 @@ We'll call programs that describe how to break down a task _recipes_.
 
 ## Why factored cognition?
 
-We can think about machine learning systems on a spectrum from [process-based](https://ought.org/updates/2022-04-06-process) to outcome-based:
+We can think about machine learning systems on [a spectrum from process-based to outcome-based](https://ought.org/updates/2022-04-06-process):
 
 * Process-based systems are built on human-understandable task decompositions, with direct supervision of reasoning steps.
 * Outcome-based systems are built on end-to-end optimization, with supervision of final results.
