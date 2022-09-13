@@ -33,6 +33,9 @@
   * [Web search](chapters/tool-use/web-search.md)
   * [Interpreters](chapters/tool-use/interpreters.md)
 * [Chain of Thought](chapters/chain-of-thought.md)
+* [Action Selection](chapters/action-selection/README.md)
+  * [One-shot action selection](chapters/action-selection/one-shot-action-selection.md)
+  * [Iterative action selection](chapters/action-selection/iterative-action-selection.md)
 
 ## Appendix
 
