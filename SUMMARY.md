@@ -33,6 +33,10 @@
   * [Web search](chapters/tool-use/web-search.md)
   * [Interpreters](chapters/tool-use/interpreters.md)
 
+***
+
+* [Chain of Thought](chain-of-thought.md)
+
 ## Appendix
 
 * [Future Topics](appendix/future-topics.md)
