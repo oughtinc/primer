@@ -23,6 +23,8 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 Let's add a method for evaluating Python expressions:
 
 ```python
+import math
+
 from ice.recipe import Recipe
 
 
@@ -68,6 +70,8 @@ So, we need to choose what to evaluate.
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
 
 ```python
+import math
+
 from ice.recipe import Recipe
 
 
@@ -77,6 +81,7 @@ def make_computation_choice_prompt(question: str) -> str:
 You have access to a Python interpreter.
 
 Enter an expression that will help you answer the question.
+>>> import math
 >>>"""
 
 
@@ -121,13 +126,16 @@ def make_computation_choice_prompt(question: str) -> str:
 You have access to a Python interpreter.
 
 Enter an expression that will help you answer the question.
+>>> import math
 >>>"""
 
 
 def make_compute_qa_prompt(question: str, expression: str, result: str) -> str:
     return f"""A recording of a Python interpreter session:
 
->>> {expression}: {result}
+>>> import math
+>>> print({expression})
+{result}
 
 Answer the following question, using the Python session if helpful:
 
