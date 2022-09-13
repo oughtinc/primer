@@ -19,6 +19,4 @@ You'll learn how to:
 * Build human-in-the-loop agents
 * Use verification of answers and reasoning steps to improve responses
 
-
-
-The book focuses on techniques that are likely to remain relevant for better language models.
+The book focuses on techniques that are likely to remain relevant for better language models, and perhaps will even become more useful.
