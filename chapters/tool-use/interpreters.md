@@ -18,7 +18,7 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 
 
 
-### Evaluating Python expressions
+## Evaluating Python expressions
 
 Let's add a method for evaluating Python expressions:
 
@@ -63,7 +63,7 @@ Error: invalid syntax (<string>, line 1)
 
 So, we need to choose what to evaluate.
 
-### Choosing what to evaluate
+## Choosing what to evaluate
 
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
 
@@ -107,7 +107,7 @@ If we run this on our example, we get:
 
 This is a helpful expression and result!
 
-### Using the results of evaluation
+## Using the results of evaluation
 
 Now all we need to do this provide this expression and result as additional context for the basic question-answerer.
 
@@ -193,7 +193,7 @@ If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at t
 
 In contrast, the basic question-answerer says "You would have $1,034,957.29 at the end."
 
-### Exercises
+## Exercises
 
 1. Many questions can only be answered using longer algorithms in Python. Extend the code above to support multi-line Python programs ([example](https://twitter.com/sergeykarayev/status/1569377881440276481/photo/1)).
 2. Another approach to (1) is to let the model "enter" multiple expressions into the interpreter. Extend the recipe to support this.

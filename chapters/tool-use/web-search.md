@@ -16,7 +16,7 @@ Let's start by simply providing the list of search results as additional context
 
 
 
-### Running web searches
+## Running web searches
 
 ```python
 import httpx
@@ -73,7 +73,7 @@ Running `scripts/run-recipe.sh -r search.py -t` returns a large JSON object:
 ```
 {% endcode %}
 
-### Rendering search results to prompts
+## Rendering search results to prompts
 
 We add a method to render the search results to a string:
 
@@ -139,7 +139,7 @@ List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Je
 ```
 {% endcode %}
 
-### Answering questions given search results
+## Answering questions given search results
 
 Now all we need to do is stick the search results into the Q\&A prompt:
 
@@ -214,7 +214,7 @@ Joe Biden is the 46th and current president of the United States, having assumed
 
 Much better!
 
-### Exercises
+## Exercises
 
 1. It's nice to look at search results, but often the results are in the actual web pages. Extend the recipe to add the text of the first web page.
 2. Use the model to decide which of the search results to expand.
