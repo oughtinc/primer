@@ -214,6 +214,99 @@ Joe Biden is the 46th and current president of the United States, having assumed
 
 Much better!
 
+## Choosing better queries
+
+There's still something unsatisfying--we're directly searching for the question, but it could be better to let the model control what search terms we use. This is especially true for complex questions that we don't expect to get a full answer to through Google, like:
+
+> Based on the weather on Sep 14th 2022, how many people went do you think went to the beach in San Francisco?
+
+Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
+
+<pre class="language-python" data-overflow="wrap" data-line-numbers><code class="lang-python">import httpx
+
+from ice.recipe import Recipe
+
+
+<strong>def make_search_result_prompt(context: str, query: str, question: str) -> str:
+</strong>    return f"""
+<strong>Search results from Google for the query "{query}": "{context}"
+</strong>
+Answer the following question, using the search results if helpful:
+
+Question: "{question}"
+Answer: "
+""".strip()
+
+
+<strong>def make_search_query_prompt(question: str) -> str:
+</strong><strong>    return f"""
+</strong><strong>You're trying to answer the question {question}. You get to type in a search query to Google, and then you'll be shown the results. What query do you want to search for?
+</strong><strong>
+</strong><strong>Query: "
+</strong><strong>""".strip('" ')
+</strong>
+
+class Search(Recipe):
+
+    async def search(self, query: str) -> dict:
+        async with httpx.AsyncClient() as client:
+          params = {
+            "q": query,
+            "hl": "en",
+            "gl": "us",
+            "api_key": "e29...7b4c"
+          }
+          response = await client.get("https://serpapi.com/search", params=params)
+          return response.json()
+
+    def render_results(self, data: dict) -> str:
+        if not data or not data.get("organic_results"):
+            return "No results found"
+
+        results = []
+        for result in data["organic_results"]:
+            title = result.get("title")
+            link = result.get("link")
+            snippet = result.get("snippet")
+            if not title or not link or not snippet:
+                continue
+            results.append(f"{title}\n{link}\n{snippet}\n")
+
+        return "\n".join(results)
+
+<strong>    async def choose_query(self, question: str) -> str:
+</strong><strong>        prompt = make_search_query_prompt(question)
+</strong><strong>        query = (await self.agent().answer(prompt=prompt)).strip('" ')
+</strong><strong>        return query
+</strong>    
+    async def run(
+        self, question: str = "Who is the president of the United States?",
+    ) -> str:
+<strong>        query = await self.choose_query(question)
+</strong><strong>        results = await self.search(query)
+</strong>        results_str = self.render_results(results)
+        prompt = make_search_result_prompt(results_str, query, question)
+        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+        return answer</code></pre>
+
+If we run our question...
+
+{% code overflow="wrap" %}
+```shell
+scripts/run-recipe.sh -r web.py -t --args '{"question": "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"}'
+```
+{% endcode %}
+
+...we get:
+
+{% code overflow="wrap" %}
+```
+I couldn't find an exact answer to your question, but based on the weather forecast for that day, it looks like the weather will be nice and the beaches will be busy.
+```
+{% endcode %}
+
+The query chosen by the model was "beach weather san francisco september 12th 2022".
+
 ## Exercises
 
 1. It's nice to look at search results, but often the results are in the actual web pages. Extend the recipe to add the text of the first web page.
