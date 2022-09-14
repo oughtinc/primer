@@ -222,15 +222,17 @@ There's still something unsatisfying--we're directly searching for the question,
 
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
 
-<pre class="language-python" data-overflow="wrap" data-line-numbers><code class="lang-python">import httpx
+{% code overflow="wrap" %}
+```python
+import httpx
 
 from ice.recipe import Recipe
 
 
-<strong>def make_search_result_prompt(context: str, query: str, question: str) -> str:
-</strong>    return f"""
-<strong>Search results from Google for the query "{query}": "{context}"
-</strong>
+def make_search_result_prompt(context: str, query: str, question: str) -> str:
+    return f"""
+Search results from Google for the query "{query}": "{context}"
+
 Answer the following question, using the search results if helpful:
 
 Question: "{question}"
@@ -238,13 +240,13 @@ Answer: "
 """.strip()
 
 
-<strong>def make_search_query_prompt(question: str) -> str:
-</strong><strong>    return f"""
-</strong><strong>You're trying to answer the question {question}. You get to type in a search query to Google, and then you'll be shown the results. What query do you want to search for?
-</strong><strong>
-</strong><strong>Query: "
-</strong><strong>""".strip('" ')
-</strong>
+def make_search_query_prompt(question: str) -> str:
+    return f"""
+You're trying to answer the question {question}. You get to type in a search query to Google, and then you'll be shown the results. What query do you want to search for?
+
+Query: "
+""".strip('" ')
+
 
 class Search(Recipe):
 
@@ -274,20 +276,22 @@ class Search(Recipe):
 
         return "\n".join(results)
 
-<strong>    async def choose_query(self, question: str) -> str:
-</strong><strong>        prompt = make_search_query_prompt(question)
-</strong><strong>        query = (await self.agent().answer(prompt=prompt)).strip('" ')
-</strong><strong>        return query
-</strong>    
+    async def choose_query(self, question: str) -> str:
+        prompt = make_search_query_prompt(question)
+        query = (await self.agent().answer(prompt=prompt)).strip('" ')
+        return query
+    
     async def run(
         self, question: str = "Who is the president of the United States?",
     ) -> str:
-<strong>        query = await self.choose_query(question)
-</strong><strong>        results = await self.search(query)
-</strong>        results_str = self.render_results(results)
+        query = await self.choose_query(question)
+        results = await self.search(query)
+        results_str = self.render_results(results)
         prompt = make_search_result_prompt(results_str, query, question)
         answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer</code></pre>
+        return answer
+```
+{% endcode %}
 
 If we run our question...
 
