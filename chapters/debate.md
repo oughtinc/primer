@@ -88,7 +88,7 @@ You: "
 
 ### The debate recipe
 
-If you want to challenge yourpause and see if you can use the pieces above to write a recipe that has agents take turns at a debate about a question.
+If you want to challenge yourself, pause and see if you can use the pieces above to write a recipe that has agents take turns at a debate about a question.
 
 Once you're ready, or if you just want to see the result, take a look at this recipe:
 
