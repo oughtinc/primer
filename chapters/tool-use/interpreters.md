@@ -5,7 +5,7 @@ Sometimes the limitation isn't factual knowledge, but ability to do computation.
 For example, if we ask the basic question-answerer "What is 578921 days \* 12312 miles/day?":
 
 ```shell
-scripts/run-recipe.sh -r qa.py --args '{"question": "What is 578921 days * 12312 miles/day?"}'
+python qa.py --question "What is 578921 days * 12312 miles/day?"
 ```
 
 we get:
@@ -16,33 +16,30 @@ we get:
 
 This is similar to the correct answer `7127675352 miles`, but not the same.
 
-
-
 ## Evaluating Python expressions
 
 Let's add a method for evaluating Python expressions:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
-class Compute(Recipe):
+def eval_python(expression: str) -> str:
+    try:
+        result = eval(expression)
+    except Exception as e:
+        result = f"Error: {e}"
+    return str(result)
 
-    def eval_python(self, expression: str) -> str:
-        try:
-            result = eval(expression)
-        except Exception as e:
-            result = f"Error: {e}"
-        return str(result)
-    
-    async def run(self, *, question: str):
-        return self.eval_python(question)
+@recipe.main
+async def answer_by_computation(*, question: str):
+    return eval_python(question)
 ```
 
 This works as expected for expressions that are literally Python code:
 
 ```shell
-scripts/run-recipe.sh -r compute.py --args '{"question": "1 + 1"}'
+python compute.py --question "1 + 1"
 ```
 
 ```
@@ -52,9 +49,11 @@ scripts/run-recipe.sh -r compute.py --args '{"question": "1 + 1"}'
 Of course, it doesn't work for natural language questions that benefit from compute:
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r compute.py --args '{"question": "What is 578921 days * 12312 miles/day?"}'
+python compute.py --question "What is 578921 days * 12312 miles/day?"
 ```
+
 {% endcode %}
 
 ```
@@ -68,7 +67,7 @@ So, we need to choose what to evaluate.
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_computation_choice_prompt(question: str) -> str:
@@ -80,23 +79,23 @@ Enter an expression that will help you answer the question.
 >>>"""
 
 
-class Compute(Recipe):
-    def eval_python(self, expression: str) -> str:
-        try:
-            result = eval(expression)
-        except Exception as e:
-            result = f"Error: {e}"
-        return str(result)
+def eval_python(expression: str) -> str:
+    try:
+        result = eval(expression)
+    except Exception as e:
+        result = f"Error: {e}"
+    return str(result)
 
-    async def choose_computation(self, question: str) -> str:
-        prompt = make_computation_choice_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
+async def choose_computation(question: str) -> str:
+    prompt = make_computation_choice_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    return answer
 
-    async def run(self, *, question: str):
-        expression = await self.choose_computation(question)
-        result = self.eval_python(expression)
-        return (expression, result)
+@recipe.main
+async def answer_by_computation(*, question: str):
+    expression = await choose_computation(question)
+    result = eval_python(expression)
+    return (expression, result)
 ```
 
 If we run this on our example, we get:
@@ -112,7 +111,7 @@ This is a helpful expression and result!
 Now all we need to do this provide this expression and result as additional context for the basic question-answerer.
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_computation_choice_prompt(question: str) -> str:
@@ -136,33 +135,35 @@ Answer: "
 """.strip()
 
 
-class Compute(Recipe):
-    def eval_python(self, expression: str) -> str:
-        try:
-            result = eval(expression)
-        except Exception as e:
-            result = f"Error: {e}"
-        return str(result)
+def eval_python(expression: str) -> str:
+    try:
+        result = eval(expression)
+    except Exception as e:
+        result = f"Error: {e}"
+    return str(result)
 
-    async def choose_computation(self, question: str) -> str:
-        prompt = make_computation_choice_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
+async def choose_computation(question: str) -> str:
+    prompt = make_computation_choice_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    return answer
 
-    async def run(self, *, question: str):
-        expression = await self.choose_computation(question)
-        result = self.eval_python(expression)
-        prompt = make_compute_qa_prompt(question, expression, result)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
+@recipe.main
+async def answer_by_computation(*, question: str):
+    expression = await choose_computation(question)
+    result = eval_python(expression)
+    prompt = make_compute_qa_prompt(question, expression, result)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 ```
 
 Rerunning our test case
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r compute.py --args '{"question": "What is 578921 days * 12312 miles/day?"}'
+python compute.py --question "What is 578921 days * 12312 miles/day?"
 ```
+
 {% endcode %}
 
 we get the correct answer:
@@ -178,17 +179,21 @@ Another example:
 Running this:
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r compute.py --args '{"question": "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?"}' -t
+python compute.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?" -t
 ```
+
 {% endcode %}
 
 We get:
 
 {% code overflow="wrap" %}
+
 ```
 If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at the end.
 ```
+
 {% endcode %}
 
 In contrast, the basic question-answerer says "You would have $1,034,957.29 at the end."

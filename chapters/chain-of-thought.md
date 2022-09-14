@@ -11,8 +11,9 @@ Many questions require multiple steps of inference before they can be answered. 
 Let's start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
 
 {% code overflow="wrap" %}
+
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_cot_prompt(question: str, answer_prefix: str = "") -> str:
@@ -23,42 +24,49 @@ Answer: "{answer_prefix}
 """.strip()
 
 
-class ChainOfThought(Recipe):
-    async def run(self, *, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
-        prompt = make_cot_prompt(question, answer_prefix)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=200, multiline=True)).strip('" ')
-        return answer
+@recipe.main
+async def answer_by_reasoning(*, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
+    prompt = make_cot_prompt(question, answer_prefix)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=200, multiline=True)).strip('" ')
+    return answer
 ```
+
 {% endcode %}
 
 Let's first run the recipe without answer prefix:
 
 ```shell
-scripts/run-recipe.sh -r cot.py -t --args '{"answer_prefix": ""}'
+python cot.py -t --answer_prefix ""
 ```
 
 We get an answer:
 
 {% code overflow="wrap" %}
+
 ```
 If the average temperature in Northern California went up by 5 degrees Fahrenheit, it would cause more wildfires.
 ```
+
 {% endcode %}
 
 If we provide "Let's think step by step" as an answer prefix...
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r cot.py -t --args '{"answer_prefix": "Let'\''s think step by step."}'
+python cot.py -t --answer_prefix "Let's think step by step."
 ```
+
 {% endcode %}
 
 ...we get a much more elaborate answer:
 
 {% code overflow="wrap" %}
+
 ```
 The first thing that would happen is that the air would heat up. This would cause the water in the air to evaporate more quickly, which would lead to more precipitation in the form of rain and snow. The extra precipitation would cause the rivers to swell and the groundwater to rise. This could lead to flooding in some areas. The extra heat would also cause the snow in the mountains to melt more quickly, which would lead to more water in the rivers and groundwater, and could also cause flooding. The extra heat would also cause the plants to grow more quickly, which would lead to more food for the animals. The extra heat would also cause the animals to become more active, which would lead to more food being eaten and more waste being produced. The extra heat would also cause the bacteria in the soil to become more active, which would lead to more decomposition and more nutrients being released into the soil. The extra heat would also cause the insects to become more active, which would lead to more...
 ```
+
 {% endcode %}
 
 ## Step-by-step reasoning for concise answers
@@ -68,8 +76,9 @@ In the previous example chain-of-thought is used to elicit a more elaborate answ
 We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the moel without chain-of-thought:
 
 {% code overflow="wrap" %}
+
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def generate_reasoning_prompt(question: str) -> str:
@@ -89,48 +98,50 @@ Short answer: "
 """.strip()
 
 
-class ChainOfThought(Recipe):
-    async def get_reasoning(self, question: str) -> str:
-        reasoning_prompt = generate_reasoning_prompt(question)
-        reasoning = (
-            await self.agent().answer(
-                prompt=reasoning_prompt, max_tokens=200, multiline=True
-            )
-        ).strip('" ')
-        return reasoning
+async def get_reasoning(question: str) -> str:
+    reasoning_prompt = generate_reasoning_prompt(question)
+    reasoning = (
+        await recipe.agent().answer(
+            prompt=reasoning_prompt, max_tokens=200, multiline=True
+        )
+    ).strip('" ')
+    return reasoning
 
-    async def get_answer(self, question: str, reasoning: str) -> str:
-        answer_prompt = generate_answer_prompt(question, reasoning)
-        answer = (
-            await self.agent().answer(
-                prompt=answer_prompt, max_tokens=100, multiline=True
-            )
-        ).strip('" ')
-        return answer
+async def get_answer(question: str, reasoning: str) -> str:
+    answer_prompt = generate_answer_prompt(question, reasoning)
+    answer = (
+        await recipe.agent().answer(
+            prompt=answer_prompt, max_tokens=100, multiline=True
+        )
+    ).strip('" ')
+    return answer
 
-    async def run(
-        self,
-        *,
-        question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?",
-    ) -> str:
-        reasoning = await self.get_reasoning(question)
-        answer = await self.get_answer(question, reasoning)
-        return answer
+@recipe.main
+async def answer_by_reasoning(
+    *,
+    question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?",
+) -> str:
+    reasoning = await get_reasoning(question)
+    answer = await get_answer(question, reasoning)
+    return answer
 ```
+
 {% endcode %}
 
 If we now run our script again:
 
 ```shell
-scripts/run-recipe.sh -r cot.py -t
+python cot.py -t
 ```
 
 We get a summary of the long reasoning chain:
 
 {% code overflow="wrap" %}
+
 ```
 The average temperature in Northern California going up by 5 degrees Fahrenheit would cause the air to heat up, leading to more precipitation, swelling rivers, flooding, melting snow, faster plant growth, more active animals, and more active bacteria.
 ```
+
 {% endcode %}
 
 ## **Exercise**
@@ -140,9 +151,11 @@ Let's apply this to the math problem we saw in the chapter on checking reasoning
 > Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?
 
 {% code overflow="wrap" %}
+
 ```
-scripts/run-recipe.sh -r cot.py -t --args '{"question": "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"}'
+python cot.py -t --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 ```
+
 {% endcode %}
 
 The answer:
@@ -154,10 +167,10 @@ Each person would consume 12 cookies.
 Inspecting the reasoning, we see that something went wrong in step two:
 
 ```
-There are 4x2=8 batches of cookies. 
-Each batch has 24 cookies. 
-There are 8x24=192 cookies in total. 
-There are 16 people. 
+There are 4x2=8 batches of cookies.
+Each batch has 24 cookies.
+There are 8x24=192 cookies in total.
+There are 16 people.
 Each person would get 192/16=12 cookies.
 ```
 

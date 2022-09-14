@@ -9,7 +9,7 @@ Now let's make our first recipe `qa.py` that calls out to an agent.
 ### Context-free question-answering
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_qa_prompt(question: str) -> str:
@@ -20,23 +20,23 @@ Answer: "
 """.strip()
 
 
-class QA(Recipe):
-    async def run(self, *, question: str = "What is happening on 9/9/2022?"):
-        prompt = make_qa_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
+@recipe.main
+async def answer(*, question: str = "What is happening on 9/9/2022?"):
+    prompt = make_qa_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    return answer
 ```
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-* `human`: Elicit answers from you using a command-line interface.
-* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+- `human`: Elicit answers from you using a command-line interface.
+- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 
 ```shell
-scripts/run-recipe.sh -r qa.py -t -m human
+python qa.py -t -m human
 ```
 
 Try running your recipe in different modes.
@@ -50,7 +50,7 @@ Because the agent's `answer` method is async, we use `await` when we call it.
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 DEFAULT_CONTEXT = "We're running a hackathon on 9/9/2022 to decompose complex reasoning tasks into subtasks that are easier to automate & evaluate with language models. Our team is currently breaking down reasoning about the quality of evidence in randomized controlled trials into smaller tasks e.g. placebo, intervention adherence rate, blinding procedure, etc."
@@ -69,13 +69,13 @@ Answer: "
 """.strip()
 
 
-class QA(Recipe):
-    async def run(
-        self, context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
-    ) -> str:
-        prompt = make_qa_prompt(context, question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
+@recipe.main
+async def answer(
+    context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
+) -> str:
+    prompt = make_qa_prompt(context, question)
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    return answer
 ```
 
 You should see a response like this:

@@ -31,6 +31,7 @@ Answer: "
 Now we can render prompts like this:
 
 {% code overflow="wrap" %}
+
 ```
 Here is relevant background information:
 Q: What is creatine?
@@ -49,46 +50,51 @@ Answer the following question, using the background information above where help
 Question: "What is the effect of creatine on cognition?"
 Answer: "
 ```
+
 {% endcode %}
 
 With this in hand, we can write the one-step amplified Q\&A recipe:
 
 ```python
-class AmplifiedQA(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-        subs = await self.get_subs(question)
-        answer = await self.answer(question=question, subs=subs)
-        return answer
+async def get_subs(question: str) -> Subs:
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, answer)
+    return list(zip(subquestions, subanswers))
 
-    async def get_subs(self, question: str) -> Subs:
-        subquestions = await Subquestions().run(question=question)
-        subanswers = await map_async(subquestions, self.answer)
-        return list(zip(subquestions, subanswers))
+async def answer(question: str, subs: Subs = []) -> str:
+    prompt = make_qa_prompt(question, subs=subs)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 
-    async def answer(self, question: str, subs: Subs = []) -> str:
-        prompt = make_qa_prompt(question, subs=subs)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+    subs = await get_subs(question)
+    answer = await answer(question=question, subs=subs)
+    return answer
 ```
 
 If we run it with
 
 ```shell
-scripts/run-recipe.sh -r amplified_qa.py -t
+python amplified_qa.py -t
 ```
 
 we get:
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
+
 {% endcode %}
 
 Compare with the unamplified answer:
 
 {% code overflow="wrap" %}
+
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
+
 {% endcode %}
