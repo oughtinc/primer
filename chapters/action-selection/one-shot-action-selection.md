@@ -24,8 +24,9 @@ There's a long list of actions we could choose between. For this first version, 
 Let's first represent the actions as a data type. For each action we'll also store an associated description that will help the model choose between them, and the recipe that runs the action:
 
 {% code overflow="wrap" %}
+
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 from dataclasses import dataclass
 
@@ -59,6 +60,7 @@ action_types = [
     ),
 ]
 ```
+
 {% endcode %}
 
 ### **From actions to prompts**
@@ -66,10 +68,11 @@ action_types = [
 We render the actions as an action selection prompt like this:
 
 {% code overflow="wrap" %}
+
 ```python
 def make_action_selection_prompt(question: str) -> str:
     action_types_str = "\n".join([f"{i+1}. {action_type.description}" for i, action_type in enumerate(action_types)])
-    
+
     return f"""You want to answer the question "{question}".
 
 You have the following options:
@@ -79,11 +82,13 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #""".strip()
 ```
+
 {% endcode %}
 
 So, `make_action_selection_prompt("How many people live in Germany?")` results in:
 
 {% code overflow="wrap" %}
+
 ```
 You want to answer the question "How many people live in Germany?".
 
@@ -96,6 +101,7 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #
 ```
+
 {% endcode %}
 
 ### **Choosing the right action**
@@ -103,20 +109,22 @@ A: I want to use option #
 We'll treat action choice as a classification task, and print out the probability of each action:
 
 ```python
-class ActionSelection(Recipe):
-    async def run(self, *, question: str = "How many people live in Germany?"):
-        prompt = make_action_selection_prompt(question)
-        choices = tuple(str(i) for i in range(1, 6))
-        answer, _ = (await self.agent().classify(prompt=prompt, choices=choices))
-        return list(zip(answer.items(), [a.name for a in action_types]))
+@recipe.main
+async def answer_by_dispatch(*, question: str = "How many people live in Germany?"):
+    prompt = make_action_selection_prompt(question)
+    choices = tuple(str(i) for i in range(1, 6))
+    answer, _ = (await recipe.agent().classify(prompt=prompt, choices=choices))
+    return list(zip(answer.items(), [a.name for a in action_types]))
 ```
 
 Let's test it:
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r action.py -t --args '{"question": "How many people live in Germany?"}'
+python action.py -t --question "How many people live in Germany?"
 ```
+
 {% endcode %}
 
 ```python
@@ -130,7 +138,7 @@ scripts/run-recipe.sh -r action.py -t --args '{"question": "How many people live
 Web search seems like the correct solution here.
 
 ````shell
-scripts/run-recipe.sh -r action.py -t --args '{"question": "What is sqrt(2^8)?"}'
+python action.py -t --question "What is sqrt(2^8)?"
 
 ```python
 [
@@ -143,9 +151,11 @@ scripts/run-recipe.sh -r action.py -t --args '{"question": "What is sqrt(2^8)?"}
 Clearly a computation question.
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r action.py -t --args '{"question": "Is transhumanism desirable?"}'
+python action.py -t --question "Is transhumanism desirable?"
 ```
+
 {% endcode %}
 
 ```python
@@ -159,9 +169,11 @@ scripts/run-recipe.sh -r action.py -t --args '{"question": "Is transhumanism des
 Reasoning makes sense here.
 
 {% code overflow="wrap" %}
+
 ```shell
-scripts/run-recipe.sh -r action.py -t --args '{"question": "What are the effects of climate change?"}'
+python action.py -t --question "What are the effects of climate change?"
 ```
+
 {% endcode %}
 
 ```python
@@ -181,42 +193,46 @@ Now let's combine the action selector with the chapters on web search, computati
 This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do its run the chosen subrecipe:
 
 ```python
-class ActionSelection(Recipe):
-    async def select_action(self, question: str) -> Action:
-        prompt = make_action_selection_prompt(question)
-        choices = tuple(str(i) for i in range(1, 6))
-        choice_probs, _ = await self.agent().classify(prompt=prompt, choices=choices)
-        best_choice = max(choice_probs.items(), key=lambda x: x[1])[0]
-        return action_types[int(best_choice) - 1]
+async def select_action(question: str) -> Action:
+    prompt = make_action_selection_prompt(question)
+    choices = tuple(str(i) for i in range(1, 6))
+    choice_probs, _ = await recipe.agent().classify(prompt=prompt, choices=choices)
+    best_choice = max(choice_probs.items(), key=lambda x: x[1])[0]
+    return action_types[int(best_choice) - 1]
 
-    async def run(self, *, question: str = "How many people live in Germany?"):
-        action = await self.select_action(question)
-        recipe = action.recipe(mode=self.mode)
-        return await recipe.run(question=question)
+@recipe.main
+async def answer_by_dispatch(*, question: str = "How many people live in Germany?"):
+    action = await select_action(question)
+    recipe = action.recipe(mode=mode)
+    return await recipe.run(question=question)
 ```
 
 Let's try it with our examples above:
 
 {% code overflow="wrap" %}
+
 ```
-$ scripts/run-recipe.sh -r action.py -t --args '{"question": "How many people live in Germany?"}'
+$ python action.py -t --question "How many people live in Germany?"
 
 The current population of Germany is 84,370,487 as of Monday, September 12, 2022, based on Worldometer elaboration of the latest United Nations data.
 ```
+
 {% endcode %}
 
 ```
-$ scripts/run-recipe.sh -r action.py -t --args '{"question": "What is sqrt(2^8)?"}'
+$ python action.py -t --question "What is sqrt(2^8)?"
 
 16.0
 ```
 
 {% code overflow="wrap" %}
+
 ```
-$ scripts/run-recipe.sh -r action.py -t --args '{"question": "Is transhumanism desirable?"}'
+$ python action.py -t --question "Is transhumanism desirable?"
 
 It is up to each individual to decide whether or not they believe transhumanism is desirable.
 ```
+
 {% endcode %}
 
 These are better answers than we'd get without augmentation.
@@ -226,11 +242,14 @@ These are better answers than we'd get without augmentation.
 1.  Add an action type for debate:
 
     {% code overflow="wrap" %}
+
     ```python
     Action(
       name="Debate",
       description='Run a debate. This is helpful if the question is a pro/con question that involves involves different perspectives, arguments, and evidence, such as "Should marijuana be legalized?" or "Is veganism better for the environment?".'
     ),
     ```
+
     {% endcode %}
-2. Suppose that actions are taking place within the context of a long document. Add an action type for searching for a particular phrase in the document and returning the results.
+
+2.  Suppose that actions are taking place within the context of a long document. Add an action type for searching for a particular phrase in the document and returning the results.

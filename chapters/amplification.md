@@ -11,7 +11,7 @@ Amplification is the idea that agents can make subcalls to copies of themselves 
 Let's start by making a recipe that returns subquestions given a question:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_subquestion_prompt(question: str) -> str:
@@ -22,20 +22,20 @@ Subquestions:
 -""".strip()
 
 
-class Subquestions(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-        prompt = make_subquestion_prompt(question)
-        subquestions_text = await self.agent().answer(
-            prompt=prompt, multiline=True, max_tokens=100
-        )
-        subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
-        return subquestions
+@recipe.main
+async def ask_subquestions(question: str = "What is the effect of creatine on cognition?"):
+    prompt = make_subquestion_prompt(question)
+    subquestions_text = await recipe.agent().answer(
+        prompt=prompt, multiline=True, max_tokens=100
+    )
+    subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
+    return subquestions
 ```
 
 If we save this as `subquestions.py` and run it...
 
 ```shell
-./scripts/run-recipe.sh -r subquestions.py -t
+python subquestions.py -t
 ```
 
 ...we get:
@@ -61,9 +61,9 @@ Now we want to use the subquestions recipe to help a question-answerer like the 
 Let's start with (1) and (2), reusing the subquestions subrecipe:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 from ice.utils import map_async
-from subquestions import Subquestions
+from subquestions import ask_subquestions
 
 
 def make_qa_prompt(question: str) -> str:
@@ -74,22 +74,23 @@ Answer: "
 """.strip()
 
 
-class AmplifiedQA(Recipe):
+async def answer(question: str) -> str:
+    prompt = make_qa_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 
-    async def answer(self, question: str) -> str:
-        prompt = make_qa_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
 
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-         subquestions = await Subquestions().run(question=question)
-         subanswers = await map_async(subquestions, self.answer)
-         return list(zip(subquestions, subanswers))
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, answer)
+    return list(zip(subquestions, subanswers))
 ```
 
 If we run this, we get back a list of subquestions and their answers:
 
 {% code overflow="wrap" %}
+
 ```python
 [
     (
@@ -114,6 +115,7 @@ If we run this, we get back a list of subquestions and their answers:
     )
 ]
 ```
+
 {% endcode %}
 
 ### One-step amplification: Answering given subquestion answers
@@ -145,6 +147,7 @@ Answer: "
 Now we can render prompts like this:
 
 {% code overflow="wrap" %}
+
 ```
 Here is relevant background information:
 Q: What is creatine?
@@ -163,73 +166,78 @@ Answer the following question, using the background information above where help
 Question: "What is the effect of creatine on cognition?"
 Answer: "
 ```
+
 {% endcode %}
 
 With this in hand, we can write the one-step amplified Q\&A recipe:
 
 ```python
-class AmplifiedQA(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-        subs = await self.get_subs(question)
-        answer = await self.answer(question=question, subs=subs)
-        return answer
+async def get_subs(question: str) -> Subs:
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, answer)
+    return list(zip(subquestions, subanswers))
 
-    async def get_subs(self, question: str) -> Subs:
-        subquestions = await Subquestions().run(question=question)
-        subanswers = await map_async(subquestions, self.answer)
-        return list(zip(subquestions, subanswers))
+async def answer(question: str, subs: Subs = []) -> str:
+    prompt = make_qa_prompt(question, subs=subs)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 
-    async def answer(self, question: str, subs: Subs = []) -> str:
-        prompt = make_qa_prompt(question, subs=subs)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+    subs = await get_subs(question)
+    answer = await answer(question=question, subs=subs)
+    return answer
 ```
 
 If we run it with
 
 ```shell
-scripts/run-recipe.sh -r amplified_qa.py -t
+python amplified_qa.py -t
 ```
 
 we get:
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
+
 {% endcode %}
 
 Compare with the unamplified answer:
 
 {% code overflow="wrap" %}
+
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
+
 {% endcode %}
 
 ### Recursive amplification
 
 Now we'd like to generalize the recipe above so that we can run it at different depths:
 
-* Depth 0: Just answer the question, no subquestions
-* Depth 1: One layer of subquestions
-* Depth 2: Use subquestions when answering subquestions
-* Etc.
+- Depth 0: Just answer the question, no subquestions
+- Depth 1: One layer of subquestions
+- Depth 2: Use subquestions when answering subquestions
+- Etc.
 
 To do this, we adda `depth` parameter to `run` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
 ```python
-class AmplifiedQA(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?", depth: int = 1):
-        subs = await self.get_subs(question, depth - 1) if depth > 0 else []
-        prompt = make_qa_prompt(question, subs=subs)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
+async def get_subs(question: str, depth: int) -> Subs:
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, lambda q: run(q, depth))
+    return list(zip(subquestions, subanswers))
 
-    async def get_subs(self, question: str, depth: int) -> Subs:
-        subquestions = await Subquestions().run(question=question)
-        subanswers = await map_async(subquestions, lambda q: self.run(q, depth))
-        return list(zip(subquestions, subanswers))
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?", depth: int = 1):
+    subs = await get_subs(question, depth - 1) if depth > 0 else []
+    prompt = make_qa_prompt(question, subs=subs)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 ```
 
 Now we have a parameterized recipe that we can run at different depths:
@@ -237,37 +245,43 @@ Now we have a parameterized recipe that we can run at different depths:
 #### Depth 0
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 0}'
+python amplification.py -t --depth 0
 ```
 
 {% code overflow="wrap" %}
+
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
+
 {% endcode %}
 
 #### Depth 1
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 1}'
+python amplification.py -t --depth 1
 ```
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
+
 {% endcode %}
 
 #### Depth 2
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 2}'
+python amplification.py -t --depth 2
 ```
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is inconclusive. Some studies have found that creatine can improve cognitive function in healthy adults, while other studies have found no significant effects. More research is needed to determine the potential cognitive benefits of creatine.
 ```
+
 {% endcode %}
 
 ### Exercises

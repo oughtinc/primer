@@ -3,7 +3,7 @@
 Let's start by making a recipe that returns subquestions given a question:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_subquestion_prompt(question: str) -> str:
@@ -14,20 +14,20 @@ Subquestions:
 -""".strip()
 
 
-class Subquestions(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-        prompt = make_subquestion_prompt(question)
-        subquestions_text = await self.agent().answer(
-            prompt=prompt, multiline=True, max_tokens=100
-        )
-        subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
-        return subquestions
+@recipe.main
+async def ask_subquestions(question: str = "What is the effect of creatine on cognition?"):
+    prompt = make_subquestion_prompt(question)
+    subquestions_text = await recipe.agent().answer(
+        prompt=prompt, multiline=True, max_tokens=100
+    )
+    subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
+    return subquestions
 ```
 
 If we save this as `subquestions.py` and run it...
 
 ```shell
-./scripts/run-recipe.sh -r subquestions.py -t
+python subquestions.py -t
 ```
 
 ...we get:

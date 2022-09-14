@@ -1,46 +1,46 @@
 # The debate recipe
 
-If you want to challenge yourself, pause and see if you can use the pieces we've seen so far to write a recipe that has agents take turns at a debate about a question.
+If you want to challenge yourpause and see if you can use the pieces we've seen so far to write a recipe that has agents take turns at a debate about a question.
 
 Once you're ready, or if you just want to see the result, take a look at this recipe:
 
 ```python
 from ice.agents.base import Agent
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
-class DebateRecipe(Recipe):
+async def turn(
+    debate: Debate, agent: Agent, agent_name: Name, turns_left: int
+):
+    prompt = render_debate_prompt(agent_name, debate, turns_left)
+    answer = await agent.answer(
+        prompt=prompt, multiline=False, max_tokens=100
+    )
+    return (agent_name, answer.strip('" '))
 
-    async def run(self, question: str = "Should we legalize all drugs?"):
-        agents = [self.agent(), self.agent()]
-        agent_names = ["Alice", "Bob"]
-        debate = initialize_debate(question)
-        turns_left = 8
-        while turns_left > 0:
-            for agent, agent_name in zip(agents, agent_names):
-                turn = await self.turn(debate, agent, agent_name, turns_left)
-                debate.append(turn)
-                turns_left -= 1
-        return render_debate(debate)
-
-    async def turn(
-        self, debate: Debate, agent: Agent, agent_name: Name, turns_left: int
-    ):
-        prompt = render_debate_prompt(agent_name, debate, turns_left)
-        answer = await agent.answer(
-            prompt=prompt, multiline=False, max_tokens=100
-        )
-        return (agent_name, answer.strip('" '))
+@recipe.main
+async def debate(question: str = "Should we legalize all drugs?"):
+    agents = [recipe.agent(), recipe.agent()]
+    agent_names = ["Alice", "Bob"]
+    debate = initialize_debate(question)
+    turns_left = 8
+    while turns_left > 0:
+        for agent, agent_name in zip(agents, agent_names):
+            turn = await turn(debate, agent, agent_name, turns_left)
+            debate.append(turn)
+            turns_left -= 1
+    return render_debate(debate)
 ```
 
 Once you've saved the recipe in `debate.py` you can run it as usual:
 
 ```shell
-scripts/run-recipe.sh -r debate.py -t
+python debate.py -t
 ```
 
 You should see a debate like this:
 
 {% code overflow="wrap" %}
+
 ```
 Question: "Should we legalize all drugs?"
 Alice: "I'm in favor."
@@ -54,10 +54,11 @@ Bob: "Treatment is expensive, and most addicts can't afford it. Legalizing drugs
 Alice: "The government could fund treatment programs. And people would be less likely to need treatment if they could get drugs legally."
 Bob: "It's not that simple. Legalizing drugs would create a lot of new problems."
 ```
+
 {% endcode %}
 
 {% hint style="info" %}
-In `agents = [self.agent(), self.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.
+In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.
 {% endhint %}
 
 ### Exercises

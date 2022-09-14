@@ -3,7 +3,7 @@
 Let's make our first recipe `qa.py` that calls out to an agent:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 
 
 def make_qa_prompt(question: str) -> str:
@@ -14,23 +14,23 @@ Answer: "
 """.strip()
 
 
-class QA(Recipe):
-    async def run(self, *, question: str = "What is happening on 9/9/2022?"):
-        prompt = make_qa_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt)).strip('" ')
-        return answer
+@recipe.main
+async def answer(*, question: str = "What is happening on 9/9/2022?"):
+    prompt = make_qa_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    return answer
 ```
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-* `human`: Elicit answers from you using a command-line interface.
-* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+- `human`: Elicit answers from you using a command-line interface.
+- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 
 ```shell
-scripts/run-recipe.sh -r qa.py -t -m human
+python qa.py -t -m human
 ```
 
 Try running your recipe in different modes.

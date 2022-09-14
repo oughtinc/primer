@@ -9,10 +9,10 @@ Now all we have to do is combine the paragraph finder with the question-answerin
 We could just paste in the code from [the question-answering recipe](../question-answering.md#answering-questions-about-short-texts). However, we can also _directly_ reuse it as a subrecipe. If you have the code in `qa.py`, we can directly import and use it:
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 from ice.paper import Paper, Paragraph
 from ice.utils import map_async
-from qa import QA
+from qa import answer
 
 
 def make_classification_prompt(paragraph: Paragraph, question: str) -> str:
@@ -22,40 +22,48 @@ Question: Does this paragraph answer the question '{question}'? Say Yes or No.
 Answer:"""
 
 
-class PaperQA(Recipe):
-    async def classify_paragraph(self, paragraph: Paragraph, question: str) -> float:
-        choice, choice_prob, _ = await self.agent().classify(
-            prompt=make_classification_prompt(paragraph, question),
-            choices=(" Yes", " No"),
-        )
-        return choice_prob if choice == " Yes" else 1 - choice_prob
+async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
+    choice, choice_prob, _ = await recipe.agent().classify(
+        prompt=make_classification_prompt(paragraph, question),
+        choices=(" Yes", " No"),
+    )
+    return choice_prob if choice == " Yes" else 1 - choice_prob
 
-    async def get_relevant_paragraphs(
-        self, paper: Paper, question: str, top_n: int = 3
-    ) -> list[Paragraph]:
-        probs = await map_async(
-            paper.paragraphs, lambda par: self.classify_paragraph(par, question)
-        )
-        sorted_pairs = sorted(
-            zip(paper.paragraphs, probs), key=lambda x: x[1], reverse=True
-        )
-        return [par for par, prob in sorted_pairs[:top_n]]
+async def get_relevant_paragraphs(
+    paper: Paper, question: str, top_n: int = 3
+) -> list[Paragraph]:
+    probs = await map_async(
+        paper.paragraphs, lambda par: classify_paragraph(par, question)
+    )
+    sorted_pairs = sorted(
+        zip(paper.paragraphs, probs), key=lambda x: x[1], reverse=True
+    )
+    return [par for par, prob in sorted_pairs[:top_n]]
 
-    async def run(
-        self, paper: Paper, question: str = "What was the study population?"
-    ):
-        relevant_paragraphs = await self.get_relevant_paragraphs(paper, question)
-        relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
-        answer = await QA().run(context=relevant_str, question=question)
-        return answer
+@recipe.main
+async def answer_for_paper(
+    *, paper: Paper, question: str = "What was the study population?"
+):
+    relevant_paragraphs = await get_relevant_paragraphs(paper, question)
+    relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
+    answer = await answer(context=relevant_str, question=question)
+    return answer
 ```
 
-If you run it with the same command as above, you should get an answer like this:
+Running the same command again...
+
+```shell
+python paperqa.py -t --paper papers/keenan-2018.pdf
+```
+
+... you should get an answer like this:
 
 {% code overflow="wrap" %}
+
 ```
 The study population was children 1 to 59 months of age who weighed at least 38
 ```
+
 {% endcode %}
 
 Take a look at the trace to see how it all fits together.

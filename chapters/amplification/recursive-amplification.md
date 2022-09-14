@@ -2,25 +2,25 @@
 
 Now we'd like to generalize the recipe above so that we can run it at different depths:
 
-* Depth 0: Just answer the question, no subquestions
-* Depth 1: One layer of subquestions
-* Depth 2: Use subquestions when answering subquestions
-* Etc.
+- Depth 0: Just answer the question, no subquestions
+- Depth 1: One layer of subquestions
+- Depth 2: Use subquestions when answering subquestions
+- Etc.
 
 To do this, we adda `depth` parameter to `run` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
 ```python
-class AmplifiedQA(Recipe):
-    async def run(self, question: str = "What is the effect of creatine on cognition?", depth: int = 1):
-        subs = await self.get_subs(question, depth - 1) if depth > 0 else []
-        prompt = make_qa_prompt(question, subs=subs)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?", depth: int = 1):
+    subs = await get_subs(question, depth - 1) if depth > 0 else []
+    prompt = make_qa_prompt(question, subs=subs)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 
-    async def get_subs(self, question: str, depth: int) -> Subs:
-        subquestions = await Subquestions().run(question=question)
-        subanswers = await map_async(subquestions, lambda q: self.run(q, depth))
-        return list(zip(subquestions, subanswers))
+async def get_subs(question: str, depth: int) -> Subs:
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, lambda q: run(q, depth))
+    return list(zip(subquestions, subanswers))
 ```
 
 Now we have a parameterized recipe that we can run at different depths:
@@ -28,37 +28,43 @@ Now we have a parameterized recipe that we can run at different depths:
 #### Depth 0
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 0}'
+python amplification.py -t --depth 0
 ```
 
 {% code overflow="wrap" %}
+
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
+
 {% endcode %}
 
 #### Depth 1
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 1}'
+python amplification.py -t --depth 1
 ```
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
+
 {% endcode %}
 
 #### Depth 2
 
 ```shell
-scripts/run-recipe.sh -r amplification.py -t --args '{"depth": 2}'
+python amplification.py -t --depth 2
 ```
 
 {% code overflow="wrap" %}
+
 ```
 The effect of creatine on cognition is inconclusive. Some studies have found that creatine can improve cognitive function in healthy adults, while other studies have found no significant effects. More research is needed to determine the potential cognitive benefits of creatine.
 ```
+
 {% endcode %}
 
 ## Exercises

@@ -9,9 +9,9 @@ Now we want to use the subquestions recipe to help a question-answerer like [the
 Let's start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
 
 ```python
-from ice.recipe import Recipe
+from ice.recipe import recipe
 from ice.utils import map_async
-from subquestions import Subquestions
+from subquestions import ask_subquestions
 
 
 def make_qa_prompt(question: str) -> str:
@@ -22,22 +22,22 @@ Answer: "
 """.strip()
 
 
-class AmplifiedQA(Recipe):
+async def answer(question: str) -> str:
+    prompt = make_qa_prompt(question)
+    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    return answer
 
-    async def answer(self, question: str) -> str:
-        prompt = make_qa_prompt(question)
-        answer = (await self.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
-        return answer
-
-    async def run(self, question: str = "What is the effect of creatine on cognition?"):
-         subquestions = await Subquestions().run(question=question)
-         subanswers = await map_async(subquestions, self.answer)
-         return list(zip(subquestions, subanswers))
+@recipe.main
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+        subquestions = await ask_subquestions(question=question)
+        subanswers = await map_async(subquestions, answer)
+        return list(zip(subquestions, subanswers))
 ```
 
 If we run this, we get back a list of subquestions and their answers:
 
 {% code overflow="wrap" %}
+
 ```python
 [
     (
@@ -62,4 +62,5 @@ If we run this, we get back a list of subquestions and their answers:
     )
 ]
 ```
+
 {% endcode %}
