@@ -12,7 +12,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 1.  Clone ICE:
 
     ```shell
-    git clone https://github.com/oughtinc/ice.git ice
+    git clone https://github.com/oughtinc/ice.git
     ```
 2.  Install NodeJS and the required Node packages:
 
