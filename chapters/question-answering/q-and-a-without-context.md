@@ -30,7 +30,7 @@ We can run recipes in different modes, which controls what type of agent is used
 You specify the mode like this:
 
 ```shell
-python qa.py -t -m human
+python qa.py -m human
 ```
 
 Try running your recipe in different modes.

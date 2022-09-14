@@ -34,7 +34,7 @@ async def answer_for_paper(*, paper: Paper):
 Save it to `paperqa.py` and run it on a paper:
 
 ```shell
-python paperqa.py -t --paper papers/keenan-2018.pdf
+python paperqa.py --paper papers/keenan-2018.pdf
 ```
 
 You should see a result like this:
@@ -136,7 +136,7 @@ async def answer_for_paper(
 Running the same command again...
 
 ```shell
-python paperqa.py -t --paper papers/keenan-2018.pdf
+python paperqa.py --paper papers/keenan-2018.pdf
 ```
 
 ...we indeed get paragraphs that answer the question who the study population was!

@@ -122,7 +122,7 @@ async def debate(question: str = "Should we legalize all drugs?"):
 Once you've saved the recipe in `debate.py` you can run it as usual:
 
 ```shell
-python debate.py -t
+python debate.py
 ```
 
 You should see a debate like this:

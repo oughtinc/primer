@@ -14,7 +14,7 @@ async def answer_for_paper(*, paper: Paper):
 If you have this recipe as `paperqa.py`, you can run it as follows, providing the paper as a keyword argument:
 
 ```shell
-python paperqa.py -t --paper papers/keenan-2018.pdf
+python paperqa.py --paper papers/keenan-2018.pdf
 ```
 
 You'll see a result like this:

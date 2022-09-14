@@ -27,7 +27,7 @@ async def ask_subquestions(question: str = "What is the effect of creatine on co
 If we save this as `subquestions.py` and run it...
 
 ```shell
-python subquestions.py -t
+python subquestions.py
 ```
 
 ...we get:

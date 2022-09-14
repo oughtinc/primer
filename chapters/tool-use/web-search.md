@@ -51,7 +51,7 @@ async def answer_by_search(
     return await search(question)
 ```
 
-Running `python search.py -t` returns a large JSON object:
+Running `python search.py` returns a large JSON object:
 
 {% code overflow="wrap" %}
 
@@ -200,7 +200,7 @@ async def answer_by_search(
 If we run this file...
 
 ```shell
-python web.py -t
+python web.py
 ```
 
 ...we get:
@@ -303,7 +303,7 @@ If we run our question...
 {% code overflow="wrap" %}
 
 ```shell
-python web.py -t --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
+python web.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
 ```
 
 {% endcode %}

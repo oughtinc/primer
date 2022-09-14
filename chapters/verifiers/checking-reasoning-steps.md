@@ -84,7 +84,7 @@ async def verify_answer(
 If we run this with the default question and steps:
 
 ```shell
-python verify_last_step.py -t
+python verify_last_step.py
 ```
 
 We get:

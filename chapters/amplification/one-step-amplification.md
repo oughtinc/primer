@@ -76,7 +76,7 @@ async def answer_by_amplification(question: str = "What is the effect of creatin
 If we run it with
 
 ```shell
-python amplified_qa.py -t
+python amplified_qa.py
 ```
 
 we get:

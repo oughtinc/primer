@@ -181,7 +181,7 @@ Running this:
 {% code overflow="wrap" %}
 
 ```shell
-python compute.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?" -t
+python compute.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?"
 ```
 
 {% endcode %}

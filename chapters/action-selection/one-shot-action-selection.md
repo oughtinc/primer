@@ -122,7 +122,7 @@ Let's test it:
 {% code overflow="wrap" %}
 
 ```shell
-python action.py -t --question "How many people live in Germany?"
+python action.py --question "How many people live in Germany?"
 ```
 
 {% endcode %}
@@ -138,7 +138,7 @@ python action.py -t --question "How many people live in Germany?"
 Web search seems like the correct solution here.
 
 ````shell
-python action.py -t --question "What is sqrt(2^8)?"
+python action.py --question "What is sqrt(2^8)?"
 
 ```python
 [
@@ -153,7 +153,7 @@ Clearly a computation question.
 {% code overflow="wrap" %}
 
 ```shell
-python action.py -t --question "Is transhumanism desirable?"
+python action.py --question "Is transhumanism desirable?"
 ```
 
 {% endcode %}
@@ -171,7 +171,7 @@ Reasoning makes sense here.
 {% code overflow="wrap" %}
 
 ```shell
-python action.py -t --question "What are the effects of climate change?"
+python action.py --question "What are the effects of climate change?"
 ```
 
 {% endcode %}
@@ -212,7 +212,7 @@ Let's try it with our examples above:
 {% code overflow="wrap" %}
 
 ```
-$ python action.py -t --question "How many people live in Germany?"
+$ python action.py --question "How many people live in Germany?"
 
 The current population of Germany is 84,370,487 as of Monday, September 12, 2022, based on Worldometer elaboration of the latest United Nations data.
 ```
@@ -220,7 +220,7 @@ The current population of Germany is 84,370,487 as of Monday, September 12, 2022
 {% endcode %}
 
 ```
-$ python action.py -t --question "What is sqrt(2^8)?"
+$ python action.py --question "What is sqrt(2^8)?"
 
 16.0
 ```
@@ -228,7 +228,7 @@ $ python action.py -t --question "What is sqrt(2^8)?"
 {% code overflow="wrap" %}
 
 ```
-$ python action.py -t --question "Is transhumanism desirable?"
+$ python action.py --question "Is transhumanism desirable?"
 
 It is up to each individual to decide whether or not they believe transhumanism is desirable.
 ```

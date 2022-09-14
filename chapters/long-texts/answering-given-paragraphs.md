@@ -53,7 +53,7 @@ async def answer_for_paper(
 Running the same command again...
 
 ```shell
-python paperqa.py -t --paper papers/keenan-2018.pdf
+python paperqa.py --paper papers/keenan-2018.pdf
 ```
 
 ... you should get an answer like this:

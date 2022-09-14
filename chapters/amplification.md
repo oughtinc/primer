@@ -35,7 +35,7 @@ async def ask_subquestions(question: str = "What is the effect of creatine on co
 If we save this as `subquestions.py` and run it...
 
 ```shell
-python subquestions.py -t
+python subquestions.py
 ```
 
 ...we get:
@@ -192,7 +192,7 @@ async def answer_by_amplification(question: str = "What is the effect of creatin
 If we run it with
 
 ```shell
-python amplified_qa.py -t
+python amplified_qa.py
 ```
 
 we get:
@@ -245,7 +245,7 @@ Now we have a parameterized recipe that we can run at different depths:
 #### Depth 0
 
 ```shell
-python amplification.py -t --depth 0
+python amplification.py --depth 0
 ```
 
 {% code overflow="wrap" %}
@@ -259,7 +259,7 @@ Creatine has been shown to improve cognition in people with Alzheimer's disease 
 #### Depth 1
 
 ```shell
-python amplification.py -t --depth 1
+python amplification.py --depth 1
 ```
 
 {% code overflow="wrap" %}
@@ -273,7 +273,7 @@ The effect of creatine on cognition is mixed. Some studies have found that creat
 #### Depth 2
 
 ```shell
-python amplification.py -t --depth 2
+python amplification.py --depth 2
 ```
 
 {% code overflow="wrap" %}

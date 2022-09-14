@@ -28,7 +28,7 @@ Now we have a parameterized recipe that we can run at different depths:
 #### Depth 0
 
 ```shell
-python amplification.py -t --depth 0
+python amplification.py --depth 0
 ```
 
 {% code overflow="wrap" %}
@@ -42,7 +42,7 @@ Creatine has been shown to improve cognition in people with Alzheimer's disease 
 #### Depth 1
 
 ```shell
-python amplification.py -t --depth 1
+python amplification.py --depth 1
 ```
 
 {% code overflow="wrap" %}
@@ -56,7 +56,7 @@ The effect of creatine on cognition is mixed. Some studies have found that creat
 #### Depth 2
 
 ```shell
-python amplification.py -t --depth 2
+python amplification.py --depth 2
 ```
 
 {% code overflow="wrap" %}

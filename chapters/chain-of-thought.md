@@ -36,7 +36,7 @@ async def answer_by_reasoning(*, question: str = "What would happen if the avera
 Let's first run the recipe without answer prefix:
 
 ```shell
-python cot.py -t --answer_prefix ""
+python cot.py --answer_prefix ""
 ```
 
 We get an answer:
@@ -54,7 +54,7 @@ If we provide "Let's think step by step" as an answer prefix...
 {% code overflow="wrap" %}
 
 ```shell
-python cot.py -t --answer_prefix "Let's think step by step."
+python cot.py --answer_prefix "Let's think step by step."
 ```
 
 {% endcode %}
@@ -131,7 +131,7 @@ async def answer_by_reasoning(
 If we now run our script again:
 
 ```shell
-python cot.py -t
+python cot.py
 ```
 
 We get a summary of the long reasoning chain:
@@ -153,7 +153,7 @@ Let's apply this to the math problem we saw in the chapter on checking reasoning
 {% code overflow="wrap" %}
 
 ```
-python cot.py -t --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
+python cot.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 ```
 
 {% endcode %}

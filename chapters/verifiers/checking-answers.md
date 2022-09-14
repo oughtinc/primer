@@ -34,7 +34,7 @@ Let's test it:
 {% code overflow="wrap" %}
 
 ```shell
-python verify_answer.py -t --question "What is 2 + 2?" --answer "4"
+python verify_answer.py --question "What is 2 + 2?" --answer "4"
 ```
 
 {% endcode %}
@@ -48,7 +48,7 @@ Good.
 {% code overflow="wrap" %}
 
 ```
-python verify_answer.py -t --question "What is 2 + 2?" --answer "5"
+python verify_answer.py --question "What is 2 + 2?" --answer "5"
 ```
 
 {% endcode %}
@@ -62,7 +62,7 @@ Basic sanity checks pass.
 {% code overflow="wrap" %}
 
 ```shell
-run-recipe.sh -r verify_answer.py -t --question "What is the capital of Germany?" --answer "Munich"
+run-recipe.sh -r verify_answer.py --question "What is the capital of Germany?" --answer "Munich"
 ```
 
 {% endcode %}
@@ -84,7 +84,7 @@ The correct answer is 6, but it takes a few steps of reasoning to work that out.
 {% code overflow="wrap" %}
 
 ```shell
-python verify_answer.py -t --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "6"
+python verify_answer.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "6"
 ```
 
 {% endcode %}
@@ -100,7 +100,7 @@ What if we also give the reasoning steps?
 {% code overflow="wrap" %}
 
 ```shell
-python verify_answer.py -t --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "Beth bakes 4x 2 dozen batches of cookies for a total of 4*2 = 8 dozen cookies. There are 12 cookies in a dozen and she makes 8 dozen cookies for a total of 12*8 = 96 cookies. She splits the 96 cookies equally amongst 16 people so they each eat 96/16 = 6 cookies. So, the final answer is 6 cookies per person."
+python verify_answer.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "Beth bakes 4x 2 dozen batches of cookies for a total of 4*2 = 8 dozen cookies. There are 12 cookies in a dozen and she makes 8 dozen cookies for a total of 12*8 = 96 cookies. She splits the 96 cookies equally amongst 16 people so they each eat 96/16 = 6 cookies. So, the final answer is 6 cookies per person."
 ```
 
 {% endcode %}
