@@ -32,3 +32,10 @@ cd ice
 scripts/run-local.sh
 ```
 
+## Shell into the Docker container
+
+Open a shell in the container to run all the commands in the upcoming chapters:
+
+```shell
+docker compose exec backend bash
+```
