@@ -45,4 +45,4 @@ If you follow the link, in your browser you should see a function node that you 
 
 ### Exercises
 
-1. Add another method to `HelloWorld` and call it from `say_hello`. Does it show up in the trace? What if you make it async and call it as `result = await my_function()`?
+1. Add another function and call it from `say_hello`. Does it show up in the trace? What if you make it async and call it as `result = await my_function()`?
