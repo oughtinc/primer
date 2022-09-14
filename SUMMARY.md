@@ -36,6 +36,7 @@
 * [Action Selection](chapters/action-selection/README.md)
   * [One-shot action selection](chapters/action-selection/one-shot-action-selection.md)
   * [Iterative action selection](chapters/action-selection/iterative-action-selection.md)
+* [Amplification Revisited](chapters/amplification-revisited.md)
 
 ## Appendix
 
