@@ -46,7 +46,7 @@ async def search(query: str) -> dict:
 
 @recipe.main
 async def answer_by_search(
-    question: str = "Who is the president of the United States?",
+    *, question: str = "Who is the president of the United States?",
 ) -> dict:
     return await search(question)
 ```
@@ -105,7 +105,7 @@ def render_results(data: dict) -> str:
 
 @recipe.main
 async def answer_by_search(
-    question: str = "Who is the president of the United States?",
+    *, question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     return render_results(results)
@@ -188,7 +188,7 @@ def render_results(data: dict) -> str:
 
 @recipe.main
 async def answer_by_search(
-    question: str = "Who is the president of the United States?",
+    *, question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     results_str = render_results(results)
@@ -286,7 +286,7 @@ async def choose_query(squestion: str) -> str:
 
 @recipe.main
 async def answer_by_search(
-    question: str = "Who is the president of the United States?",
+    *, question: str = "Who is the president of the United States?",
 ) -> str:
     query = await choose_query(question)
     results = await search(query)

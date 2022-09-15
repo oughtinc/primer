@@ -67,7 +67,7 @@ async def answer(question: str, subs: Subs = []) -> str:
     return answer
 
 @recipe.main
-async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?"):
     subs = await get_subs(question)
     answer = await answer(question=question, subs=subs)
     return answer

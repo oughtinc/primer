@@ -27,8 +27,9 @@ async def answer(question: str) -> str:
     answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
     return answer
 
+
 @recipe.main
-async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
+async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?"):
         subquestions = await ask_subquestions(question=question)
         subanswers = await map_async(subquestions, answer)
         return list(zip(subquestions, subanswers))

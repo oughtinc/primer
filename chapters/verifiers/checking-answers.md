@@ -16,7 +16,7 @@ A:"""
 
 
 @recipe.main
-async def verify_answer(question: str, answer: str) -> float:
+async def verify_answer(*, question: str, answer: str) -> float:
     prompt = make_verification_prompt(question=question, answer=answer)
     answer, answer_p, _ = await recipe.agent().classify(
         prompt=prompt, choices=[" Yes", " No"]

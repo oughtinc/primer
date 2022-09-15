@@ -18,7 +18,7 @@ async def turn(
     return (agent_name, answer.strip('" '))
 
 @recipe.main
-async def debate(question: str = "Should we legalize all drugs?"):
+async def debate(*, question: str = "Should we legalize all drugs?"):
     agents = [recipe.agent(), recipe.agent()]
     agent_names = ["Alice", "Bob"]
     debate = initialize_debate(question)

@@ -24,7 +24,7 @@ Answer: "
 
 @recipe.main
 async def answer(
-    context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
+    *, context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
 ) -> str:
     prompt = make_qa_prompt(context, question)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
