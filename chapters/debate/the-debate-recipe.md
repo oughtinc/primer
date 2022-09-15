@@ -25,8 +25,8 @@ async def debate(*, question: str = "Should we legalize all drugs?"):
     turns_left = 8
     while turns_left > 0:
         for agent, agent_name in zip(agents, agent_names):
-            turn = await turn(debate, agent, agent_name, turns_left)
-            debate.append(turn)
+            response = await turn(debate, agent, agent_name, turns_left)
+            debate.append(response)
             turns_left -= 1
     return render_debate(debate)
 ```
