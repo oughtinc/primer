@@ -24,6 +24,7 @@ There's a long list of actions we could choose between. For this first version, 
 Let's first represent the actions as a data type. For each action we'll also store an associated description that will help the model choose between them, and the recipe that runs the action:
 
 {% code overflow="wrap" %}
+
 ```python
 from ice.recipe import recipe
 
@@ -66,6 +67,7 @@ action_types = [
     ),
 ]
 ```
+
 {% endcode %}
 
 ### **From actions to prompts**
@@ -73,6 +75,7 @@ action_types = [
 We render the actions as an action selection prompt like this:
 
 {% code overflow="wrap" %}
+
 ```python
 def make_action_selection_prompt(question: str) -> str:
     action_types_str = "\n".join([f"{i+1}. {action_type.description}" for i, action_type in enumerate(action_types)])
@@ -86,11 +89,13 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #""".strip()
 ```
+
 {% endcode %}
 
 So, `make_action_selection_prompt("How many people live in Germany?")` results in:
 
 {% code overflow="wrap" %}
+
 ```
 You want to answer the question "How many people live in Germany?".
 
@@ -103,6 +108,7 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #
 ```
+
 {% endcode %}
 
 ### **Choosing the right action**
@@ -110,20 +116,23 @@ A: I want to use option #
 We'll treat action choice as a classification task, and print out the probability of each action:
 
 ```python
-@recipe.main
 async def answer_by_dispatch(*, question: str = "How many people live in Germany?"):
     prompt = make_action_selection_prompt(question)
     choices = tuple(str(i) for i in range(1, 6))
     probs, _ = (await recipe.agent().classify(prompt=prompt, choices=choices))
     return list(zip(probs.items(), [a.name for a in action_types]))
+
+recipe.main(answer_by_dispatch)
 ```
 
 Let's test it:
 
 {% code overflow="wrap" %}
+
 ```shell
 python action.py --question "How many people live in Germany?"
 ```
+
 {% endcode %}
 
 ```python
@@ -150,9 +159,11 @@ python action.py --question "What is sqrt(2^8)?"
 Clearly a computation question.
 
 {% code overflow="wrap" %}
+
 ```shell
 python action.py --question "Is transhumanism desirable?"
 ```
+
 {% endcode %}
 
 ```python
@@ -166,9 +177,11 @@ python action.py --question "Is transhumanism desirable?"
 Reasoning makes sense here.
 
 {% code overflow="wrap" %}
+
 ```shell
 python action.py --question "What are the effects of climate change?"
 ```
+
 {% endcode %}
 
 ```python
@@ -195,21 +208,24 @@ async def select_action(question: str) -> Action:
     best_choice = max(choice_probs.items(), key=lambda x: x[1])[0]
     return action_types[int(best_choice) - 1]
 
-@recipe.main
 async def answer_by_dispatch(*, question: str = "How many people live in Germany?") -> str:
     action = await select_action(question)
     result = await action.recipe(question=question)
     return result
+
+recipe.main(answer_by_dispatch)
 ```
 
 Let's try it with our examples above:
 
 {% code overflow="wrap" %}
+
 ```
 $ python action.py --question "How many people live in Germany?"
 
 The current population of Germany is 84,370,487 as of Monday, September 12, 2022, based on Worldometer elaboration of the latest United Nations data.
 ```
+
 {% endcode %}
 
 ```
@@ -219,11 +235,13 @@ $ python action.py --question "What is sqrt(2^8)?"
 ```
 
 {% code overflow="wrap" %}
+
 ```
 $ python action.py --question "Is transhumanism desirable?"
 
 It is up to each individual to decide whether or not they believe transhumanism is desirable.
 ```
+
 {% endcode %}
 
 These are better answers than we'd get without augmentation.
@@ -233,14 +251,14 @@ These are better answers than we'd get without augmentation.
 1. Add an action type for debate:
 
 {% code overflow="wrap" %}
-````
+
 ```python
 Action(
   name="Debate",
   description='Run a debate. This is helpful if the question is a pro/con question that involves involves different perspectives, arguments, and evidence, such as "Should marijuana be legalized?" or "Is veganism better for the environment?".'
 ),
 ```
-````
+
 {% endcode %}
 
 1. Suppose that actions are taking place within the context of a long document. Add an action type for searching for a particular phrase in the document and returning the results.

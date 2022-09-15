@@ -24,11 +24,13 @@ Answer: "{answer_prefix}
 """.strip()
 
 
-@recipe.main
 async def answer_by_reasoning(*, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
     prompt = make_cot_prompt(question, answer_prefix)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
+
+
+recipe.main(answer_by_reasoning)
 ```
 
 {% endcode %}
@@ -116,7 +118,6 @@ async def get_answer(question: str, reasoning: str) -> str:
     ).strip('" ')
     return answer
 
-@recipe.main
 async def answer_by_reasoning(
     *,
     question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?",
@@ -124,6 +125,8 @@ async def answer_by_reasoning(
     reasoning = await get_reasoning(question)
     answer = await get_answer(question, reasoning)
     return answer
+
+recipe.main(answer_by_reasoning)
 ```
 
 {% endcode %}
