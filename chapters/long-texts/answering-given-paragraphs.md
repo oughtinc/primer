@@ -46,8 +46,8 @@ async def answer_for_paper(
 ):
     relevant_paragraphs = await get_relevant_paragraphs(paper, question)
     relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
-    answer = await answer(context=relevant_str, question=question)
-    return answer
+    response = await answer(context=relevant_str, question=question)
+    return response
 ```
 
 Running the same command again...
