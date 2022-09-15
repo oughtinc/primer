@@ -18,11 +18,11 @@ Question: Does this paragraph answer the question '{question}'? Say Yes or No.
 Answer:""".strip()
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
-    choice, choice_prob, _ = await recipe.agent().classify(
+    choice_probs, _ = await recipe.agent().classify(
         prompt=make_prompt(paragraph, question),
         choices=(" Yes", " No"),
     )
-    return choice_prob if choice == " Yes" else 1 - choice_prob
+    return choice_probs.get(" Yes", 0.0)
 
 @recipe.main
 async def answer_for_paper(*, paper: Paper):
@@ -63,11 +63,11 @@ Question: Does this paragraph answer the question '{question}'? Say Yes or No.
 Answer:"""
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
-    choice, choice_prob, _ = await recipe.agent().classify(
+    choice_probs, _ = await recipe.agent().classify(
         prompt=make_prompt(paragraph, question),
         choices=(" Yes", " No"),
     )
-    return choice_prob if choice == " Yes" else 1 - choice_prob
+    return choice_probs.get(" Yes", 0.0)
 
 @recipe.main
 async def answer_for_paper(*, paper: Paper):
@@ -114,11 +114,11 @@ Answer:"""
 
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
-    choice, choice_prob, _ = await recipe.agent().classify(
+    choice_probs, _ = await recipe.agent().classify(
         prompt=make_classification_prompt(paragraph, question),
         choices=(" Yes", " No"),
     )
-    return choice_prob if choice == " Yes" else 1 - choice_prob
+    return choice_probs.get(" Yes")
 
 @recipe.main
 async def answer_for_paper(
@@ -142,12 +142,10 @@ python paperqa.py --paper papers/keenan-2018.pdf
 ...we indeed get paragraphs that answer the question who the study population was!
 
 {% code overflow="wrap" %}
-
 ```python
 [
     Paragraph(sentences=['A total of 1624 communities were eligible for inclusion in the trial on the basis of the most recent census (Fig. 1 ).', 'A random selection of 1533 communities were included in the current trial, and the remaining 91 were enrolled in smaller parallel trials at each site, in which additional microbiologic, anthropometric, and adverse-event data were collected.', 'In Niger, 1 community declined to participate and 20 were excluded because of census inaccuracies.', 'No randomization units were lost to follow-up after the initial census.'], sections=[Section(title='Participating Communities', number=None)], section_type='main'),
     ...
 ]
 ```
-
 {% endcode %}
