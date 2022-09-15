@@ -63,7 +63,7 @@ async def get_subs(question: str) -> Subs:
 
 async def answer(question: str, subs: Subs = []) -> str:
     prompt = make_qa_prompt(question, subs=subs)
-    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
 
 @recipe.main

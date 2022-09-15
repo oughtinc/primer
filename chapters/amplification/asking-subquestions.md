@@ -18,7 +18,7 @@ Subquestions:
 async def ask_subquestions(*, question: str = "What is the effect of creatine on cognition?"):
     prompt = make_subquestion_prompt(question)
     subquestions_text = await recipe.agent().answer(
-        prompt=prompt, multiline=True, max_tokens=100
+        prompt=prompt
     )
     subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
     return subquestions

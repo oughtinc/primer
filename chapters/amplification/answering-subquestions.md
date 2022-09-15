@@ -24,7 +24,7 @@ Answer: "
 
 async def answer(question: str) -> str:
     prompt = make_qa_prompt(question)
-    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
 
 

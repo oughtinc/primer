@@ -27,7 +27,7 @@ Answer: "{answer_prefix}
 @recipe.main
 async def answer_by_reasoning(*, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
     prompt = make_cot_prompt(question, answer_prefix)
-    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=200, multiline=True)).strip('" ')
+    answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
 ```
 
@@ -102,7 +102,7 @@ async def get_reasoning(question: str) -> str:
     reasoning_prompt = generate_reasoning_prompt(question)
     reasoning = (
         await recipe.agent().answer(
-            prompt=reasoning_prompt, max_tokens=200, multiline=True
+            prompt=reasoning_prompt
         )
     ).strip('" ')
     return reasoning
@@ -111,7 +111,7 @@ async def get_answer(question: str, reasoning: str) -> str:
     answer_prompt = generate_answer_prompt(question, reasoning)
     answer = (
         await recipe.agent().answer(
-            prompt=answer_prompt, max_tokens=100, multiline=True
+            prompt=answer_prompt
         )
     ).strip('" ')
     return answer

@@ -13,7 +13,7 @@ async def turn(
 ):
     prompt = render_debate_prompt(agent_name, debate, turns_left)
     answer = await agent.answer(
-        prompt=prompt, multiline=False, max_tokens=100
+        prompt=prompt, multiline=False
     )
     return (agent_name, answer.strip('" '))
 

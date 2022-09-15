@@ -19,7 +19,7 @@ async def get_subs(question: str, depth: int) -> Subs:
 async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?", depth: int = 1):
     subs = await get_subs(question, depth - 1) if depth > 0 else []
     prompt = make_qa_prompt(question, subs=subs)
-    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
 ```
 
