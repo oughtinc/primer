@@ -29,33 +29,40 @@ from ice.recipe import recipe
 
 from dataclasses import dataclass
 
-from web import Search
-from reasoning import ChainOfThought
-from compute import Compute
+from typing import Protocol
+
+from web import answer_by_search
+from cot import answer_by_reasoning
+from compute import answer_by_computation
+
+
+class QuestionRecipe(Protocol):
+    async def __call__(self, question: str) -> str:
+        ...
 
 
 @dataclass
 class Action:
     name: str
     description: str
-    recipe: type
+    recipe: QuestionRecipe
 
 
 action_types = [
     Action(
         name="Web search",
         description="Run a web search using Google. This is helpful if the question depends on obscure facts or current information, such as the weather or the latest news.",
-        recipe=Search,
+        recipe=answer_by_search,
     ),
     Action(
         name="Computation",
         description="Run a computation in Python. This is helpful if the question depends on calculation or other mechanical processes that you can specify in a short program.",
-        recipe=Compute,
+        recipe=answer_by_computation,
     ),
     Action(
         name="Reasoning",
         description="Write out the reasoning steps. This is helpful if the question involves logical deduction or evidence-based reasoning.",
-        recipe=ChainOfThought,
+        recipe=answer_by_reasoning,
     ),
 ]
 ```
@@ -189,10 +196,10 @@ async def select_action(question: str) -> Action:
     return action_types[int(best_choice) - 1]
 
 @recipe.main
-async def answer_by_dispatch(*, question: str = "How many people live in Germany?"):
+async def answer_by_dispatch(*, question: str = "How many people live in Germany?") -> str:
     action = await select_action(question)
-    recipe = action.recipe(mode=mode)
-    return await recipe.run(question=question)
+    result = await action.recipe(question=question)
+    return result
 ```
 
 Let's try it with our examples above:
