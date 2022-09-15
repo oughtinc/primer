@@ -24,10 +24,11 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes", 0.0)
 
-@recipe.main
 async def answer_for_paper(*, paper: Paper, question: str = "What was the study population?"):
     paragraph = paper.paragraphs[0]
     return await classify_paragraph(paragraph, question)
+
+recipe.main(answer_for_paper)
 ```
 
 Save it to `paperqa.py` and run it on a paper:
@@ -68,11 +69,12 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes", 0.0)
 
-@recipe.main
 async def answer_for_paper(*, paper: Paper, question: str = "What was the study population?"):
     paragraph = paper.paragraphs[0]
     probs = await map_async(paper.paragraphs, lambda par: classify_paragraph(par, question))
     return probs
+
+recipe.main(answer_for_paper)
 ```
 
 If you run the same command as above, you will now see a list of probabilities, one for each paragraph:
@@ -118,7 +120,6 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes")
 
-@recipe.main
 async def answer_for_paper(
     *, paper: Paper, question: str, top_n: int = 3
 ) -> list[Paragraph]:
@@ -129,6 +130,8 @@ async def answer_for_paper(
         zip(paper.paragraphs, probs), key=lambda x: x[1], reverse=True
     )
     return [par for par, prob in sorted_pairs[:top_n]]
+
+recipe.main(answer_for_paper)
 ```
 
 Running the same command again...

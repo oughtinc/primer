@@ -71,11 +71,12 @@ async def check_step(question: str, steps: list[str]) -> float:
     )
     return answer_probs.get(" Yes", 0.0)
 
-@recipe.main
 async def verify_answer(
     *, question: str = DEFAULT_QUESTION, steps: list[str] = DEFAULT_STEPS
 ):
     return await check_step(question=question, steps=steps)
+
+recipe.main(verify_answer)
 ```
 
 {% endcode %}
@@ -109,7 +110,6 @@ async def check_step(question: str, steps: list[str]) -> float:
     )
     return answer_probs.get(" Yes", 0.0)
 
-@recipe.main
 async def verify_answer(
     *, question: str = DEFAULT_QUESTION, steps: list[str] = DEFAULT_STEPS
 ):
@@ -122,6 +122,8 @@ async def verify_answer(
         lambda index: check_step(question=question, steps=steps[:index]),
     )
     return list(zip(step_probs, steps))
+
+recipe.main(verify_answer)
 ```
 
 Instead of just returning the probabilities, we return pairs of probabilities and steps to make the result easier to read. It looks like this:

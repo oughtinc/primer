@@ -44,11 +44,12 @@ async def search(query: str) -> dict:
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
 
-@recipe.main
 async def answer_by_search(
     *, question: str = "Who is the president of the United States?",
 ) -> dict:
     return await search(question)
+
+recipe.main(answer_by_search)
 ```
 
 Running `python search.py` returns a large JSON object:
@@ -103,12 +104,13 @@ def render_results(data: dict) -> str:
 
     return "\n".join(results)
 
-@recipe.main
 async def answer_by_search(
     *, question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     return render_results(results)
+
+recipe.main(answer_by_search)
 ```
 
 Now the results are much more manageable:
@@ -186,7 +188,6 @@ def render_results(data: dict) -> str:
 
     return "\n".join(results)
 
-@recipe.main
 async def answer_by_search(
     *, question: str = "Who is the president of the United States?",
 ) -> str:
@@ -195,6 +196,8 @@ async def answer_by_search(
     prompt = make_search_result_prompt(results_str, question)
     answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
     return answer
+
+recipe.main(answer_by_search)
 ```
 
 If we run this file...
@@ -284,7 +287,6 @@ async def choose_query(squestion: str) -> str:
     return query
 
 
-@recipe.main
 async def answer_by_search(
     *, question: str = "Who is the president of the United States?",
 ) -> str:
@@ -294,6 +296,9 @@ async def answer_by_search(
     prompt = make_search_result_prompt(results_str, query, question)
     answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
+
+
+recipe.main(answer_by_search)
 ```
 
 {% endcode %}

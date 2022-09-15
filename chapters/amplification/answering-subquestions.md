@@ -28,11 +28,12 @@ async def answer(question: str) -> str:
     return answer
 
 
-@recipe.main
 async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?"):
         subquestions = await ask_subquestions(question=question)
         subanswers = await map_async(subquestions, answer)
         return list(zip(subquestions, subanswers))
+
+recipe.main(answer_by_amplification)
 ```
 
 If we run this, we get back a list of subquestions and their answers:

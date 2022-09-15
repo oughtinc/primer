@@ -14,7 +14,6 @@ Subquestions:
 -""".strip()
 
 
-@recipe.main
 async def ask_subquestions(*, question: str = "What is the effect of creatine on cognition?"):
     prompt = make_subquestion_prompt(question)
     subquestions_text = await recipe.agent().answer(
@@ -22,6 +21,9 @@ async def ask_subquestions(*, question: str = "What is the effect of creatine on
     )
     subquestions = [line.strip("- ") for line in subquestions_text.split("\n")]
     return subquestions
+
+
+recipe.main(ask_subquestions)
 ```
 
 If we save this as `subquestions.py` and run it...

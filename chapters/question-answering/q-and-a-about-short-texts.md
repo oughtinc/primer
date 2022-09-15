@@ -22,13 +22,15 @@ Answer: "
 """.strip()
 
 
-@recipe.main
 async def answer(
     *, context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
 ) -> str:
     prompt = make_qa_prompt(context, question)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
+
+
+recipe.main(answer)
 ```
 
 You should see a response like this:

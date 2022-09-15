@@ -6,9 +6,10 @@ ICE has built-in functionality for parsing and loading papers, and includes some
 from ice.recipe import recipe
 from ice.paper import Paper
 
-@recipe.main
 async def answer_for_paper(*, paper: Paper):
     return paper.paragraphs[0]
+
+recipe.main(answer_for_paper)
 ```
 
 If you have this recipe as `paperqa.py`, you can run it as follows, providing the paper as a keyword argument:

@@ -40,7 +40,6 @@ async def get_relevant_paragraphs(
     )
     return [par for par, prob in sorted_pairs[:top_n]]
 
-@recipe.main
 async def answer_for_paper(
     *, paper: Paper, question: str = "What was the study population?"
 ):
@@ -48,6 +47,8 @@ async def answer_for_paper(
     relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
     response = await answer(context=relevant_str, question=question)
     return response
+
+recipe.main(answer_for_paper)
 ```
 
 Running the same command again...

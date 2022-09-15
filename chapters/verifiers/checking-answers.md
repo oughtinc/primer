@@ -15,7 +15,6 @@ Q: Is the potential answer above correct? Say "A: Yes" or "A: No".
 A:"""
 
 
-@recipe.main
 async def verify_answer(*, question: str, answer: str) -> float:
     prompt = make_verification_prompt(question=question, answer=answer)
     answer, answer_p, _ = await recipe.agent().classify(
@@ -23,6 +22,9 @@ async def verify_answer(*, question: str, answer: str) -> float:
     )
     p_correct = answer_p if answer == " Yes" else 1 - answer_p
     return p_correct
+
+
+recipe.main(verify_answer)
 ```
 
 The interesting bit here is that we don't just want a boolean Yes/No answer from the model, but that we want the probability of the "Yes" answer to the correctness question. This way, we get a more graded signal that we can use, e.g. to only show or use model responses when they exceed a threshold.

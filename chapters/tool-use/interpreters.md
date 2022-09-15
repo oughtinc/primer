@@ -31,9 +31,10 @@ def eval_python(expression: str) -> str:
         result = f"Error: {e}"
     return str(result)
 
-@recipe.main
 async def answer_by_computation(*, question: str):
     return eval_python(question)
+
+recipe.main(answer_by_computation)
 ```
 
 This works as expected for expressions that are literally Python code:
@@ -91,11 +92,12 @@ async def choose_computation(question: str) -> str:
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
 
-@recipe.main
 async def answer_by_computation(*, question: str):
     expression = await choose_computation(question)
     result = eval_python(expression)
     return (expression, result)
+
+recipe.main(answer_by_computation)
 ```
 
 If we run this on our example, we get:
@@ -147,13 +149,14 @@ async def choose_computation(question: str) -> str:
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
 
-@recipe.main
 async def answer_by_computation(*, question: str):
     expression = await choose_computation(question)
     result = eval_python(expression)
     prompt = make_compute_qa_prompt(question, expression, result)
     answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
+
+recipe.main(answer_by_computation)
 ```
 
 Rerunning our test case

@@ -17,7 +17,6 @@ async def turn(
     )
     return (agent_name, answer.strip('" '))
 
-@recipe.main
 async def debate(*, question: str = "Should we legalize all drugs?"):
     agents = [recipe.agent(), recipe.agent()]
     agent_names = ["Alice", "Bob"]
@@ -29,6 +28,8 @@ async def debate(*, question: str = "Should we legalize all drugs?"):
             debate.append(response)
             turns_left -= 1
     return render_debate(debate)
+
+recipe.main(debate)
 ```
 
 Once you've saved the recipe in `debate.py` you can run it as usual:

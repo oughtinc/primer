@@ -66,11 +66,12 @@ async def answer(question: str, subs: Subs = []) -> str:
     answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
 
-@recipe.main
 async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?"):
     subs = await get_subs(question)
     response = await answer(question=question, subs=subs)
     return response
+
+recipe.main(answer_by_amplification)
 ```
 
 If we run it with
