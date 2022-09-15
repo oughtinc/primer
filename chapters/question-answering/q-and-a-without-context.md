@@ -23,14 +23,14 @@ async def answer(*, question: str = "What is happening on 9/9/2022?"):
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-- `human`: Elicit answers from you using a command-line interface.
-- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+* `human`: Elicit answers from you using a command-line interface.
+* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 
 ```shell
-python qa.py -m human
+python qa.py --mode human
 ```
 
 Try running your recipe in different modes.
