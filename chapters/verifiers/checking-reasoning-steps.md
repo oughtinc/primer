@@ -96,7 +96,7 @@ Note that (as we'd expect) this probability of the last step being correct is si
 
 ## **Verifying all steps**
 
-To verify all steps, we simply replace `run` with an (async) map over all prefixes of steps:
+To verify all steps, we simply replace `verify_answer` with an (async) map over all prefixes of steps:
 
 ```python
 async def check_step(question: str, steps: list[str]) -> float:

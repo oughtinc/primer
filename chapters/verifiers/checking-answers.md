@@ -62,7 +62,7 @@ Basic sanity checks pass.
 {% code overflow="wrap" %}
 
 ```shell
-run-recipe.sh -r verify_answer.py --question "What is the capital of Germany?" --answer "Munich"
+python verify_answer.py --question "What is the capital of Germany?" --answer "Munich"
 ```
 
 {% endcode %}

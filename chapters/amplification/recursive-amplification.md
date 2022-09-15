@@ -7,20 +7,21 @@ Now we'd like to generalize the recipe above so that we can run it at different 
 - Depth 2: Use subquestions when answering subquestions
 - Etc.
 
-To do this, we adda `depth` parameter to `run` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
+To do this, we adda `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
 ```python
 async def get_subs(question: str, depth: int) -> Subs:
     subquestions = await ask_subquestions(question=question)
-    subanswers = await map_async(subquestions, lambda q: run(q, depth))
+    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(q, depth))
     return list(zip(subquestions, subanswers))
 
-@recipe.main
 async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?", depth: int = 1):
     subs = await get_subs(question, depth - 1) if depth > 0 else []
     prompt = make_qa_prompt(question, subs=subs)
     answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
     return answer
+
+recipe.main(answer_by_amplification)
 ```
 
 Now we have a parameterized recipe that we can run at different depths:
