@@ -14,6 +14,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
     ```shell
     git clone https://github.com/oughtinc/ice.git
     ```
+
 2.  Install NodeJS and the required Node packages:
 
     ```shell
@@ -21,6 +22,13 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
     nvm install
     nvm use
     npm install
+    ```
+
+3.  Add a `.env` file containing an OPENAI_API_KEY (see [here](https://openai.com/api/) for information about the OpenAI API).
+
+    ```shell
+    # .env
+    OPENAI_API_KEY=sk-...f8
     ```
 
 ## Run the ICE server
