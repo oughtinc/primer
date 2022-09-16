@@ -41,7 +41,5 @@
 
 ## Appendix
 
-* [Future Topics](appendix/future-topics.md)
-* [References](appendix/references.md)
-* [Github](https://github.com/oughtinc/ice)
 * [We're Hiring](https://ought.org/careers)
+* [Github](https://github.com/oughtinc/ice)
