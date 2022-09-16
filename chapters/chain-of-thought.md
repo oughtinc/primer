@@ -11,7 +11,6 @@ Many questions require multiple steps of inference before they can be answered. 
 Let's start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
 
 {% code overflow="wrap" %}
-
 ```python
 from ice.recipe import recipe
 
@@ -32,7 +31,6 @@ async def answer_by_reasoning(*, question: str = "What would happen if the avera
 
 recipe.main(answer_by_reasoning)
 ```
-
 {% endcode %}
 
 Let's first run the recipe without answer prefix:
@@ -44,31 +42,25 @@ python cot.py --answer_prefix ""
 We get an answer:
 
 {% code overflow="wrap" %}
-
 ```
 If the average temperature in Northern California went up by 5 degrees Fahrenheit, it would cause more wildfires.
 ```
-
 {% endcode %}
 
 If we provide "Let's think step by step" as an answer prefix...
 
 {% code overflow="wrap" %}
-
 ```shell
 python cot.py --answer_prefix "Let's think step by step."
 ```
-
 {% endcode %}
 
 ...we get a much more elaborate answer:
 
 {% code overflow="wrap" %}
-
 ```
 The first thing that would happen is that the air would heat up. This would cause the water in the air to evaporate more quickly, which would lead to more precipitation in the form of rain and snow. The extra precipitation would cause the rivers to swell and the groundwater to rise. This could lead to flooding in some areas. The extra heat would also cause the snow in the mountains to melt more quickly, which would lead to more water in the rivers and groundwater, and could also cause flooding. The extra heat would also cause the plants to grow more quickly, which would lead to more food for the animals. The extra heat would also cause the animals to become more active, which would lead to more food being eaten and more waste being produced. The extra heat would also cause the bacteria in the soil to become more active, which would lead to more decomposition and more nutrients being released into the soil. The extra heat would also cause the insects to become more active, which would lead to more...
 ```
-
 {% endcode %}
 
 ## Step-by-step reasoning for concise answers
@@ -78,7 +70,6 @@ In the previous example chain-of-thought is used to elicit a more elaborate answ
 We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the moel without chain-of-thought:
 
 {% code overflow="wrap" %}
-
 ```python
 from ice.recipe import recipe
 
@@ -128,7 +119,6 @@ async def answer_by_reasoning(
 
 recipe.main(answer_by_reasoning)
 ```
-
 {% endcode %}
 
 If we now run our script again:
@@ -140,11 +130,9 @@ python cot.py
 We get a summary of the long reasoning chain:
 
 {% code overflow="wrap" %}
-
 ```
 The average temperature in Northern California going up by 5 degrees Fahrenheit would cause the air to heat up, leading to more precipitation, swelling rivers, flooding, melting snow, faster plant growth, more active animals, and more active bacteria.
 ```
-
 {% endcode %}
 
 ## **Exercise**
@@ -154,11 +142,9 @@ Let's apply this to the math problem we saw in the chapter on checking reasoning
 > Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?
 
 {% code overflow="wrap" %}
-
 ```
 python cot.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 ```
-
 {% endcode %}
 
 The answer:
@@ -178,3 +164,11 @@ Each person would get 192/16=12 cookies.
 ```
 
 Exercise: Combine generating reasoning chains with verifiers to generate more reliable reasoning.
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>

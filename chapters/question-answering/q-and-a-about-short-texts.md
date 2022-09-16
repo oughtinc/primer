@@ -44,3 +44,11 @@ A hackathon is happening on 9/9/2022.
 1. Instead of answering directly, add "Let's think step by step" as a prefix to the answer part of the prompt. This is often referred to as chain-of-thought prompting.
 2. After getting the answer, add another step that shows the question and answer to the agent and asks it to improve the answer.
 3. Now iterate the improvement step until the answer stops changing or some # of steps is exceeded. Does this work? This is similar to diffusion models which take a noisy image and iteratively refine it until it's clear and detailed.
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>

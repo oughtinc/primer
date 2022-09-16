@@ -41,7 +41,6 @@ python debate.py
 You should see a debate like this:
 
 {% code overflow="wrap" %}
-
 ```
 Question: "Should we legalize all drugs?"
 Alice: "I'm in favor."
@@ -55,7 +54,6 @@ Bob: "Treatment is expensive, and most addicts can't afford it. Legalizing drugs
 Alice: "The government could fund treatment programs. And people would be less likely to need treatment if they could get drugs legally."
 Bob: "It's not that simple. Legalizing drugs would create a lot of new problems."
 ```
-
 {% endcode %}
 
 {% hint style="info" %}
@@ -66,3 +64,11 @@ In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This d
 
 1. Add a judge agent at the end that decides which agent won the debate. In the original debate proposal, these judgments would be used to RL-finetune the parameters of the debate agents.
 2. Generate model judgments directly (only given the question) and after debate. Are there systematic differences between these judgments? You could also use models to generate the questions if you need a larger input set.
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>

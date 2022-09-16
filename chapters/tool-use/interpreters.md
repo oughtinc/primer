@@ -50,11 +50,9 @@ python compute.py --question "1 + 1"
 Of course, it doesn't work for natural language questions that benefit from compute:
 
 {% code overflow="wrap" %}
-
 ```shell
 python compute.py --question "What is 578921 days * 12312 miles/day?"
 ```
-
 {% endcode %}
 
 ```
@@ -162,11 +160,9 @@ recipe.main(answer_by_computation)
 Rerunning our test case
 
 {% code overflow="wrap" %}
-
 ```shell
 python compute.py --question "What is 578921 days * 12312 miles/day?"
 ```
-
 {% endcode %}
 
 we get the correct answer:
@@ -182,21 +178,17 @@ Another example:
 Running this:
 
 {% code overflow="wrap" %}
-
 ```shell
 python compute.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?"
 ```
-
 {% endcode %}
 
 We get:
 
 {% code overflow="wrap" %}
-
 ```
 If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at the end.
 ```
-
 {% endcode %}
 
 In contrast, the basic question-answerer says "You would have $1,034,957.29 at the end."
@@ -205,3 +197,11 @@ In contrast, the basic question-answerer says "You would have $1,034,957.29 at t
 
 1. Many questions can only be answered using longer algorithms in Python. Extend the code above to support multi-line Python programs ([example](https://twitter.com/sergeykarayev/status/1569377881440276481/photo/1)).
 2. Another approach to (1) is to let the model "enter" multiple expressions into the interpreter. Extend the recipe to support this.
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>

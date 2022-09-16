@@ -1,10 +1,14 @@
+---
+description: How to install and run the Interaction Composition Explorer
+---
+
 # Before We Start
 
 The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you'd like to follow along with the implementation (strongly recommended), set it up first.
 
 ## Prerequisites
 
-1. Install [Docker](https://www.docker.com/products/docker-desktop/) for the backend
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) for the backend
 2. Install the NodeJS version manager [nvm](https://github.com/nvm-sh/nvm) for the frontend
 
 ## Installation
@@ -14,7 +18,6 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
     ```shell
     git clone https://github.com/oughtinc/ice.git
     ```
-
 2.  Install NodeJS and the required Node packages:
 
     ```shell
@@ -23,8 +26,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
     nvm use
     npm install
     ```
-
-3.  Add a `.env` file containing an OPENAI_API_KEY (see [here](https://openai.com/api/) for information about the OpenAI API).
+3.  Add a `.env` file containing an `OPENAI_API_KEY` (see [here](https://openai.com/api/) for information about the OpenAI API).
 
     ```shell
     # .env
@@ -33,7 +35,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 
 ## Run the ICE server
 
-Start ICE in a separate terminal and leave it running:&#x20;
+Start ICE in a separate terminal and leave it running:
 
 ```shell
 cd ice

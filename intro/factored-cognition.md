@@ -1,3 +1,7 @@
+---
+description: Decomposition of reasoning tasks
+---
+
 # Factored Cognition
 
 ## What is factored cognition?

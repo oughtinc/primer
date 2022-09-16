@@ -60,11 +60,9 @@ python paperqa.py --paper papers/keenan-2018.pdf
 ... you should get an answer like this:
 
 {% code overflow="wrap" %}
-
 ```
 The study population was children 1 to 59 months of age who weighed at least 38
 ```
-
 {% endcode %}
 
 Take a look at the trace to see how it all fits together.
@@ -74,3 +72,11 @@ Take a look at the trace to see how it all fits together.
 1. We're taking a fixed number of paragraphs (3) and sticking them into the prompt. This will sometimes result in prompt space not being used well, and sometimes it will overflow. Modify the recipe to use as many paragraphs as can fit into the prompt. (Hint: A prompt for current models has space for 2048 tokens. A token is about 3.5 characters.)
 2. We're classifying paragraphs individually, but it could be better to do ranking by showing the model pairs of paragraphs and ask it which better answers the question. Implement this as an alternative.
 3. (Advanced) Implement debate with agents that have access to the same paper, and let agents provide quotes from the paper that can't be faked. Does being able to refer to ground truth quotes favor truth in debate?
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>

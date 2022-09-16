@@ -2,9 +2,9 @@
 
 Web searches matter especially for questions where the answer can change between when the language model was trained and today. For example:
 
-- What was the weather on this date?
-- What is the market cap of Google?
-- Who is the president of the United States?
+* What was the weather on this date?
+* What is the market cap of Google?
+* Who is the president of the United States?
 
 If you run the last question using the question-answerer, you might get an answer like:
 
@@ -55,7 +55,6 @@ recipe.main(answer_by_search)
 Running `python search.py` returns a large JSON object:
 
 {% code overflow="wrap" %}
-
 ```json
 {
     'organic_results': [
@@ -70,7 +69,6 @@ Running `python search.py` returns a large JSON object:
      ...
 }
 ```
-
 {% endcode %}
 
 ## Rendering search results to prompts
@@ -116,7 +114,6 @@ recipe.main(answer_by_search)
 Now the results are much more manageable:
 
 {% code overflow="wrap" %}
-
 ```
 President of the United States - Wikipedia
 https://en.wikipedia.org/wiki/President_of_the_United_States
@@ -138,7 +135,6 @@ Presidents of the United States: Resource Guides
 https://www.loc.gov/rr/program/bib/presidents/
 List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Jefferson · 4. James Madison · 5. James Monroe · 6. John Quincy Adams · 7. Andrew Jackson · 8 ...
 ```
-
 {% endcode %}
 
 ## Answering questions given search results
@@ -209,11 +205,9 @@ python web.py
 ...we get:
 
 {% code overflow="wrap" %}
-
 ```
 Joe Biden is the 46th and current president of the United States, having assumed office on January 20, 2021.
 ```
-
 {% endcode %}
 
 Much better!
@@ -227,7 +221,6 @@ There's still something unsatisfying--we're directly searching for the question,
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
 
 {% code overflow="wrap" %}
-
 ```python
 import httpx
 
@@ -300,27 +293,22 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
-
 {% endcode %}
 
 If we run our question...
 
 {% code overflow="wrap" %}
-
 ```shell
 python web.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
 ```
-
 {% endcode %}
 
 ...we get:
 
 {% code overflow="wrap" %}
-
 ```
 I couldn't find an exact answer to your question, but based on the weather forecast for that day, it looks like the weather will be nice and the beaches will be busy.
 ```
-
 {% endcode %}
 
 The query chosen by the model was "beach weather san francisco september 12th 2022".
@@ -329,3 +317,11 @@ The query chosen by the model was "beach weather san francisco september 12th 20
 
 1. It's nice to look at search results, but often the results are in the actual web pages. Extend the recipe to add the text of the first web page.
 2. Use the model to decide which of the search results to expand.
+
+<details>
+
+<summary>Get feedback on exercise solutions</summary>
+
+If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
+
+</details>
