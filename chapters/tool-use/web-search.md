@@ -300,7 +300,7 @@ def render_results(data: dict) -> str:
     return "\n".join(results)
 
 
-async def choose_query(squestion: str) -> str:
+async def choose_query(question: str) -> str:
     prompt = make_search_query_prompt(question)
     query = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return query
