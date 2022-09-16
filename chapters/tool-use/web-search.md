@@ -52,7 +52,7 @@ async def search(query: str = "Who is the president of the United States?") -> d
         return response.json()
 
 
-recipe.main(answer_by_search)
+recipe.main(search)
 ```
 
 {% endcode %}
