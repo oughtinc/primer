@@ -13,6 +13,7 @@ Now we want to use the subquestions recipe to help a question-answerer like [the
 Let's start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
 
 {% code title="subquestions_answered.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -34,18 +35,20 @@ async def answer(question: str) -> str:
     return answer
 
 
-async def answer_by_amplification(*, question: str = "What is the effect of creatine on cognition?"):
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?"):
         subquestions = await ask_subquestions(question=question)
         subanswers = await map_async(subquestions, answer)
         return list(zip(subquestions, subanswers))
 
 recipe.main(answer_by_amplification)
 ```
+
 {% endcode %}
 
 If we run this, we get back a list of subquestions and their answers:
 
 {% code overflow="wrap" %}
+
 ```python
 [
     (
@@ -70,4 +73,5 @@ If we run this, we get back a list of subquestions and their answers:
     )
 ]
 ```
+
 {% endcode %}

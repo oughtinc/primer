@@ -11,6 +11,7 @@ Let's start by just classifying whether the first paragraph answers a question. 
 Our single-paragraph classifier looks like this:
 
 {% code title="paper_qa_class.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -30,12 +31,13 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes", 0.0)
 
-async def answer_for_paper(*, paper: Paper, question: str = "What was the study population?"):
+async def answer_for_paper(paper: Paper, question: str = "What was the study population?"):
     paragraph = paper.paragraphs[0]
     return await classify_paragraph(paragraph, question)
 
 recipe.main(answer_for_paper)
 ```
+
 {% endcode %}
 
 Save it and run it on a paper:
@@ -59,6 +61,7 @@ To find the most relevant paragraphs, we map the paragraph classifier over all p
 For mapping, we use the utility `map_async` which runs the language model calls in parallel:
 
 {% code title="paper_qa_classes.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -78,12 +81,13 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes", 0.0)
 
-async def answer_for_paper(*, paper: Paper, question: str = "What was the study population?"):
+async def answer_for_paper(paper: Paper, question: str = "What was the study population?"):
     probs = await map_async(paper.paragraphs, lambda par: classify_paragraph(par, question))
     return probs
 
 recipe.main(answer_for_paper)
 ```
+
 {% endcode %}
 
 You will now see a list of probabilities, one for each paragraph:
@@ -110,6 +114,7 @@ You will now see a list of probabilities, one for each paragraph:
 Now all we need to do is add a utility function for looking up the paragraphs with the highest probabilities:
 
 {% code title="paper_qa_ranker.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -132,7 +137,7 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     return choice_probs.get(" Yes")
 
 async def answer_for_paper(
-    *, paper: Paper, question: str, top_n: int = 3
+    paper: Paper, question: str, top_n: int = 3
 ) -> list[Paragraph]:
     probs = await map_async(
         paper.paragraphs, lambda par: classify_paragraph(par, question)
@@ -144,6 +149,7 @@ async def answer_for_paper(
 
 recipe.main(answer_for_paper)
 ```
+
 {% endcode %}
 
 Running the same command again...
@@ -155,10 +161,12 @@ python paper_qa_ranker.py --paper papers/keenan-2018.pdf
 ...we indeed get paragraphs that answer the question who the study population was!
 
 {% code overflow="wrap" %}
+
 ```python
 [
     Paragraph(sentences=['A total of 1624 communities were eligible for inclusion in the trial on the basis of the most recent census (Fig. 1 ).', 'A random selection of 1533 communities were included in the current trial, and the remaining 91 were enrolled in smaller parallel trials at each site, in which additional microbiologic, anthropometric, and adverse-event data were collected.', 'In Niger, 1 community declined to participate and 20 were excluded because of census inaccuracies.', 'No randomization units were lost to follow-up after the initial census.'], sections=[Section(title='Participating Communities', number=None)], section_type='main'),
     ...
 ]
 ```
+
 {% endcode %}

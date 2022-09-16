@@ -9,6 +9,7 @@ Now all we have to do is combine the paragraph finder with the question-answerin
 We could just paste in the code from [the question-answering recipe](../question-answering.md#answering-questions-about-short-texts). However, we can also _directly_ reuse it as a subrecipe. If you have the code in `qa.py`, we can directly import and use it:
 
 {% code title="paper_qa.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -43,7 +44,7 @@ async def get_relevant_paragraphs(
     return [par for par, prob in sorted_pairs[:top_n]]
 
 async def answer_for_paper(
-    *, paper: Paper, question: str = "What was the study population?"
+    paper: Paper, question: str = "What was the study population?"
 ):
     relevant_paragraphs = await get_relevant_paragraphs(paper, question)
     relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
@@ -52,6 +53,7 @@ async def answer_for_paper(
 
 recipe.main(answer_for_paper)
 ```
+
 {% endcode %}
 
 Running the same command again...
@@ -63,9 +65,11 @@ python paper_qa.py --paper papers/keenan-2018.pdf
 ... you should get an answer like this:
 
 {% code overflow="wrap" %}
+
 ```
 The study population was children 1 to 59 months of age who weighed at least 38
 ```
+
 {% endcode %}
 
 Take a look at the trace to see how it all fits together.

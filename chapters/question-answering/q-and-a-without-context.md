@@ -7,6 +7,7 @@ description: Answering questions without extra information
 Let's make our first recipe that calls out to an agent:
 
 {% code title="qa_simple.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -20,7 +21,7 @@ Answer: "
 """.strip()
 
 
-async def answer(*, question: str = "What is happening on 9/9/2022?"):
+async def answer(question: str = "What is happening on 9/9/2022?"):
     prompt = make_qa_prompt(question)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
@@ -28,13 +29,14 @@ async def answer(*, question: str = "What is happening on 9/9/2022?"):
 
 recipe.main(answer)
 ```
+
 {% endcode %}
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-* `human`: Elicit answers from you using a command-line interface.
-* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+- `human`: Elicit answers from you using a command-line interface.
+- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 

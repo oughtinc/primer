@@ -7,6 +7,7 @@ description: Answering questions about a few paragraphs
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
 
 {% code title="qa.py" %}
+
 ```python
 from ice.recipe import recipe
 
@@ -28,7 +29,7 @@ Answer: "
 
 
 async def answer(
-    *, context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
+    context: str = DEFAULT_CONTEXT, question: str = DEFAULT_QUESTION
 ) -> str:
     prompt = make_qa_prompt(context, question)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
@@ -37,6 +38,7 @@ async def answer(
 
 recipe.main(answer)
 ```
+
 {% endcode %}
 
 You should see a response like this:

@@ -6,9 +6,9 @@ description: Running web searches for getting current information
 
 Web searches matter especially for questions where the answer can change between when the language model was trained and today. For example:
 
-* What was the weather on this date?
-* What is the market cap of Google?
-* Who is the president of the United States?
+- What was the weather on this date?
+- What is the market cap of Google?
+- Who is the president of the United States?
 
 If you run the last question using the question-answerer, you might get an answer like:
 
@@ -21,6 +21,7 @@ Let's start by simply providing the list of search results as additional context
 ## Running web searches
 
 {% code title="search_json.py" %}
+
 ```python
 
 import httpx
@@ -53,11 +54,13 @@ async def search(query: str = "Who is the president of the United States?") -> d
 
 recipe.main(answer_by_search)
 ```
+
 {% endcode %}
 
 Running `python search_json.py` returns a large JSON object:
 
 {% code overflow="wrap" %}
+
 ```json
 {
     'organic_results': [
@@ -72,6 +75,7 @@ Running `python search_json.py` returns a large JSON object:
      ...
 }
 ```
+
 {% endcode %}
 
 ## Rendering search results to prompts
@@ -79,6 +83,7 @@ Running `python search_json.py` returns a large JSON object:
 We add a method to render the search results to a string:
 
 {% code title="search_string.py" %}
+
 ```python
 
 async def search(query: str) -> dict:
@@ -108,18 +113,20 @@ def render_results(data: dict) -> str:
     return "\n".join(results)
 
 async def search_string(
-    *, question: str = "Who is the president of the United States?",
+    question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     return render_results(results)
 
 recipe.main(search_string)
 ```
+
 {% endcode %}
 
 Now the results are much more manageable:
 
 {% code overflow="wrap" %}
+
 ```
 President of the United States - Wikipedia
 https://en.wikipedia.org/wiki/President_of_the_United_States
@@ -141,6 +148,7 @@ Presidents of the United States: Resource Guides
 https://www.loc.gov/rr/program/bib/presidents/
 List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Jefferson · 4. James Madison · 5. James Monroe · 6. John Quincy Adams · 7. Andrew Jackson · 8 ...
 ```
+
 {% endcode %}
 
 ## Answering questions given search results
@@ -148,6 +156,7 @@ List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Je
 Now all we need to do is stick the search results into the Q\&A prompt:
 
 {% code title="answer_by_search_direct.py" %}
+
 ```python
 
 import httpx
@@ -193,7 +202,7 @@ def render_results(data: dict) -> str:
     return "\n".join(results)
 
 async def answer_by_search(
-    *, question: str = "Who is the president of the United States?",
+    question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     results_str = render_results(results)
@@ -203,6 +212,7 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
+
 {% endcode %}
 
 If we run this file...
@@ -214,9 +224,11 @@ python answer_by_search_direct.py
 ...we get:
 
 {% code overflow="wrap" %}
+
 ```
 Joe Biden is the 46th and current president of the United States, having assumed office on January 20, 2021.
 ```
+
 {% endcode %}
 
 Much better!
@@ -230,6 +242,7 @@ There's still something unsatisfying--we're directly searching for the question,
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
 
 {% code title="answer_by_search.py" overflow="wrap" %}
+
 ```python
 
 import httpx
@@ -291,7 +304,7 @@ async def choose_query(squestion: str) -> str:
 
 
 async def answer_by_search(
-    *, question: str = "Who is the president of the United States?",
+    question: str = "Who is the president of the United States?",
 ) -> str:
     query = await choose_query(question)
     results = await search(query)
@@ -303,22 +316,27 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
+
 {% endcode %}
 
 If we run our question...
 
 {% code overflow="wrap" %}
+
 ```shell
 python answer_by_search.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
 ```
+
 {% endcode %}
 
 ...we get:
 
 {% code overflow="wrap" %}
+
 ```
 I couldn't find an exact answer to your question, but based on the weather forecast for that day, it looks like the weather will be nice and the beaches will be busy.
 ```
+
 {% endcode %}
 
 The query chosen by the model was "beach weather san francisco september 12th 2022".

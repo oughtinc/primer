@@ -9,6 +9,7 @@ If you want to challenge yourself, pause and see if you can use the pieces we've
 Once you're ready, or if you just want to see the result, take a look at this recipe:
 
 {% code title="debate.py (4 of 4)" %}
+
 ```python
 
 async def turn(
@@ -20,7 +21,7 @@ async def turn(
     )
     return (agent_name, answer.strip('" '))
 
-async def debate(*, question: str = "Should we legalize all drugs?"):
+async def debate(question: str = "Should we legalize all drugs?"):
     agents = [recipe.agent(), recipe.agent()]
     agent_names = ["Alice", "Bob"]
     debate = initialize_debate(question)
@@ -34,6 +35,7 @@ async def debate(*, question: str = "Should we legalize all drugs?"):
 
 recipe.main(debate)
 ```
+
 {% endcode %}
 
 Once you've saved the recipe you can run it as usual:
@@ -45,6 +47,7 @@ python debate.py
 You should see a debate like this:
 
 {% code overflow="wrap" %}
+
 ```
 Question: "Should we legalize all drugs?"
 Alice: "I'm in favor."
@@ -58,6 +61,7 @@ Bob: "Treatment is expensive, and most addicts can't afford it. Legalizing drugs
 Alice: "The government could fund treatment programs. And people would be less likely to need treatment if they could get drugs legally."
 Bob: "It's not that simple. Legalizing drugs would create a lot of new problems."
 ```
+
 {% endcode %}
 
 {% hint style="info" %}
