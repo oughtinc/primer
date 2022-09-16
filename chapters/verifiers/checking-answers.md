@@ -7,7 +7,6 @@ description: Does this sound plausible?
 Let's start with the simplest possible way of verifying an answer—just ask the model whether's it's correct. Our recipe:
 
 {% code title="verify_answer.py" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -32,7 +31,6 @@ async def verify_answer(question: str, answer: str) -> float:
 
 recipe.main(verify_answer)
 ```
-
 {% endcode %}
 
 The interesting bit here is that we don't just want a boolean Yes/No answer from the model, but that we want the probability of the "Yes" answer to the correctness question. This way, we get a more graded signal that we can use, e.g. to only show or use model responses when they exceed a threshold.

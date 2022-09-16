@@ -11,7 +11,6 @@ The idea behind chain-of-thought is trivially simple: Instead of directly asking
 Let's start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
 
 {% code title="chain_of_thought.py" overflow="wrap" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -33,7 +32,6 @@ async def chain_of_thought(question: str = "What would happen if the average tem
 
 recipe.main(chain_of_thought)
 ```
-
 {% endcode %}
 
 Let's first run the recipe without answer prefix:
@@ -79,7 +77,6 @@ In the previous example chain-of-thought is used to elicit a more elaborate answ
 We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the moel without chain-of-thought:
 
 {% code title="answer_by_reasoning.py" overflow="wrap" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -129,7 +126,6 @@ async def answer_by_reasoning(
 
 recipe.main(answer_by_reasoning)
 ```
-
 {% endcode %}
 
 If we now run this script:

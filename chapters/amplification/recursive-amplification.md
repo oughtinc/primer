@@ -13,7 +13,9 @@ Now we'd like to generalize the recipe above so that we can run it at different 
 
 To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
-<pre class="language-python" data-title="amplify.py" data-overflow="wrap"><code class="lang-python">
+{% code title="amplify.py" overflow="wrap" %}
+```python
+
 from ice.recipe import recipe
 from ice.utils import map_async
 from subquestions import ask_subquestions
@@ -39,18 +41,20 @@ Question: "{question}"
 Answer: "
 """.strip()
 
-<strong>async def get_subs(question: str, depth: int) -> Subs:
-</strong>    subquestions = await ask_subquestions(question=question)
-<strong>    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(question=q, depth=depth))
-</strong>    return list(zip(subquestions, subanswers))
+async def get_subs(question: str, depth: int) -> Subs:
+    subquestions = await ask_subquestions(question=question)
+    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(question=q, depth=depth))
+    return list(zip(subquestions, subanswers))
 
-<strong>async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?", depth: int = 1):
-</strong>    subs = await get_subs(question, depth - 1) if depth > 0 else []
-<strong>    prompt = make_qa_prompt(question, subs=subs)
-</strong>    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
-<strong>    return answer
-</strong>
-recipe.main(answer_by_amplification)</code></pre>
+async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?", depth: int = 1):
+    subs = await get_subs(question, depth - 1) if depth > 0 else []
+    prompt = make_qa_prompt(question, subs=subs)
+    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
+    return answer
+
+recipe.main(answer_by_amplification)
+```
+{% endcode %}
 
 Now we have a parameterized recipe that we can run at different depths:
 

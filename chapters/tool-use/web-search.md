@@ -21,7 +21,6 @@ Let's start by simply providing the list of search results as additional context
 ## Running web searches
 
 {% code title="search_json.py" %}
-
 ```python
 
 import httpx
@@ -54,7 +53,6 @@ async def search(query: str = "Who is the president of the United States?") -> d
 
 recipe.main(search)
 ```
-
 {% endcode %}
 
 Running `python search_json.py` returns a large JSON object:
@@ -83,7 +81,6 @@ Running `python search_json.py` returns a large JSON object:
 We add a method to render the search results to a string (remember to update the code below with your own API key):
 
 {% code title="search_string.py" %}
-
 ```python
 
 import httpx
@@ -124,7 +121,6 @@ async def search_string(
 
 recipe.main(search_string)
 ```
-
 {% endcode %}
 
 Now the results are much more manageable:
@@ -160,7 +156,6 @@ List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Je
 Now all we need to do is stick the search results into the Q\&A prompt (remember to update the code below with your own API key):
 
 {% code title="answer_by_search_direct.py" %}
-
 ```python
 
 import httpx
@@ -216,7 +211,6 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
-
 {% endcode %}
 
 If we run this file...
@@ -246,7 +240,6 @@ There's still something unsatisfying--we're directly searching for the question,
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method (remember to update the code below with your own API key):
 
 {% code title="answer_by_search.py" overflow="wrap" %}
-
 ```python
 
 import httpx
@@ -320,7 +313,6 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
-
 {% endcode %}
 
 If we run our question...

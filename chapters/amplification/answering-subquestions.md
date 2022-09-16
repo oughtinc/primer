@@ -13,7 +13,6 @@ Now we want to use the subquestions recipe to help a question-answerer like [the
 Let's start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
 
 {% code title="subquestions_answered.py" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -42,7 +41,6 @@ async def answer_by_amplification(question: str = "What is the effect of creatin
 
 recipe.main(answer_by_amplification)
 ```
-
 {% endcode %}
 
 If we run this, we get back a list of subquestions and their answers:

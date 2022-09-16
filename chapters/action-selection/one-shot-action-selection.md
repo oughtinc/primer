@@ -24,7 +24,6 @@ There's a long list of actions we could choose between. For this first version, 
 Let's first represent the actions as a data type. For each action we'll also store an associated description that will help the model choose between them, and the recipe that runs the action:
 
 {% code title="answer_by_dispatch.py (1 of 3)" overflow="wrap" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -68,7 +67,6 @@ action_types = [
     ),
 ]
 ```
-
 {% endcode %}
 
 ### **From actions to prompts**
@@ -76,7 +74,6 @@ action_types = [
 We render the actions as an action selection prompt like this:
 
 {% code title="answer_by_dispatch.py (2 of 3)" overflow="wrap" %}
-
 ```python
 
 def make_action_selection_prompt(question: str) -> str:
@@ -91,7 +88,6 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #""".strip()
 ```
-
 {% endcode %}
 
 So, `make_action_selection_prompt("How many people live in Germany?")` results in:
@@ -118,7 +114,6 @@ A: I want to use option #
 We'll treat action choice as a classification task, and print out the probability of each action:
 
 {% code title="answer_by_dispatch.py (3 of 3, v1)" %}
-
 ```python
 
 async def answer_by_dispatch(question: str = "How many people live in Germany?"):
@@ -129,7 +124,6 @@ async def answer_by_dispatch(question: str = "How many people live in Germany?")
 
 recipe.main(answer_by_dispatch)
 ```
-
 {% endcode %}
 
 Let's test it:
@@ -208,7 +202,6 @@ Now let's combine the action selector with the chapters on web search, computati
 This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do its run the chosen subrecipe:
 
 {% code title="answer_by_dispatch.py (3 of 3, v2)" %}
-
 ```python
 
 async def select_action(question: str) -> Action:
@@ -225,7 +218,6 @@ async def answer_by_dispatch(question: str = "How many people live in Germany?")
 
 recipe.main(answer_by_dispatch)
 ```
-
 {% endcode %}
 
 Let's try it with our examples above:

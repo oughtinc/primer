@@ -25,7 +25,6 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 Let's add a method for evaluating Python expressions:
 
 {% code title="eval_direct.py" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -43,7 +42,6 @@ async def answer_by_computation(question: str):
 
 recipe.main(answer_by_computation)
 ```
-
 {% endcode %}
 
 This works as expected for expressions that are literally Python code:
@@ -77,7 +75,6 @@ So, we need to choose what to evaluate.
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
 
 {% code title="eval_selective.py" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -111,7 +108,6 @@ async def eval_selective(question: str):
 
 recipe.main(eval_selective)
 ```
-
 {% endcode %}
 
 If we run this on our example, we get:
@@ -127,7 +123,6 @@ This is a helpful expression and result!
 Now all we need to do this provide this expression and result as additional context for the basic question-answerer.
 
 {% code title="answer_by_computation.py" %}
-
 ```python
 
 from ice.recipe import recipe
@@ -175,7 +170,6 @@ async def answer_by_computation(question: str):
 
 recipe.main(answer_by_computation)
 ```
-
 {% endcode %}
 
 Rerunning our test case

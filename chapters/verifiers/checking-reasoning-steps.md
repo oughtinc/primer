@@ -11,7 +11,6 @@ Let's change the interface of the verifier so that it doesn't just take an answe
 First, let's represent reasoning steps as a list (so that we can more easily manipulate them programmatically) and make a function to render them as a string (so that we can use them in prompts):
 
 {% code title="verify_last.py (1 or 2); verify_steps.py (1 of 2)" overflow="wrap" %}
-
 ```python
 from ice.recipe import recipe
 from ice.utils import map_async
@@ -29,7 +28,6 @@ DEFAULT_STEPS = [
 def render_steps(steps: list[str]) -> str:
     return "\n".join(f"{i}. {step}" for (i, step) in enumerate(steps, start=1))
 ```
-
 {% endcode %}
 
 If we run `render_steps(DEFAULT_STEPS)`, we get back the original numbered list:
@@ -52,7 +50,6 @@ Given a list of steps, let's first think about how we can verify the last step, 
 This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We'll also already factor out the step verification into a function `check_step` so that we can reuse it later.
 
 {% code title="verify_last.py (2 of 2)" overflow="wrap" %}
-
 ```python
 
 def make_verification_prompt(question: str, steps: list[str]) -> str:
@@ -83,7 +80,6 @@ async def verify_answer(
 
 recipe.main(verify_answer)
 ```
-
 {% endcode %}
 
 If we run this with the default question and steps:
@@ -107,7 +103,6 @@ To verify all steps, we simply replace `verify_answer` with an (async) map over 
 {% code title="verify_steps.py (2 of 2)" %}
 
 ```python
-
 async def check_step(question: str, steps: list[str]) -> float:
     """
     Return the probability that the step is correct
@@ -133,7 +128,6 @@ async def verify_answer(
 
 recipe.main(verify_answer)
 ```
-
 {% endcode %}
 
 Instead of just returning the probabilities, we return pairs of probabilities and steps to make the result easier to read. It looks like this:
