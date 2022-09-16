@@ -1,5 +1,5 @@
 ---
-description: Choosing cognitive actions
+description: Choosing a cognitive action
 ---
 
 # One-shot action selection

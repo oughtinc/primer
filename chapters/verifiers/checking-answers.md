@@ -1,3 +1,7 @@
+---
+description: Does this sound plausible?
+---
+
 # Checking answers
 
 Let's start with the simplest possible way of verifying an answer—just ask the model whether's it's correct. Our recipe `verify_answer.py`:
@@ -34,11 +38,9 @@ The interesting bit here is that we don't just want a boolean Yes/No answer from
 Let's test it:
 
 {% code overflow="wrap" %}
-
 ```shell
 python verify_answer.py --question "What is 2 + 2?" --answer "4"
 ```
-
 {% endcode %}
 
 ```
@@ -48,11 +50,9 @@ python verify_answer.py --question "What is 2 + 2?" --answer "4"
 Good.
 
 {% code overflow="wrap" %}
-
 ```
 python verify_answer.py --question "What is 2 + 2?" --answer "5"
 ```
-
 {% endcode %}
 
 ```
@@ -62,18 +62,16 @@ python verify_answer.py --question "What is 2 + 2?" --answer "5"
 Basic sanity checks pass.
 
 {% code overflow="wrap" %}
-
 ```shell
 python verify_answer.py --question "What is the capital of Germany?" --answer "Munich"
 ```
-
 {% endcode %}
 
 ```
 0.0005455832226911594
 ```
 
-Also correct.&#x20;
+Also correct.
 
 ## A math problem
 
@@ -84,11 +82,9 @@ Let's try something harder: A problem from the GSM8K math problems dataset:
 The correct answer is 6, but it takes a few steps of reasoning to work that out.
 
 {% code overflow="wrap" %}
-
 ```shell
 python verify_answer.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "6"
 ```
-
 {% endcode %}
 
 ```
@@ -100,11 +96,9 @@ The model can't see that the answer is correct.
 What if we also give the reasoning steps?
 
 {% code overflow="wrap" %}
-
 ```shell
 python verify_answer.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?" --answer "Beth bakes 4x 2 dozen batches of cookies for a total of 4*2 = 8 dozen cookies. There are 12 cookies in a dozen and she makes 8 dozen cookies for a total of 12*8 = 96 cookies. She splits the 96 cookies equally amongst 16 people so they each eat 96/16 = 6 cookies. So, the final answer is 6 cookies per person."
 ```
-
 {% endcode %}
 
 ```

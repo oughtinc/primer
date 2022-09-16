@@ -1,3 +1,7 @@
+---
+description: Mapping our answerer over subquestions
+---
+
 # Answering subquestions
 
 Now we want to use the subquestions recipe to help a question-answerer like [the one we built early on](../question-answering/q-and-a-about-short-texts.md) in the primer. We can start with the question-answerer we built earlier and modify it as follows:
@@ -39,7 +43,6 @@ recipe.main(answer_by_amplification)
 If we run this, we get back a list of subquestions and their answers:
 
 {% code overflow="wrap" %}
-
 ```python
 [
     (
@@ -64,5 +67,4 @@ If we run this, we get back a list of subquestions and their answers:
     )
 ]
 ```
-
 {% endcode %}

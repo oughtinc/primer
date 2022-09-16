@@ -1,3 +1,7 @@
+---
+description: Paragraph-wise classification with parallelism
+---
+
 # Finding relevant paragraphs
 
 ## Classifying individual paragraphs using `classify`
@@ -142,12 +146,10 @@ python paperqa.py --paper papers/keenan-2018.pdf
 ...we indeed get paragraphs that answer the question who the study population was!
 
 {% code overflow="wrap" %}
-
 ```python
 [
     Paragraph(sentences=['A total of 1624 communities were eligible for inclusion in the trial on the basis of the most recent census (Fig. 1 ).', 'A random selection of 1533 communities were included in the current trial, and the remaining 91 were enrolled in smaller parallel trials at each site, in which additional microbiologic, anthropometric, and adverse-event data were collected.', 'In Niger, 1 community declined to participate and 20 were excluded because of census inaccuracies.', 'No randomization units were lost to follow-up after the initial census.'], sections=[Section(title='Participating Communities', number=None)], section_type='main'),
     ...
 ]
 ```
-
 {% endcode %}

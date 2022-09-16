@@ -1,3 +1,7 @@
+---
+description: From question to more questions
+---
+
 # Asking subquestions
 
 Let's start by making a recipe that returns subquestions given a question:

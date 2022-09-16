@@ -1,3 +1,7 @@
+---
+description: So many things a model could do
+---
+
 # Action Selection
 
 We've seen different cognitive actions that a model can take to answer a question, including:

@@ -1,3 +1,7 @@
+---
+description: Debates have turns, turns have authors and messages
+---
+
 # Representing debates
 
 We'll represent debates as lists of turns. Each turn has the name of an agent and a message from that agent. For example, including some types:

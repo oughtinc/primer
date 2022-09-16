@@ -1,3 +1,7 @@
+---
+description: Running web searches for getting current information
+---
+
 # Web search
 
 Web searches matter especially for questions where the answer can change between when the language model was trained and today. For example:

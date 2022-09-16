@@ -1,3 +1,7 @@
+---
+description: Answering questions about a few paragraphs
+---
+
 # Q\&A about short texts
 
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):

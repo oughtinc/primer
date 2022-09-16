@@ -1,5 +1,5 @@
 ---
-description: Composing calls to agents
+description: A recipe that composes calls to multiple agents
 ---
 
 # Debate

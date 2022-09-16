@@ -1,3 +1,7 @@
+---
+description: Where did we go wrong?
+---
+
 # Checking reasoning steps
 
 Let's change the interface of the verifier so that it doesn't just take an answer, but also a sequence of reasoning steps leading up to it. This way, we can check each step independently and get a probability that it's correct.

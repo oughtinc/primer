@@ -1,3 +1,7 @@
+---
+description: Subquestions can have subquestions
+---
+
 # Recursive amplification
 
 Now we'd like to generalize the recipe above so that we can run it at different depths:

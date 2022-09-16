@@ -1,3 +1,7 @@
+---
+description: Answering questions without extra information
+---
+
 # Q\&A without context
 
 Let's make our first recipe `qa.py` that calls out to an agent:
@@ -25,9 +29,9 @@ recipe.main(answer)
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-- `human`: Elicit answers from you using a command-line interface.
-- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+* `human`: Elicit answers from you using a command-line interface.
+* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 

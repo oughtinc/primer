@@ -1,3 +1,7 @@
+---
+description: Going back and forth between agents
+---
+
 # The debate recipe
 
 If you want to challenge yourself, pause and see if you can use the pieces we've seen so far to write a recipe that has agents take turns at a debate about a question.

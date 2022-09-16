@@ -1,5 +1,5 @@
 ---
-description: Call an agent
+description: The first recipe that calls a language model
 ---
 
 # Question Answering
