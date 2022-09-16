@@ -111,8 +111,9 @@ A: I want to use option #
 
 We'll treat action choice as a classification task, and print out the probability of each action:
 
-{% code title="answer_by_dispatch.py (3   (3 of 3, v1)" %}
+{% code title="answer_by_dispatch.py (3 of 3, v1)" %}
 ```python
+
 async def answer_by_dispatch(*, question: str = "How many people live in Germany?"):
     prompt = make_action_selection_prompt(question)
     choices = tuple(str(i) for i in range(1, 6))
