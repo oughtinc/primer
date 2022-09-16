@@ -6,15 +6,14 @@ description: Subquestions can have subquestions
 
 Now we'd like to generalize the recipe above so that we can run it at different depths:
 
-- Depth 0: Just answer the question, no subquestions
-- Depth 1: One layer of subquestions
-- Depth 2: Use subquestions when answering subquestions
-- Etc.
+* Depth 0: Just answer the question, no subquestions
+* Depth 1: One layer of subquestions
+* Depth 2: Use subquestions when answering subquestions
+* Etc.
 
 To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
-<pre class="language-python" data-title="amplify.py" data-overflow="wrap"><code class="lang-python">
-from ice.recipe import recipe
+<pre class="language-python" data-title="amplify.py" data-overflow="wrap"><code class="lang-python">from ice.recipe import recipe
 from ice.utils import map_async
 from subquestions import ask_subquestions
 
@@ -39,20 +38,17 @@ Question: "{question}"
 Answer: "
 """.strip()
 
-
 <strong>async def get_subs(question: str, depth: int) -> Subs:
-</strong><strong>    subquestions = await ask_subquestions(question=question)
-</strong><strong>    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(question=q, depth=depth))
-</strong><strong>    return list(zip(subquestions, subanswers))
-</strong>
+</strong>    subquestions = await ask_subquestions(question=question)
+<strong>    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(question=q, depth=depth))
+</strong>    return list(zip(subquestions, subanswers))
 
 <strong>async def answer_by_amplification(question: str = "What is the effect of creatine on cognition?", depth: int = 1):
-</strong><strong>    subs = await get_subs(question, depth - 1) if depth > 0 else []
-</strong><strong>    prompt = make_qa_prompt(question, subs=subs)
-</strong><strong>    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
-</strong><strong>    return answer
+</strong>    subs = await get_subs(question, depth - 1) if depth > 0 else []
+<strong>    prompt = make_qa_prompt(question, subs=subs)
+</strong>    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
+<strong>    return answer
 </strong>
-
 recipe.main(answer_by_amplification)</code></pre>
 
 Now we have a parameterized recipe that we can run at different depths:
@@ -64,11 +60,9 @@ python amplify.py --depth 0
 ```
 
 {% code overflow="wrap" %}
-
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
-
 {% endcode %}
 
 #### Depth 1
@@ -78,11 +72,9 @@ python amplify.py --depth 1
 ```
 
 {% code overflow="wrap" %}
-
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
-
 {% endcode %}
 
 #### Depth 2
@@ -92,11 +84,9 @@ python amplify.py --depth 2
 ```
 
 {% code overflow="wrap" %}
-
 ```
 The effect of creatine on cognition is inconclusive. Some studies have found that creatine can improve cognitive function in healthy adults, while other studies have found no significant effects. More research is needed to determine the potential cognitive benefits of creatine.
 ```
-
 {% endcode %}
 
 ## Exercises
