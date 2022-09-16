@@ -39,7 +39,7 @@ recipe.main(chain_of_thought)
 Let's first run the recipe without answer prefix:
 
 ```shell
-python chain_of_thought.py --answer_prefix ""
+python chain_of_thought.py --answer-prefix ""
 ```
 
 We get an answer:
@@ -57,7 +57,7 @@ If we provide "Let's think step by step" as an answer prefix...
 {% code overflow="wrap" %}
 
 ```shell
-python chain_of_thought.py --answer_prefix "Let's think step by step."
+python chain_of_thought.py --answer-prefix "Let's think step by step."
 ```
 
 {% endcode %}
