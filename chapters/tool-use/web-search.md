@@ -80,7 +80,7 @@ Running `python search_json.py` returns a large JSON object:
 
 ## Rendering search results to prompts
 
-We add a method to render the search results to a string. Remember to update the code below with your own API key:
+We add a method to render the search results to a string (remember to update the code below with your own API key):
 
 {% code title="search_string.py" %}
 
@@ -156,7 +156,7 @@ List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Je
 
 ## Answering questions given search results
 
-Now all we need to do is stick the search results into the Q\&A prompt:
+Now all we need to do is stick the search results into the Q\&A prompt (remember to update the code below with your own API key):
 
 {% code title="answer_by_search_direct.py" %}
 
@@ -242,7 +242,7 @@ There's still something unsatisfying--we're directly searching for the question,
 
 > Based on the weather on Sep 14th 2022, how many people went do you think went to the beach in San Francisco?
 
-Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
+Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method (remember to update the code below with your own API key):
 
 {% code title="answer_by_search.py" overflow="wrap" %}
 
