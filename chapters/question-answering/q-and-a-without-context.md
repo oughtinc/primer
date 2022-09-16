@@ -4,8 +4,9 @@ description: Answering questions without extra information
 
 # Q\&A without context
 
-Let's make our first recipe `qa.py` that calls out to an agent:
+Let's make our first recipe `qa_simple.py` that calls out to an agent:
 
+{% code title="qa_simple.py" %}
 ```python
 from ice.recipe import recipe
 
@@ -26,6 +27,7 @@ async def answer(*, question: str = "What is happening on 9/9/2022?"):
 
 recipe.main(answer)
 ```
+{% endcode %}
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
@@ -36,7 +38,7 @@ We can run recipes in different modes, which controls what type of agent is used
 You specify the mode like this:
 
 ```shell
-python qa.py --mode human
+python qa_simple.py --mode human
 ```
 
 Try running your recipe in different modes.

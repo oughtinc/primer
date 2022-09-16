@@ -6,6 +6,7 @@ description: Answering questions about a few paragraphs
 
 It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
 
+{% code title="qa.py" %}
 ```python
 from ice.recipe import recipe
 
@@ -36,6 +37,7 @@ async def answer(
 
 recipe.main(answer)
 ```
+{% endcode %}
 
 You should see a response like this:
 
