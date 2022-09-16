@@ -13,7 +13,8 @@ Now we'd like to generalize the recipe above so that we can run it at different 
 
 To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
 
-<pre class="language-python" data-title="amplify.py" data-overflow="wrap"><code class="lang-python">from ice.recipe import recipe
+<pre class="language-python" data-title="amplify.py" data-overflow="wrap"><code class="lang-python">
+from ice.recipe import recipe
 from ice.utils import map_async
 from subquestions import ask_subquestions
 

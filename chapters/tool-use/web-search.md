@@ -85,6 +85,7 @@ We add a method to render the search results to a string (remember to update the
 {% code title="search_string.py" %}
 
 ```python
+
 import httpx
 
 from ice.recipe import recipe

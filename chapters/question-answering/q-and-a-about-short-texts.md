@@ -9,6 +9,7 @@ It's only a small change from the above to support answering questions about sho
 {% code title="qa.py" %}
 
 ```python
+
 from ice.recipe import recipe
 
 
