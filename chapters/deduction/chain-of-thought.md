@@ -4,7 +4,7 @@ description: Let's think step by step.
 
 # Chain of Thought
 
-Many questions require multiple steps of inference before they can be answered. The idea behind chain-of-thought is trivially simple: Instead of directly asking the model to generate an answer, we add a prefix like "Let's think step by step.".
+The idea behind chain-of-thought is trivially simple: Instead of directly asking the model to generate an answer, we add a prefix like "Let's think step by step.".
 
 ## Step-by-step answers
 
