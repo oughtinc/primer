@@ -10,12 +10,13 @@ The idea behind chain-of-thought is trivially simple: Instead of directly asking
 
 Let's start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
 
-{% code overflow="wrap" %}
+{% code title="chain_of_thought.py" overflow="wrap" %}
 ```python
+
 from ice.recipe import recipe
 
 
-def make_cot_prompt(question: str, answer_prefix: str = "") -> str:
+def make_chain_of_thought_prompt(question: str, answer_prefix: str = "") -> str:
     return f"""Answer the following question:
 
 Question: "{question}"
@@ -23,20 +24,20 @@ Answer: "{answer_prefix}
 """.strip()
 
 
-async def answer_by_reasoning(*, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
-    prompt = make_cot_prompt(question, answer_prefix)
+async def chain_of_thought(*, question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
+    prompt = make_chain_of_thought_prompt(question, answer_prefix)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
 
 
-recipe.main(answer_by_reasoning)
+recipe.main(chain_of_thought)
 ```
 {% endcode %}
 
 Let's first run the recipe without answer prefix:
 
 ```shell
-python cot.py --answer_prefix ""
+python chain_of_thought.py --answer_prefix ""
 ```
 
 We get an answer:
@@ -51,7 +52,7 @@ If we provide "Let's think step by step" as an answer prefix...
 
 {% code overflow="wrap" %}
 ```shell
-python cot.py --answer_prefix "Let's think step by step."
+python chain_of_thought.py --answer_prefix "Let's think step by step."
 ```
 {% endcode %}
 
@@ -69,8 +70,9 @@ In the previous example chain-of-thought is used to elicit a more elaborate answ
 
 We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the moel without chain-of-thought:
 
-{% code overflow="wrap" %}
+{% code title="answer_by_reasoning.py" overflow="wrap" %}
 ```python
+
 from ice.recipe import recipe
 
 
@@ -121,10 +123,10 @@ recipe.main(answer_by_reasoning)
 ```
 {% endcode %}
 
-If we now run our script again:
+If we now run this script:
 
 ```shell
-python cot.py
+python answer_by_reasoning.py
 ```
 
 We get a summary of the long reasoning chain:
@@ -143,7 +145,7 @@ Let's apply this to the math problem we saw in the chapter on checking reasoning
 
 {% code overflow="wrap" %}
 ```
-python cot.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
+python answer_by_reasoning.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 ```
 {% endcode %}
 

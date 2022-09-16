@@ -4,10 +4,11 @@ description: Answering questions without extra information
 
 # Q\&A without context
 
-Let's make our first recipe `qa_simple.py` that calls out to an agent:
+Let's make our first recipe that calls out to an agent:
 
 {% code title="qa_simple.py" %}
 ```python
+
 from ice.recipe import recipe
 
 

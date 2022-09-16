@@ -8,7 +8,9 @@ Let's first get used to the infrastructure for writing, running, and debugging r
 
 Create a file `hello.py`:
 
+{% code title="hello.py" %}
 ```python
+
 from ice.recipe import recipe
 
 async def say_hello():
@@ -16,6 +18,7 @@ async def say_hello():
 
 recipe.main(say_hello)
 ```
+{% endcode %}
 
 Run the recipe [in Docker](../before-we-start.md#shell-into-the-docker-container):
 

@@ -8,7 +8,9 @@ Now all we have to do is combine the paragraph finder with the question-answerin
 
 We could just paste in the code from [the question-answering recipe](../question-answering.md#answering-questions-about-short-texts). However, we can also _directly_ reuse it as a subrecipe. If you have the code in `qa.py`, we can directly import and use it:
 
+{% code title="paper_qa.py" %}
 ```python
+
 from ice.recipe import recipe
 from ice.paper import Paper, Paragraph
 from ice.utils import map_async
@@ -50,11 +52,12 @@ async def answer_for_paper(
 
 recipe.main(answer_for_paper)
 ```
+{% endcode %}
 
 Running the same command again...
 
 ```shell
-python paperqa.py --paper papers/keenan-2018.pdf
+python paper_qa.py --paper papers/keenan-2018.pdf
 ```
 
 ... you should get an answer like this:

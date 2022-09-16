@@ -6,7 +6,14 @@ description: Answering given subquestion answers
 
 We need an equivalent of `make_qa_prompt` that optionally takes a list of subquestions and answers and provides those in the prompt. Let's introduce a type `Subs` for pairs of questions and answers and extend `make_qa_prompt` to use it if given:
 
+{% code title="amplify_one.py (1 of 2)" %}
 ```python
+
+from ice.recipe import recipe
+from ice.utils import map_async
+from subquestions import ask_subquestions
+
+
 Question = str
 Answer = str
 Subs = list[tuple[Question, Answer]]
@@ -27,11 +34,11 @@ Question: "{question}"
 Answer: "
 """.strip()
 ```
+{% endcode %}
 
 Now we can render prompts like this:
 
 {% code overflow="wrap" %}
-
 ```
 Here is relevant background information:
 Q: What is creatine?
@@ -50,12 +57,13 @@ Answer the following question, using the background information above where help
 Question: "What is the effect of creatine on cognition?"
 Answer: "
 ```
-
 {% endcode %}
 
 With this in hand, we can write the one-step amplified Q\&A recipe:
 
+{% code title="amplify_one.py (2 of 2)" %}
 ```python
+
 async def get_subs(question: str) -> Subs:
     subquestions = await ask_subquestions(question=question)
     subanswers = await map_async(subquestions, answer)
@@ -73,29 +81,20 @@ async def answer_by_amplification(*, question: str = "What is the effect of crea
 
 recipe.main(answer_by_amplification)
 ```
+{% endcode %}
 
-If we run it with
-
-```shell
-python amplified_qa.py
-```
-
-we get:
+If we run it, we get:
 
 {% code overflow="wrap" %}
-
 ```
 The effect of creatine on cognition is mixed. Some studies have found that creatine can help improve memory and reaction time, while other studies have found no significant effects. It is possible that the effects of creatine on cognition may vary depending on the individual.
 ```
-
 {% endcode %}
 
 Compare with the unamplified answer:
 
 {% code overflow="wrap" %}
-
 ```
 Creatine has been shown to improve cognition in people with Alzheimer's disease and other forms of dementia.
 ```
-
 {% endcode %}

@@ -10,7 +10,9 @@ Let's start by just classifying whether the first paragraph answers a question. 
 
 Our single-paragraph classifier looks like this:
 
+{% code title="paper_qa_class.py" %}
 ```python
+
 from ice.recipe import recipe
 from ice.paper import Paper, Paragraph
 
@@ -34,11 +36,12 @@ async def answer_for_paper(*, paper: Paper, question: str = "What was the study 
 
 recipe.main(answer_for_paper)
 ```
+{% endcode %}
 
-Save it to `paperqa.py` and run it on a paper:
+Save it and run it on a paper:
 
 ```shell
-python paperqa.py --paper papers/keenan-2018.pdf
+python paper_qa_class.py --paper papers/keenan-2018.pdf
 ```
 
 You should see a result like this:
@@ -55,7 +58,9 @@ To find the most relevant paragraphs, we map the paragraph classifier over all p
 
 For mapping, we use the utility `map_async` which runs the language model calls in parallel:
 
+{% code title="paper_qa_classes.py" %}
 ```python
+
 from ice.recipe import recipe
 from ice.paper import Paper, Paragraph
 from ice.utils import map_async
@@ -79,8 +84,9 @@ async def answer_for_paper(*, paper: Paper, question: str = "What was the study 
 
 recipe.main(answer_for_paper)
 ```
+{% endcode %}
 
-If you run the same command as above, you will now see a list of probabilities, one for each paragraph:
+You will now see a list of probabilities, one for each paragraph:
 
 ```python
 [
@@ -103,7 +109,9 @@ If you run the same command as above, you will now see a list of probabilities, 
 
 Now all we need to do is add a utility function for looking up the paragraphs with the highest probabilities:
 
+{% code title="paper_qa_ranker.py" %}
 ```python
+
 from ice.recipe import recipe
 from ice.paper import Paper, Paragraph
 from ice.utils import map_async
@@ -136,11 +144,12 @@ async def answer_for_paper(
 
 recipe.main(answer_for_paper)
 ```
+{% endcode %}
 
 Running the same command again...
 
 ```shell
-python paperqa.py --paper papers/keenan-2018.pdf
+python paper_qa_ranker.py --paper papers/keenan-2018.pdf
 ```
 
 ...we indeed get paragraphs that answer the question who the study population was!

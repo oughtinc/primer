@@ -20,7 +20,9 @@ Let's start by simply providing the list of search results as additional context
 
 ## Running web searches
 
+{% code title="search_json.py" %}
 ```python
+
 import httpx
 
 from ice.recipe import recipe
@@ -37,7 +39,7 @@ Answer: "
 """.strip()
 
 
-async def search(query: str) -> dict:
+async def search(query: str = "Who is the president of the United States?") -> dict:
     async with httpx.AsyncClient() as client:
         params = {
         "q": query,
@@ -48,15 +50,12 @@ async def search(query: str) -> dict:
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
 
-async def answer_by_search(
-    *, question: str = "Who is the president of the United States?",
-) -> dict:
-    return await search(question)
 
 recipe.main(answer_by_search)
 ```
+{% endcode %}
 
-Running `python search.py` returns a large JSON object:
+Running `python search_json.py` returns a large JSON object:
 
 {% code overflow="wrap" %}
 ```json
@@ -79,7 +78,9 @@ Running `python search.py` returns a large JSON object:
 
 We add a method to render the search results to a string:
 
+{% code title="search_string.py" %}
 ```python
+
 async def search(query: str) -> dict:
     async with httpx.AsyncClient() as client:
         params = {
@@ -106,14 +107,15 @@ def render_results(data: dict) -> str:
 
     return "\n".join(results)
 
-async def answer_by_search(
+async def search_string(
     *, question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     return render_results(results)
 
-recipe.main(answer_by_search)
+recipe.main(search_string)
 ```
+{% endcode %}
 
 Now the results are much more manageable:
 
@@ -145,7 +147,9 @@ List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Je
 
 Now all we need to do is stick the search results into the Q\&A prompt:
 
+{% code title="answer_by_search_direct.py" %}
 ```python
+
 import httpx
 
 from ice.recipe import recipe
@@ -199,11 +203,12 @@ async def answer_by_search(
 
 recipe.main(answer_by_search)
 ```
+{% endcode %}
 
 If we run this file...
 
 ```shell
-python web.py
+python answer_by_search_direct.py
 ```
 
 ...we get:
@@ -224,8 +229,9 @@ There's still something unsatisfying--we're directly searching for the question,
 
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method:
 
-{% code overflow="wrap" %}
+{% code title="answer_by_search.py" overflow="wrap" %}
 ```python
+
 import httpx
 
 from ice.recipe import recipe
@@ -303,7 +309,7 @@ If we run our question...
 
 {% code overflow="wrap" %}
 ```shell
-python web.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
+python answer_by_search.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
 ```
 {% endcode %}
 

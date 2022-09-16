@@ -6,7 +6,9 @@ description: Loading papers as structured data
 
 ICE has built-in functionality for parsing and loading papers, and includes some example papers in its `papers` folder. Here's a minimal recipe that loads a paper and prints out the first paragraph (often the abstract):
 
+{% code title="paper_hello.py" %}
 ```python
+
 from ice.recipe import recipe
 from ice.paper import Paper
 
@@ -15,11 +17,12 @@ async def answer_for_paper(*, paper: Paper):
 
 recipe.main(answer_for_paper)
 ```
+{% endcode %}
 
-If you have this recipe as `paperqa.py`, you can run it as follows, providing the paper as a keyword argument:
+You can run the recipe as follows, providing the paper as a keyword argument:
 
 ```shell
-python paperqa.py --paper papers/keenan-2018.pdf
+python paper_hello.py --paper papers/keenan-2018.pdf
 ```
 
 You'll see a result like this:

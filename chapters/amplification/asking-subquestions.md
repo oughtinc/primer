@@ -6,7 +6,9 @@ description: From question to more questions
 
 Let's start by making a recipe that returns subquestions given a question:
 
+{% code title="subquestions.py" %}
 ```python
+
 from ice.recipe import recipe
 
 
@@ -29,14 +31,9 @@ async def ask_subquestions(*, question: str = "What is the effect of creatine on
 
 recipe.main(ask_subquestions)
 ```
+{% endcode %}
 
-If we save this as `subquestions.py` and run it...
-
-```shell
-python subquestions.py
-```
-
-...we get:
+If we run this we get:
 
 ```python
 [

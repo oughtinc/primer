@@ -8,9 +8,8 @@ If you want to challenge yourself, pause and see if you can use the pieces we've
 
 Once you're ready, or if you just want to see the result, take a look at this recipe:
 
+{% code title="debate.py (4 of 4)" %}
 ```python
-from ice.agents.base import Agent
-from ice.recipe import recipe
 
 async def turn(
     debate: Debate, agent: Agent, agent_name: Name, turns_left: int
@@ -35,8 +34,9 @@ async def debate(*, question: str = "Should we legalize all drugs?"):
 
 recipe.main(debate)
 ```
+{% endcode %}
 
-Once you've saved the recipe in `debate.py` you can run it as usual:
+Once you've saved the recipe you can run it as usual:
 
 ```shell
 python debate.py

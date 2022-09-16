@@ -6,10 +6,10 @@ description: Executing code for more accurate computation
 
 Sometimes the limitation isn't factual knowledge, but ability to do computation.
 
-For example, if we ask the basic question-answerer "What is 578921 days \* 12312 miles/day?":
+For example, if we ask [the basic question-answerer](../question-answering/q-and-a-without-context.md) "What is 578921 days \* 12312 miles/day?":
 
 ```shell
-python qa.py --question "What is 578921 days * 12312 miles/day?"
+python qa_simple.py --question "What is 578921 days * 12312 miles/day?"
 ```
 
 we get:
@@ -24,7 +24,9 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 
 Let's add a method for evaluating Python expressions:
 
+{% code title="eval_direct.py" %}
 ```python
+
 from ice.recipe import recipe
 
 
@@ -40,11 +42,12 @@ async def answer_by_computation(*, question: str):
 
 recipe.main(answer_by_computation)
 ```
+{% endcode %}
 
 This works as expected for expressions that are literally Python code:
 
 ```shell
-python compute.py --question "1 + 1"
+python eval_direct.py --question "1 + 1"
 ```
 
 ```
@@ -55,7 +58,7 @@ Of course, it doesn't work for natural language questions that benefit from comp
 
 {% code overflow="wrap" %}
 ```shell
-python compute.py --question "What is 578921 days * 12312 miles/day?"
+python eval_direct.py --question "What is 578921 days * 12312 miles/day?"
 ```
 {% endcode %}
 
@@ -69,7 +72,9 @@ So, we need to choose what to evaluate.
 
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
 
+{% code title="eval_selective.py" %}
 ```python
+
 from ice.recipe import recipe
 
 
@@ -94,13 +99,14 @@ async def choose_computation(question: str) -> str:
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
 
-async def answer_by_computation(*, question: str):
+async def eval_selective(*, question: str):
     expression = await choose_computation(question)
     result = eval_python(expression)
     return (expression, result)
 
-recipe.main(answer_by_computation)
+recipe.main(eval_selective)
 ```
+{% endcode %}
 
 If we run this on our example, we get:
 
@@ -114,7 +120,9 @@ This is a helpful expression and result!
 
 Now all we need to do this provide this expression and result as additional context for the basic question-answerer.
 
+{% code title="answer_by_computation.py" %}
 ```python
+
 from ice.recipe import recipe
 
 
@@ -160,12 +168,13 @@ async def answer_by_computation(*, question: str):
 
 recipe.main(answer_by_computation)
 ```
+{% endcode %}
 
 Rerunning our test case
 
 {% code overflow="wrap" %}
 ```shell
-python compute.py --question "What is 578921 days * 12312 miles/day?"
+python answer_by_computation.py --question "What is 578921 days * 12312 miles/day?"
 ```
 {% endcode %}
 
@@ -183,7 +192,7 @@ Running this:
 
 {% code overflow="wrap" %}
 ```shell
-python compute.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?"
+python answer_by_computation.py --question "If I have $500 and get 3.7% interest over 16 years, what do I have at the end?"
 ```
 {% endcode %}
 
