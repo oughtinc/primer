@@ -80,11 +80,14 @@ Running `python search_json.py` returns a large JSON object:
 
 ## Rendering search results to prompts
 
-We add a method to render the search results to a string:
+We add a method to render the search results to a string. Remember to update the code below with your own API key:
 
 {% code title="search_string.py" %}
 
 ```python
+import httpx
+
+from ice.recipe import recipe
 
 async def search(query: str) -> dict:
     async with httpx.AsyncClient() as client:
