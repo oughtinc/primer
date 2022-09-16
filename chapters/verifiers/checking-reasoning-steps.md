@@ -163,3 +163,7 @@ The more difficult the math, the lower the probability the model assigns to the 
 If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
 
 </details>
+
+## References
+
+1. Cobbe, Karl, Vineet Kosaraju, Mohammad Bavarian, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. [Training Verifiers to Solve Math Word Problems](https://arxiv.org/abs/2110.14168v1). October 27, 2021.

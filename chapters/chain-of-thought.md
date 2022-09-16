@@ -172,3 +172,9 @@ Exercise: Combine generating reasoning chains with verifiers to generate more re
 If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
 
 </details>
+
+## References
+
+1. Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Ed Chi, Quoc Le, and Denny Zhou. [Chain of Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)
+2. Wang, Xuezhi, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, and Denny Zhou. [Self-Consistency Improves Chain of Thought Reasoning in Language Models](http://arxiv.org/abs/2203.11171). March 21, 2022
+3. Kojima, Takeshi, Shixiang Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke Iwasawa. [Large Language Models Are Zero-Shot Reasoners](https://arxiv.org/abs/2205.11916). May 24, 2022

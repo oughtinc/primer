@@ -79,3 +79,10 @@ The effect of creatine on cognition is inconclusive. Some studies have found tha
 If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
 
 </details>
+
+## References
+
+1. Christiano, Paul, Buck Shlegeris, and Dario Amodei. [Supervising Strong Learners by Amplifying Weak Experts](https://arxiv.org/abs/1810.08575). October 19, 2018.
+2. Leike, Jan, David Krueger, Tom Everitt, Miljan Martic, Vishal Maini, and Shane Legg. [Scalable Agent Alignment via Reward Modeling: A Research Direction](https://arxiv.org/abs/1811.07871). _ArXiv.Org_ cs.LG (November 19, 2018).
+3. Wu, Jeff, Long Ouyang, Daniel M. Ziegler, Nisan Stiennon, Ryan Lowe, Jan Leike, and Paul Christiano. [Recursively Summarizing Books with Human Feedback](http://arxiv.org/abs/2109.10862). arXiv, September 27, 2021.
+4. Perez, Ethan, Patrick Lewis, Wen-tau Yih, Kyunghyun Cho, and Douwe Kiela. [Unsupervised Question Decomposition for Question Answering.](https://aclanthology.org/2020.emnlp-main.713.pdf) In _Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)_, 8864–80. Online: Association for Computational Linguistics, 2020.

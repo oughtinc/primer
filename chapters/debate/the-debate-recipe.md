@@ -64,7 +64,7 @@ Bob: "It's not that simple. Legalizing drugs would create a lot of new problems.
 In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.
 {% endhint %}
 
-### Exercises
+## Exercises
 
 1. Add a judge agent at the end that decides which agent won the debate. In the original debate proposal, these judgments would be used to RL-finetune the parameters of the debate agents.
 2. Generate model judgments directly (only given the question) and after debate. Are there systematic differences between these judgments? You could also use models to generate the questions if you need a larger input set.
@@ -76,3 +76,7 @@ In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This d
 If you want feedback on your exercise solutions, submit them through [this form](https://docs.google.com/forms/d/e/1FAIpQLSdNNHeQAT7GIzn4tdsVYCkrVEPMNaZmBFkZCAJdvTvLzUAnzQ/viewform). We—the team at Ought—are happy to give our quick take on whether you missed any interesting ideas.
 
 </details>
+
+## References
+
+1. Irving, Geoffrey, Paul Christiano, and Dario Amodei. [AI Safety via Debate](https://arxiv.org/abs/1805.00899). May 2, 2018.
