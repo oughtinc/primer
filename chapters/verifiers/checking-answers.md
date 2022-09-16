@@ -24,11 +24,10 @@ A:"""
 
 async def verify_answer(question: str, answer: str) -> float:
     prompt = make_verification_prompt(question=question, answer=answer)
-    answer, answer_p, _ = await recipe.agent().classify(
+    choice_probs, _ = await recipe.agent().classify(
         prompt=prompt, choices=[" Yes", " No"]
     )
-    p_correct = answer_p if answer == " Yes" else 1 - answer_p
-    return p_correct
+    return choice_probs.get(" Yes")
 
 
 recipe.main(verify_answer)
