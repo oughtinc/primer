@@ -33,9 +33,9 @@ from dataclasses import dataclass
 
 from typing import Protocol
 
-from web import answer_by_search
-from cot import answer_by_reasoning
-from compute import answer_by_computation
+from answer_by_search import answer_by_search
+from answer_by_reasoning import answer_by_reasoning
+from answer_by_computation import answer_by_computation
 
 
 class QuestionRecipe(Protocol):
