@@ -42,7 +42,7 @@ Answer: "
 
 <strong>async def get_subs(question: str, depth: int) -> Subs:
 </strong><strong>    subquestions = await ask_subquestions(question=question)
-</strong><strong>    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(q, depth))
+</strong><strong>    subanswers = await map_async(subquestions, lambda q: answer_by_amplification(question=q, depth=depth))
 </strong><strong>    return list(zip(subquestions, subanswers))
 </strong>
 
