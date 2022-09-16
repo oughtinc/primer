@@ -11,7 +11,7 @@ Now that we've seen that language models can do many things besides just answer 
 * [Run a Python program](tool-use/interpreters.md)
 * [Write out some reasoning steps](deduction/chain-of-thought.md)
 
-—let's revisit our recursive question-answerer. Instead of either directly answering the question or asking more subquestions, let's also provide the ability of doing any of the steps above.
+—let's revisit [our recursive question-answerer](amplification/recursive-amplification.md). Instead of either directly answering the question or asking more subquestions, let's also provide the ability of doing any of the steps above.
 
 While we're at it, let's take the opportunity to switch from asking subquestions in parallel to asking them sequentially, so that later subquestions can depend on the results of earlier subquestions.
 
