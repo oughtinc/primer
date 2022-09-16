@@ -6,10 +6,10 @@ description: Subquestions and so much more
 
 Now that we've seen that language models can do many things besides just answer questions directly—
 
-* Check answers and reasoning
-* Do a web search
-* Run a Python program
-* Write out some reasoning steps
+* [Check answers and reasoning](verifiers/)
+* [Do a web search](tool-use/web-search.md)
+* [Run a Python program](tool-use/interpreters.md)
+* [Write out some reasoning steps](deduction/chain-of-thought.md)
 
 —let's revisit our recursive question-answerer. Instead of either directly answering the question or asking more subquestions, let's also provide the ability of doing any of the steps above.
 
