@@ -8,44 +8,33 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 
 ## Prerequisites
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) for the backend
-2. Install the NodeJS version manager [nvm](https://github.com/nvm-sh/nvm) for the frontend
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-## Installation
+## Setup
 
 1.  Clone ICE:
 
     ```shell
     git clone https://github.com/oughtinc/ice.git
     ```
-2.  Install NodeJS and the required Node packages:
 
-    ```shell
-    cd ice/ui
-    nvm install
-    nvm use
-    npm install
-    ```
-3.  Add a `.env` file containing an `OPENAI_API_KEY` (see [here](https://openai.com/api/) for information about the OpenAI API).
+1.  Add a `.env` file containing an `OPENAI_API_KEY` (see [here](https://openai.com/api/) for information about the OpenAI API).
 
     ```shell
     # .env
     OPENAI_API_KEY=sk-...f8
     ```
 
-## Run the ICE server
+1.  Start ICE in its own terminal and leave it running:
 
-Start ICE in a separate terminal and leave it running:
-
-```shell
-cd ice
-scripts/run-local.sh
-```
+    ```shell
+    scripts/run-local.sh
+    ```
 
 ## Shell into the Docker container
 
 Open a shell in the container to run all the commands in the upcoming chapters:
 
 ```shell
-docker compose exec backend bash
+docker compose exec ice bash
 ```
