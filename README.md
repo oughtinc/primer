@@ -3,7 +3,7 @@ description: >-
   Use language models like GPT-3 for complex reasoning tasks by composing
   reasoning steps
 cover: >-
-  https://images.unsplash.com/photo-1481026469463-66327c86e544?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw2fHxibHVlJTIwd2hpdGV8ZW58MHx8fHwxNjYyODM4MTE4&ixlib=rb-1.2.1&q=80
+  https://oughtinc.github.io/static/images/primer-cover.jpeg
 coverY: 0
 ---
 
