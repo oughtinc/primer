@@ -6,7 +6,7 @@ description: The simplest recipe
 
 Let's first get used to the infrastructure for writing, running, and debugging recipes:
 
-Create a file `hello.py`:
+Create a file `hello.py` anywhere in the ICE directory:
 
 {% code title="hello.py" %}
 ```python
@@ -21,7 +21,7 @@ recipe.main(say_hello)
 ```
 {% endcode %}
 
-Run the recipe [in Docker](../before-we-start.md#shell-into-the-docker-container):
+Run the recipe [in the Docker container](../before-we-start.md#enter-the-container):
 
 ```shell
 python hello.py
@@ -29,14 +29,14 @@ python hello.py
 
 This will run the recipe and save an execution trace.
 
-On the terminal, you should see a trace link and output:
+On the terminal, you will see a trace link and output:
 
 ```
 Trace: http://localhost:3000/traces/01GE0GN5PPQWYGMT1B4GFPDZ09
 Hello world!
 ```
 
-If you follow the trace link (yours will be different), you should see a function node that you can click on, inspect inputs/outputs for, and show source code for:
+If you follow the trace link (yours will be different), you will see a function node that you can click on, inspect inputs/outputs for, and show source code for:
 
 <figure><img src="../.gitbook/assets/Screenshot 68F7bqCl@2x.png" alt=""><figcaption><p>Your first execution trace</p></figcaption></figure>
 

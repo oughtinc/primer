@@ -6,11 +6,11 @@ description: How to install and run the Interaction Composition Explorer
 
 The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you'd like to follow along with the implementation (strongly recommended), set it up first.
 
-## Prerequisites
+## Install Docker
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+ICE comes as a Docker container with everything you need to start writing language model recipes. To run it, you need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-## Setup
+## Run ICE
 
 Clone ICE:
 
@@ -18,7 +18,7 @@ Clone ICE:
 git clone https://github.com/oughtinc/ice.git
 ```
 
-Add a `.env` file containing an `OPENAI_API_KEY` to the ICE folder. See [here](https://openai.com/api/) for information about the OpenAI API.
+Add a `.env` file containing an [`OPENAI_API_KEY`](https://openai.com/api/) to the ICE folder:
 
 ```shell
 # .env
@@ -33,7 +33,7 @@ scripts/run-local.sh
 
 On the first run, downloading the Docker container will take a few minutes.
 
-## Shell into the Docker container
+## Enter the container
 
 Open a shell in the container and use it to run all commands in the upcoming chapters:
 
