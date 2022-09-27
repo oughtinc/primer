@@ -29,13 +29,16 @@ python hello.py
 
 This will run the recipe and save an execution trace.
 
-On the terminal, you should see the trace link, then this:
+On the terminal, you should see a trace link and output:
 
 ```
+Trace: http://localhost:3000/traces/01GE0GN5PPQWYGMT1B4GFPDZ09
 Hello world!
 ```
 
-If you follow the trace link, in your browser you should see a function node that you can click on, expand, and inspect inputs/outputs and source code.
+If you follow the trace link (yours will be different), you should see a function node that you can click on, inspect inputs/outputs for, and show source code for:
+
+<figure><img src="../.gitbook/assets/Screenshot 68F7bqCl@2x.png" alt=""><figcaption><p>Your first execution trace</p></figcaption></figure>
 
 <details>
 
