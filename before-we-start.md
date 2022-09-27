@@ -31,9 +31,11 @@ Start ICE in its own terminal and leave it running:
 scripts/run-local.sh
 ```
 
+On the first run, downloading the Docker container will take a few minutes.
+
 ## Shell into the Docker container
 
-Open a shell in the container to run all the commands in the upcoming chapters:
+Open a shell in the container and use it to run all commands in the upcoming chapters:
 
 ```shell
 docker compose exec ice bash
