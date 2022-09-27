@@ -42,4 +42,4 @@
 ## Appendix
 
 * [We're Hiring](https://ought.org/careers)
-* [Github](https://github.com/oughtinc/ice)
+* [ICE on Github](https://github.com/oughtinc/ice)
