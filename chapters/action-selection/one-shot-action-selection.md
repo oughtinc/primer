@@ -26,15 +26,12 @@ Let's first represent the actions as a data type. For each action we'll also sto
 {% code title="answer_by_dispatch/types.py" overflow="wrap" %}
 
 ```python
-
 from dataclasses import dataclass
-
 from typing import Protocol
 
-from ice.recipe import recipe
-from ice.recipes.primer.answer_by_search import answer_by_search
-from ice.recipes.primer.answer_by_reasoning import answer_by_reasoning
 from ice.recipes.primer.answer_by_computation import answer_by_computation
+from ice.recipes.primer.answer_by_reasoning import answer_by_reasoning
+from ice.recipes.primer.answer_by_search import answer_by_search
 
 
 class QuestionRecipe(Protocol):
@@ -79,8 +76,14 @@ We render the actions as an action selection prompt like this:
 ```python
 from ice.recipes.primer.answer_by_dispatch.types import *
 
+
 def make_action_selection_prompt(question: str) -> str:
-    action_types_str = "\n".join([f"{i+1}. {action_type.description}" for i, action_type in enumerate(action_types)])
+    action_types_str = "\n".join(
+        [
+            f"{i+1}. {action_type.description}"
+            for i, action_type in enumerate(action_types)
+        ]
+    )
 
     return f"""You want to answer the question "{question}".
 
@@ -120,13 +123,16 @@ We'll treat action choice as a classification task, and print out the probabilit
 {% code title="answer_by_dispatch/classify.py" %}
 
 ```python
+from ice.recipe import recipe
 from ice.recipes.primer.answer_by_dispatch.prompt import *
+
 
 async def answer_by_dispatch(question: str = "How many people live in Germany?"):
     prompt = make_action_selection_prompt(question)
     choices = tuple(str(i) for i in range(1, 6))
-    probs, _ = (await recipe.agent().classify(prompt=prompt, choices=choices))
+    probs, _ = await recipe.agent().classify(prompt=prompt, choices=choices)
     return list(zip(probs.items(), [a.name for a in action_types]))
+
 
 recipe.main(answer_by_dispatch)
 ```
@@ -211,7 +217,9 @@ This is extremely straightforward -- since all the actions are already associate
 {% code title="answer_by_dispatch/execute.py" %}
 
 ```python
+from ice.recipe import recipe
 from ice.recipes.primer.answer_by_dispatch.prompt import *
+
 
 async def select_action(question: str) -> Action:
     prompt = make_action_selection_prompt(question)
@@ -220,10 +228,12 @@ async def select_action(question: str) -> Action:
     best_choice = max(choice_probs.items(), key=lambda x: x[1])[0]
     return action_types[int(best_choice) - 1]
 
+
 async def answer_by_dispatch(question: str = "How many people live in Germany?") -> str:
     action = await select_action(question)
     result = await action.recipe(question=question)
     return result
+
 
 recipe.main(answer_by_dispatch)
 ```

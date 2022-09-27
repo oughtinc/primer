@@ -13,9 +13,6 @@ First, let's represent reasoning steps as a list (so that we can more easily man
 {% code title="verify/utils.py" overflow="wrap" %}
 
 ```python
-from ice.recipe import recipe
-from ice.utils import map_async
-
 DEFAULT_QUESTION = "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 
 DEFAULT_STEPS = [
@@ -54,7 +51,9 @@ This is effectively the same as the global verifier above, except that we need t
 {% code title="verify/last.py" overflow="wrap" %}
 
 ```python
+from ice.recipe import recipe
 from ice.recipes.primer.verify.utils import *
+
 
 def make_verification_prompt(question: str, steps: list[str]) -> str:
     return f"""Consider this question: "{question}"
@@ -73,14 +72,16 @@ async def check_step(question: str, steps: list[str]) -> float:
     """
     prompt = make_verification_prompt(question=question, steps=steps)
     answer_probs, _ = await recipe.agent().classify(
-        prompt=prompt, choices=[" Yes", " No"]
+        prompt=prompt, choices=(" Yes", " No")
     )
     return answer_probs.get(" Yes", 0.0)
+
 
 async def verify_answer(
     question: str = DEFAULT_QUESTION, steps: list[str] = DEFAULT_STEPS
 ):
     return await check_step(question=question, steps=steps)
+
 
 recipe.main(verify_answer)
 ```
@@ -108,17 +109,11 @@ To verify all steps, we simply replace `verify_answer` with an (async) map over 
 {% code title="verify/steps.py" %}
 
 ```python
+from ice.recipe import recipe
+from ice.recipes.primer.verify.last import check_step
 from ice.recipes.primer.verify.utils import *
+from ice.utils import map_async
 
-async def check_step(question: str, steps: list[str]) -> float:
-    """
-    Return the probability that the step is correct
-    """
-    prompt = make_verification_prompt(question=question, steps=steps)
-    answer_probs, _ = await recipe.agent().classify(
-        prompt=prompt, choices=[" Yes", " No"]
-    )
-    return answer_probs.get(" Yes", 0.0)
 
 async def verify_answer(
     question: str = DEFAULT_QUESTION, steps: list[str] = DEFAULT_STEPS
@@ -132,6 +127,7 @@ async def verify_answer(
         lambda index: check_step(question=question, steps=steps[:index]),
     )
     return list(zip(step_probs, steps))
+
 
 recipe.main(verify_answer)
 ```
