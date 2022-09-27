@@ -6,7 +6,8 @@ description: Answering given subquestion answers
 
 We need an equivalent of `make_qa_prompt` that optionally takes a list of subquestions and answers and provides those in the prompt. Let's introduce a type `Subs` for pairs of questions and answers and extend `make_qa_prompt` to use it if given:
 
-{% code title="amplify_one.py (1 of 2)" %}
+{% code title="amplify_one/utils.py" %}
+
 ```python
 
 from ice.recipe import recipe
@@ -34,6 +35,7 @@ Question: "{question}"
 Answer: "
 """.strip()
 ```
+
 {% endcode %}
 
 Now we can render prompts like this:
@@ -63,8 +65,10 @@ Answer: "
 
 With this in hand, we can write the one-step amplified Q\&A recipe:
 
-{% code title="amplify_one.py (2 of 2)" %}
+{% code title="amplify_one/recipe.py" %}
+
 ```python
+from ice.recipes.primer.amplify_one.utils import *
 
 async def get_subs(question: str) -> Subs:
     subquestions = await ask_subquestions(question=question)
@@ -83,6 +87,7 @@ async def answer_by_amplification(question: str = "What is the effect of creatin
 
 recipe.main(answer_by_amplification)
 ```
+
 {% endcode %}
 
 If we run it, we get:
