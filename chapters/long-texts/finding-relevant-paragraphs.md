@@ -33,9 +33,7 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     return choice_probs.get(" Yes", 0.0)
 
 
-async def answer_for_paper(
-    paper: Paper, question: str = "What was the study population?"
-):
+async def answer_for_paper(paper: Paper, question: str):
     paragraph = paper.paragraphs[0]
     return await classify_paragraph(paragraph, question)
 
@@ -46,9 +44,11 @@ recipe.main(answer_for_paper)
 
 Save it and run it on a paper:
 
+{% code overflow="wrap" %}
 ```shell
-python paper_qa_class.py --paper papers/keenan-2018.pdf
+python paper_qa_class.py --paper papers/keenan-2018.pdf --question "What was the study population?"
 ```
+{% endcode %}
 
 You should see a result like this:
 
@@ -164,19 +164,19 @@ recipe.main(answer_for_paper)
 
 Running the same command again...
 
+{% code overflow="wrap" %}
 ```shell
-python paper_qa_ranker.py --paper papers/keenan-2018.pdf
+python paper_qa_ranker.py --paper papers/keenan-2018.pdf --question "What was the study population?"
 ```
+{% endcode %}
 
 ...we indeed get paragraphs that answer the question who the study population was!
 
 {% code overflow="wrap" %}
-
 ```python
 [
     Paragraph(sentences=['A total of 1624 communities were eligible for inclusion in the trial on the basis of the most recent census (Fig. 1 ).', 'A random selection of 1533 communities were included in the current trial, and the remaining 91 were enrolled in smaller parallel trials at each site, in which additional microbiologic, anthropometric, and adverse-event data were collected.', 'In Niger, 1 community declined to participate and 20 were excluded because of census inaccuracies.', 'No randomization units were lost to follow-up after the initial census.'], sections=[Section(title='Participating Communities', number=None)], section_type='main'),
     ...
 ]
 ```
-
 {% endcode %}
