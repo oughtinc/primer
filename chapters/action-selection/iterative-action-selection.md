@@ -16,7 +16,7 @@ Alas, this chapter hasn't been written yet.
 
 ## Exercises
 
-1. Implement iterative action selection
+1. Implement iterative action selection. If you need inspiration, take a look at [sequential\_action.py](https://github.com/oughtinc/ice/blob/main/ice/recipes/primer/sequential\_action.py) in the ICE repository.
 
 <details>
 
