@@ -9,7 +9,6 @@ Let's make our first recipe that calls out to an agent:
 {% code title="qa_simple.py" %}
 
 ```python
-
 from ice.recipe import recipe
 
 

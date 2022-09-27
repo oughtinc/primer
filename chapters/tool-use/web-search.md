@@ -22,7 +22,6 @@ Let's start by simply providing the list of search results as additional context
 
 {% code title="search_json.py" %}
 ```python
-
 import httpx
 
 from ice.recipe import recipe
@@ -41,12 +40,7 @@ Answer: "
 
 async def search(query: str = "Who is the president of the United States?") -> dict:
     async with httpx.AsyncClient() as client:
-        params = {
-        "q": query,
-        "hl": "en",
-        "gl": "us",
-        "api_key": "e29...b4c"
-        }
+        params = {"q": query, "hl": "en", "gl": "us", "api_key": "e29...b4c"}
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
 
@@ -82,21 +76,17 @@ We add a method to render the search results to a string (remember to update the
 
 {% code title="search_string.py" %}
 ```python
-
 import httpx
 
 from ice.recipe import recipe
 
+
 async def search(query: str) -> dict:
     async with httpx.AsyncClient() as client:
-        params = {
-        "q": query,
-        "hl": "en",
-        "gl": "us",
-        "api_key": "e29...b4c"
-        }
+        params = {"q": query, "hl": "en", "gl": "us", "api_key": "e29...b4c"}
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
+
 
 def render_results(data: dict) -> str:
     if not data or not data.get("organic_results"):
@@ -113,11 +103,13 @@ def render_results(data: dict) -> str:
 
     return "\n".join(results)
 
+
 async def search_string(
     question: str = "Who is the president of the United States?",
 ) -> str:
     results = await search(question)
     return render_results(results)
+
 
 recipe.main(search_string)
 ```
@@ -157,7 +149,6 @@ Now all we need to do is stick the search results into the Q\&A prompt (remember
 
 {% code title="answer_by_search_direct.py" %}
 ```python
-
 import httpx
 
 from ice.recipe import recipe
@@ -176,14 +167,10 @@ Answer: "
 
 async def search(query: str) -> dict:
     async with httpx.AsyncClient() as client:
-        params = {
-        "q": query,
-        "hl": "en",
-        "gl": "us",
-        "api_key": "e29...b4c"
-        }
+        params = {"q": query, "hl": "en", "gl": "us", "api_key": "e29...b4c"}
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
+
 
 def render_results(data: dict) -> str:
     if not data or not data.get("organic_results"):
@@ -200,6 +187,7 @@ def render_results(data: dict) -> str:
 
     return "\n".join(results)
 
+
 async def answer_by_search(
     question: str = "Who is the president of the United States?",
 ) -> str:
@@ -208,6 +196,7 @@ async def answer_by_search(
     prompt = make_search_result_prompt(results_str, question)
     answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
     return answer
+
 
 recipe.main(answer_by_search)
 ```
@@ -241,7 +230,6 @@ Here it's probably better to just research the weather on that date using Google
 
 {% code title="answer_by_search.py" overflow="wrap" %}
 ```python
-
 import httpx
 
 from ice.recipe import recipe
@@ -263,17 +251,14 @@ def make_search_query_prompt(question: str) -> str:
 You're trying to answer the question {question}. You get to type in a search query to Google, and then you'll be shown the results. What query do you want to search for?
 
 Query: "
-""".strip('" ')
+""".strip(
+        '" '
+    )
 
 
 async def search(query: str) -> dict:
     async with httpx.AsyncClient() as client:
-        params = {
-        "q": query,
-        "hl": "en",
-        "gl": "us",
-        "api_key": "e29...7b4c"
-        }
+        params = {"q": query, "hl": "en", "gl": "us", "api_key": "e29...7b4c"}
         response = await client.get("https://serpapi.com/search", params=params)
         return response.json()
 

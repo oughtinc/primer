@@ -8,7 +8,6 @@ Let's start with the simplest possible way of verifying an answer—just ask the
 
 {% code title="verify_answer.py" %}
 ```python
-
 from ice.recipe import recipe
 
 
@@ -24,9 +23,9 @@ A:"""
 async def verify_answer(question: str, answer: str) -> float:
     prompt = make_verification_prompt(question=question, answer=answer)
     choice_probs, _ = await recipe.agent().classify(
-        prompt=prompt, choices=[" Yes", " No"]
+        prompt=prompt, choices=(" Yes", " No")
     )
-    return choice_probs.get(" Yes")
+    return choice_probs.get(" Yes", 0)
 
 
 recipe.main(verify_answer)

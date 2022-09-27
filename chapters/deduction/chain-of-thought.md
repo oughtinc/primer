@@ -12,7 +12,6 @@ Let's start with the question-answerer and add a parameter to the prompt so that
 
 {% code title="chain_of_thought.py" overflow="wrap" %}
 ```python
-
 from ice.recipe import recipe
 
 
@@ -24,7 +23,10 @@ Answer: "{answer_prefix}
 """.strip()
 
 
-async def chain_of_thought(question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?", answer_prefix: str = "Let's think step by step.") -> str:
+async def chain_of_thought(
+    question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?",
+    answer_prefix: str = "Let's think step by step.",
+) -> str:
     prompt = make_chain_of_thought_prompt(question, answer_prefix)
     answer = (await recipe.agent().answer(prompt=prompt)).strip('" ')
     return answer
@@ -78,7 +80,6 @@ We can achieve this by separately eliciting the reasoning and the final answer, 
 
 {% code title="answer_by_reasoning.py" overflow="wrap" %}
 ```python
-
 from ice.recipe import recipe
 
 
@@ -101,21 +102,15 @@ Short answer: "
 
 async def get_reasoning(question: str) -> str:
     reasoning_prompt = generate_reasoning_prompt(question)
-    reasoning = (
-        await recipe.agent().answer(
-            prompt=reasoning_prompt
-        )
-    ).strip('" ')
+    reasoning = (await recipe.agent().answer(prompt=reasoning_prompt)).strip('" ')
     return reasoning
+
 
 async def get_answer(question: str, reasoning: str) -> str:
     answer_prompt = generate_answer_prompt(question, reasoning)
-    answer = (
-        await recipe.agent().answer(
-            prompt=answer_prompt
-        )
-    ).strip('" ')
+    answer = (await recipe.agent().answer(prompt=answer_prompt)).strip('" ')
     return answer
+
 
 async def answer_by_reasoning(
     question: str = "What would happen if the average temperature in Northern California went up by 5 degrees Fahrenheit?",
@@ -123,6 +118,7 @@ async def answer_by_reasoning(
     reasoning = await get_reasoning(question)
     answer = await get_answer(question, reasoning)
     return answer
+
 
 recipe.main(answer_by_reasoning)
 ```

@@ -26,15 +26,14 @@ Let's first represent the actions as a data type. For each action we'll also sto
 {% code title="answer_by_dispatch.py (1 of 3)" overflow="wrap" %}
 ```python
 
-from ice.recipe import recipe
-
 from dataclasses import dataclass
 
 from typing import Protocol
 
-from answer_by_search import answer_by_search
-from answer_by_reasoning import answer_by_reasoning
-from answer_by_computation import answer_by_computation
+from ice.recipe import recipe
+from ice.recipes.primer.answer_by_search import answer_by_search
+from ice.recipes.primer.answer_by_reasoning import answer_by_reasoning
+from ice.recipes.primer.answer_by_computation import answer_by_computation
 
 
 class QuestionRecipe(Protocol):

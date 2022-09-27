@@ -10,11 +10,11 @@ We could just paste in the code from [the question-answering recipe](../question
 
 {% code title="paper_qa.py" %}
 ```python
-
+from ice.paper import Paper
+from ice.paper import Paragraph
 from ice.recipe import recipe
-from ice.paper import Paper, Paragraph
+from ice.recipes.primer.qa import answer
 from ice.utils import map_async
-from qa import answer
 
 
 def make_classification_prompt(paragraph: Paragraph, question: str) -> str:
@@ -31,6 +31,7 @@ async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
     )
     return choice_probs.get(" Yes", 0.0)
 
+
 async def get_relevant_paragraphs(
     paper: Paper, question: str, top_n: int = 3
 ) -> list[Paragraph]:
@@ -42,6 +43,7 @@ async def get_relevant_paragraphs(
     )
     return [par for par, prob in sorted_pairs[:top_n]]
 
+
 async def answer_for_paper(
     paper: Paper, question: str = "What was the study population?"
 ):
@@ -49,6 +51,7 @@ async def answer_for_paper(
     relevant_str = "\n\n".join(str(p) for p in relevant_paragraphs)
     response = await answer(context=relevant_str, question=question)
     return response
+
 
 recipe.main(answer_for_paper)
 ```
