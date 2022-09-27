@@ -40,3 +40,5 @@ Open a shell in the container and use it to run all commands in the upcoming cha
 ```shell
 docker compose exec ice bash
 ```
+
+This command gives you a shell in the `ice` directory. Any files you create under this directory will be visible in the container.
