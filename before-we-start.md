@@ -18,7 +18,7 @@ Clone ICE:
 git clone https://github.com/oughtinc/ice.git
 ```
 
-Add a `.env` file containing an [`OPENAI_API_KEY`](https://openai.com/api/) to the ICE folder:
+Add a `.env` file containing an [`OPENAI_API_KEY`](https://beta.openai.com/account/api-keys) to the ICE folder:
 
 ```shell
 # .env
