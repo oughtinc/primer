@@ -102,7 +102,7 @@ The effect of creatine on cognition is inconclusive. Some studies have found tha
 
 The trace for depth 2, partially expanded:
 
-<figure><img src="../../.gitbook/assets/Screenshot JplYHNAB@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot JplYHNAB@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0W6DHC42P1931W6P2PZQ34">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 

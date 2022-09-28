@@ -76,4 +76,4 @@ If we run this, we get back a list of subquestions and their answers:
 
 The trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot Aqftwig3@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot Aqftwig3@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0W06G8B3DP2EC8XEAR1WBF">view online</a>)</p></figcaption></figure>

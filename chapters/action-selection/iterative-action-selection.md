@@ -18,7 +18,7 @@ Alas, this chapter hasn't been written yet.
 
 Implement iterative action selection. If you need inspiration, take a look at this execution trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot K4jccwjF@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot K4jccwjF@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XYTCPNZN5MKQ23TNJV53B">view online</a>)</p></figcaption></figure>
 
 For even more inspiration, take a look at [sequential\_action.py](https://github.com/oughtinc/ice/blob/main/ice/recipes/primer/sequential\_action.py) in the ICE repository.
 

@@ -132,7 +132,7 @@ The average temperature in Northern California going up by 5 degrees Fahrenheit 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/Screenshot I8RpVqHV@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot I8RpVqHV@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XKTG8VWYBTXXGFF1GPFBC">view online</a>)</p></figcaption></figure>
 
 ## **Exercise**
 

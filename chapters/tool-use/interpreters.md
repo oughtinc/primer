@@ -131,7 +131,7 @@ python eval_eval_selective.py --question "What is 578921 days * 12312 miles/day?
 
 This is a helpful expression and result!
 
-<figure><img src="../../.gitbook/assets/Screenshot p9X3OJla@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot p9X3OJla@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XAYWSKX59VXRP0QQBFTQV">view online</a>)</p></figcaption></figure>
 
 ## Using the results of evaluation
 
@@ -225,7 +225,7 @@ If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at t
 
 In contrast, the basic question-answerer says "You would have $1,034,957.29 at the end."
 
-<figure><img src="../../.gitbook/assets/Screenshot bMP2ErpR@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot bMP2ErpR@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XFAVDNWSP5TNWZ944NWSW">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 

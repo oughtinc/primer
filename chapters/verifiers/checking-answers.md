@@ -74,7 +74,7 @@ python verify_answer.py --question "What is the capital of Germany?" --answer "M
 
 Also correct.
 
-<figure><img src="../../.gitbook/assets/Screenshot sgVJlAYM@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot sgVJlAYM@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0WDKKARCGQR9PHH4799H95">view online</a>)</p></figcaption></figure>
 
 ## A math problem
 

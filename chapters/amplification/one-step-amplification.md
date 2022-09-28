@@ -105,5 +105,5 @@ Creatine has been shown to improve cognition in people with Alzheimer's disease 
 
 The trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot CwMYysJE@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot CwMYysJE@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0W2SK5VP21VTBF5PEHGR8R">view online</a>)</p></figcaption></figure>
 

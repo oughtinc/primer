@@ -64,7 +64,7 @@ Bob: "It's not that simple. Legalizing drugs would create a lot of new problems.
 
 The trace looks like this:
 
-<figure><img src="../../.gitbook/assets/Screenshot kwP5dN7n@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot kwP5dN7n@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VA96FWT7SSQNXD6CQH4BT">view online</a>)</p></figcaption></figure>
 
 {% hint style="info" %}
 In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.

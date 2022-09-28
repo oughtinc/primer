@@ -73,7 +73,7 @@ The study population was children 1 to 59 months of age who weighed at least 38
 
 Take a look at the trace to see how it all fits together:
 
-<figure><img src="../../.gitbook/assets/Screenshot qhkZ8C53@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot qhkZ8C53@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VT6FEBNVE84HCMCYZ2GX9">view online</a>)</p></figcaption></figure>
 
 ### Exercises
 

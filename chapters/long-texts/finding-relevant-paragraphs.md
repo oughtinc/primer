@@ -58,7 +58,7 @@ You should see a result like this:
 
 The trace looks simple:
 
-<figure><img src="../../.gitbook/assets/Screenshot TZm32cpZ@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot TZm32cpZ@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VH9CKF25WJ7V65HAW8PKD">view online</a>)</p></figcaption></figure>
 
 According to the model, the first paragraph is unlikely to answer the question.
 
@@ -187,4 +187,4 @@ python paper_qa_ranker.py --paper papers/keenan-2018.pdf --question "What was th
 
 The trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot Zcfucb9z@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot Zcfucb9z@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VP66QPHGXNWQ31HDB16E6">view online</a>)</p></figcaption></figure>

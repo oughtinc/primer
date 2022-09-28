@@ -214,7 +214,7 @@ Joe Biden is the 46th and current president of the United States, having assumed
 
 Much better!
 
-<figure><img src="../../.gitbook/assets/Screenshot SaqzWmrb@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot SaqzWmrb@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0WVSS2622HPERJ6FC7MQXY">view online</a>)</p></figcaption></figure>
 
 ## Choosing better queries
 
@@ -314,7 +314,7 @@ I couldn't find an exact answer to your question, but based on the weather forec
 
 The query chosen by the model was "beach weather san francisco september 12th 2022". The results here may differ on each run. For another example, see this trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot Y6Q4jlZA@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot Y6Q4jlZA@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0WYTARJR6PK7QY5RJDGZPR">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 

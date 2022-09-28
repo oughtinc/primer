@@ -38,7 +38,7 @@ Hello world!
 
 If you follow the trace link (yours will be different), you will see a function node that you can click on, inspect inputs/outputs for, and show source code for:
 
-<figure><img src="../.gitbook/assets/Screenshot 68F7bqCl@2x.png" alt=""><figcaption><p>Your first execution trace</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 68F7bqCl@2x.png" alt=""><figcaption><p>Your first execution trace (<a href="https://ice.ought.org/traces/01GE0GN5PPQWYGMT1B4GFPDZ09">view online</a>)</p></figcaption></figure>
 
 <details>
 

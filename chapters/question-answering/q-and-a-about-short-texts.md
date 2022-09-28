@@ -47,7 +47,7 @@ A hackathon is happening on 9/9/2022.
 
 And a trace like this:
 
-<figure><img src="../../.gitbook/assets/Screenshot b7XyvpXx@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot b7XyvpXx@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0V4J1PR5SXMW0TRMW9GX1Z">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 

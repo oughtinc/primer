@@ -43,7 +43,7 @@ python qa_simple.py --mode human
 
 Looking at the trace, we see two nodes - one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
 
-<figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0H8AM335QSV25E3ZYZ1PGM">view online</a>)</p></figcaption></figure>
 
 Try running your recipe in different modes.
 

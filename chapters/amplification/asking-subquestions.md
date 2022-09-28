@@ -46,4 +46,4 @@ If we run this we get:
 
 The trace:
 
-<figure><img src="../../.gitbook/assets/Screenshot aTuRIdPR@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot aTuRIdPR@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VXVNP2G2CDE7JKJ1GP8CC">view online</a>)</p></figcaption></figure>

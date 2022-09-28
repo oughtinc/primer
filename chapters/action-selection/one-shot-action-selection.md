@@ -251,7 +251,7 @@ It is up to each individual to decide whether or not they believe transhumanism 
 
 These are arguably better answers than we'd get without augmentation.
 
-<figure><img src="../../.gitbook/assets/Screenshot U08LXEri@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot U08LXEri@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XVZW2TA6X0WC205WY5N42">view online</a>)</p></figcaption></figure>
 
 ### Exercises
 

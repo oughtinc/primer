@@ -153,7 +153,7 @@ Instead of just returning the probabilities, we return pairs of probabilities an
 
 The more difficult the math, the lower the probability the model assigns to the step being correct.
 
-<figure><img src="../../.gitbook/assets/Screenshot LbsEE3Jm@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot LbsEE3Jm@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0WHGQ89V3QC0DHNAE06JPQ">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 
