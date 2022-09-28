@@ -11,7 +11,6 @@ Let's change the interface of the verifier so that it doesn't just take an answe
 First, let's represent reasoning steps as a list (so that we can more easily manipulate them programmatically) and make a function to render them as a string (so that we can use them in prompts):
 
 {% code title="verify/utils.py" overflow="wrap" %}
-
 ```python
 DEFAULT_QUESTION = "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 
@@ -26,20 +25,17 @@ DEFAULT_STEPS = [
 def render_steps(steps: list[str]) -> str:
     return "\n".join(f"{i}. {step}" for (i, step) in enumerate(steps, start=1))
 ```
-
 {% endcode %}
 
 If we run `render_steps(DEFAULT_STEPS)`, we get back the original numbered list:
 
 {% code overflow="wrap" %}
-
 ```
 1. Beth bakes 4x 2 dozen batches of cookies for a total of 4*2 = 8 dozen cookies
 2. There are 12 cookies in a dozen and she makes 8 dozen cookies for a total of 12*8 = 96 cookies
 3. She splits the 96 cookies equally amongst 16 people so they each eat 96/16 = 6 cookies
 4. So, the final answer is 6 cookies per person.
 ```
-
 {% endcode %}
 
 ## **Verifying a step**
@@ -49,7 +45,6 @@ Given a list of steps, let's first think about how we can verify the last step, 
 This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We'll also already factor out the step verification into a function `check_step` so that we can reuse it later.
 
 {% code title="verify/last.py" overflow="wrap" %}
-
 ```python
 from ice.recipe import recipe
 from ice.recipes.primer.verify.utils import *
@@ -85,7 +80,6 @@ async def verify_answer(
 
 recipe.main(verify_answer)
 ```
-
 {% endcode %}
 
 If we run this with the default question and steps:
@@ -107,7 +101,6 @@ Note that (as we'd expect) this probability of the last step being correct is si
 To verify all steps, we simply replace `verify_answer` with an (async) map over all prefixes of steps:
 
 {% code title="verify/steps.py" %}
-
 ```python
 from ice.recipe import recipe
 from ice.recipes.primer.verify.last import check_step
@@ -131,13 +124,11 @@ async def verify_answer(
 
 recipe.main(verify_answer)
 ```
-
 {% endcode %}
 
 Instead of just returning the probabilities, we return pairs of probabilities and steps to make the result easier to read. It looks like this:
 
 {% code overflow="wrap" %}
-
 ```python
 [
     (
@@ -158,10 +149,11 @@ Instead of just returning the probabilities, we return pairs of probabilities an
     )
 ]
 ```
-
 {% endcode %}
 
 The more difficult the math, the lower the probability the model assigns to the step being correct.
+
+<figure><img src="../../.gitbook/assets/Screenshot LbsEE3Jm@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## Exercises
 

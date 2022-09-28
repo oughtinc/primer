@@ -14,9 +14,13 @@ Ideally we'd first look up the populations, then compute the logs.
 
 Alas, this chapter hasn't been written yet.
 
-## Exercises
+## Exercise
 
-1. Implement iterative action selection. If you need inspiration, take a look at [sequential\_action.py](https://github.com/oughtinc/ice/blob/main/ice/recipes/primer/sequential\_action.py) in the ICE repository.
+Implement iterative action selection. If you need inspiration, take a look at this execution trace:
+
+<figure><img src="../../.gitbook/assets/Screenshot K4jccwjF@2x.png" alt=""><figcaption></figcaption></figure>
+
+For even more inspiration, take a look at [sequential\_action.py](https://github.com/oughtinc/ice/blob/main/ice/recipes/primer/sequential\_action.py) in the ICE repository.
 
 <details>
 

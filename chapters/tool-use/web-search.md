@@ -6,9 +6,9 @@ description: Running web searches for getting current information
 
 Web searches matter especially for questions where the answer can change between when the language model was trained and today. For example:
 
-- What was the weather on this date?
-- What is the market cap of Google?
-- Who is the president of the United States?
+* What was the weather on this date?
+* What is the market cap of Google?
+* Who is the president of the United States?
 
 If you run the last question using the question-answerer, you might get an answer like:
 
@@ -52,7 +52,6 @@ recipe.main(search)
 Running `python search_json.py` returns a large JSON object:
 
 {% code overflow="wrap" %}
-
 ```json
 {
     'organic_results': [
@@ -67,7 +66,6 @@ Running `python search_json.py` returns a large JSON object:
      ...
 }
 ```
-
 {% endcode %}
 
 ## Rendering search results to prompts
@@ -118,7 +116,6 @@ recipe.main(search_string)
 Now the results are much more manageable:
 
 {% code overflow="wrap" %}
-
 ```
 President of the United States - Wikipedia
 https://en.wikipedia.org/wiki/President_of_the_United_States
@@ -140,7 +137,6 @@ Presidents of the United States: Resource Guides
 https://www.loc.gov/rr/program/bib/presidents/
 List of U.S. Presidents · 1. George Washington · 2. John Adams · 3. Thomas Jefferson · 4. James Madison · 5. James Monroe · 6. John Quincy Adams · 7. Andrew Jackson · 8 ...
 ```
-
 {% endcode %}
 
 ## Answering questions given search results
@@ -211,14 +207,14 @@ python answer_by_search_direct.py
 ...we get:
 
 {% code overflow="wrap" %}
-
 ```
 Joe Biden is the 46th and current president of the United States, having assumed office on January 20, 2021.
 ```
-
 {% endcode %}
 
 Much better!
+
+<figure><img src="../../.gitbook/assets/Screenshot SaqzWmrb@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## Choosing better queries
 
@@ -303,24 +299,22 @@ recipe.main(answer_by_search)
 If we run our question...
 
 {% code overflow="wrap" %}
-
 ```shell
 python answer_by_search.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
 ```
-
 {% endcode %}
 
 ...we get:
 
 {% code overflow="wrap" %}
-
 ```
 I couldn't find an exact answer to your question, but based on the weather forecast for that day, it looks like the weather will be nice and the beaches will be busy.
 ```
-
 {% endcode %}
 
-The query chosen by the model was "beach weather san francisco september 12th 2022".
+The query chosen by the model was "beach weather san francisco september 12th 2022". The results here may differ on each run. For another example, see this trace:
+
+<figure><img src="../../.gitbook/assets/Screenshot Y6Q4jlZA@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## Exercises
 

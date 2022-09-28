@@ -24,7 +24,6 @@ There's a long list of actions we could choose between. For this first version, 
 Let's first represent the actions as a data type. For each action we'll also store an associated description that will help the model choose between them, and the recipe that runs the action:
 
 {% code title="answer_by_dispatch/types.py" overflow="wrap" %}
-
 ```python
 from dataclasses import dataclass
 from typing import Protocol
@@ -64,7 +63,6 @@ action_types = [
     ),
 ]
 ```
-
 {% endcode %}
 
 ### **From actions to prompts**
@@ -72,7 +70,6 @@ action_types = [
 We render the actions as an action selection prompt like this:
 
 {% code title="answer_by_dispatch/prompt.py" overflow="wrap" %}
-
 ```python
 from ice.recipes.primer.answer_by_dispatch.types import *
 
@@ -94,13 +91,11 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #""".strip()
 ```
-
 {% endcode %}
 
 So, `make_action_selection_prompt("How many people live in Germany?")` results in:
 
 {% code overflow="wrap" %}
-
 ```
 You want to answer the question "How many people live in Germany?".
 
@@ -113,7 +108,6 @@ You have the following options:
 Q: Which of these options do you want to use before you answer the question? Choose the option that will most help you give an accurate answer.
 A: I want to use option #
 ```
-
 {% endcode %}
 
 ### **Choosing the right action**
@@ -121,7 +115,6 @@ A: I want to use option #
 We'll treat action choice as a classification task, and print out the probability of each action:
 
 {% code title="answer_by_dispatch/classify.py" %}
-
 ```python
 from ice.recipe import recipe
 from ice.recipes.primer.answer_by_dispatch.prompt import *
@@ -136,17 +129,14 @@ async def answer_by_dispatch(question: str = "How many people live in Germany?")
 
 recipe.main(answer_by_dispatch)
 ```
-
 {% endcode %}
 
 Let's test it:
 
 {% code overflow="wrap" %}
-
 ```shell
-python answer_by_dispatch.py --question "How many people live in Germany?"
+python answer_by_dispatch/classify.py --question "How many people live in Germany?"
 ```
-
 {% endcode %}
 
 ```python
@@ -159,8 +149,9 @@ python answer_by_dispatch.py --question "How many people live in Germany?"
 
 Web search seems like the correct solution here.
 
-````shell
-python answer_by_dispatch.py --question "What is sqrt(2^8)?"
+```shell
+python answer_by_dispatch/classify.py --question "What is sqrt(2^8)?"
+```
 
 ```python
 [
@@ -168,16 +159,14 @@ python answer_by_dispatch.py --question "What is sqrt(2^8)?"
     (('2', 0.9998907431467178), 'Computation'),
     (('3', 0.00010382736418811754), 'Reasoning')
 ]
-````
+```
 
 Clearly a computation question.
 
 {% code overflow="wrap" %}
-
 ```shell
-python answer_by_dispatch.py --question "Is transhumanism desirable?"
+python answer_by_dispatch/classify.py --question "Is transhumanism desirable?"
 ```
-
 {% endcode %}
 
 ```python
@@ -191,11 +180,9 @@ python answer_by_dispatch.py --question "Is transhumanism desirable?"
 Reasoning makes sense here.
 
 {% code overflow="wrap" %}
-
 ```shell
-python answer_by_dispatch.py --question "What are the effects of climate change?"
+python answer_by_dispatch/classify.py --question "What are the effects of climate change?"
 ```
-
 {% endcode %}
 
 ```python
@@ -215,7 +202,6 @@ Now let's combine the action selector with the chapters on web search, computati
 This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do its run the chosen subrecipe:
 
 {% code title="answer_by_dispatch/execute.py" %}
-
 ```python
 from ice.recipe import recipe
 from ice.recipes.primer.answer_by_dispatch.prompt import *
@@ -237,38 +223,35 @@ async def answer_by_dispatch(question: str = "How many people live in Germany?")
 
 recipe.main(answer_by_dispatch)
 ```
-
 {% endcode %}
 
 Let's try it with our examples above:
 
 {% code overflow="wrap" %}
-
 ```
-$ python answer_by_dispatch.py --question "How many people live in Germany?"
+$ python answer_by_dispatch/execute.py --question "How many people live in Germany?"
 
 The current population of Germany is 84,370,487 as of Monday, September 12, 2022, based on Worldometer elaboration of the latest United Nations data.
 ```
-
 {% endcode %}
 
 ```
-$ python answer_by_dispatch.py --question "What is sqrt(2^8)?"
+$ python answer_by_dispatch/execute.py --question "What is sqrt(2^8)?"
 
 16.0
 ```
 
 {% code overflow="wrap" %}
-
 ```
-$ python answer_by_dispatch.py --question "Is transhumanism desirable?"
+$ python answer_by_dispatch/execute.py --question "Is transhumanism desirable?"
 
 It is up to each individual to decide whether or not they believe transhumanism is desirable.
 ```
-
 {% endcode %}
 
-These are better answers than we'd get without augmentation.
+These are arguably better answers than we'd get without augmentation.
+
+<figure><img src="../../.gitbook/assets/Screenshot U08LXEri@2x.png" alt=""><figcaption></figcaption></figure>
 
 ### Exercises
 
@@ -276,14 +259,12 @@ These are better answers than we'd get without augmentation.
 2. Add an action type for debate:
 
 {% code overflow="wrap" %}
-
 ```python
 Action(
   name="Debate",
   description='Run a debate. This is helpful if the question is a pro/con question that involves involves different perspectives, arguments, and evidence, such as "Should marijuana be legalized?" or "Is veganism better for the environment?".'
 )
 ```
-
 {% endcode %}
 
 <details>

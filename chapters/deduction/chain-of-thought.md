@@ -45,31 +45,25 @@ python chain_of_thought.py --answer-prefix ""
 We get an answer:
 
 {% code overflow="wrap" %}
-
 ```
 If the average temperature in Northern California went up by 5 degrees Fahrenheit, it would cause more wildfires.
 ```
-
 {% endcode %}
 
 If we provide "Let's think step by step" as an answer prefix...
 
 {% code overflow="wrap" %}
-
 ```shell
 python chain_of_thought.py --answer-prefix "Let's think step by step."
 ```
-
 {% endcode %}
 
 ...we get a much more elaborate answer:
 
 {% code overflow="wrap" %}
-
 ```
 The first thing that would happen is that the air would heat up. This would cause the water in the air to evaporate more quickly, which would lead to more precipitation in the form of rain and snow. The extra precipitation would cause the rivers to swell and the groundwater to rise. This could lead to flooding in some areas. The extra heat would also cause the snow in the mountains to melt more quickly, which would lead to more water in the rivers and groundwater, and could also cause flooding. The extra heat would also cause the plants to grow more quickly, which would lead to more food for the animals. The extra heat would also cause the animals to become more active, which would lead to more food being eaten and more waste being produced. The extra heat would also cause the bacteria in the soil to become more active, which would lead to more decomposition and more nutrients being released into the soil. The extra heat would also cause the insects to become more active, which would lead to more...
 ```
-
 {% endcode %}
 
 ## Step-by-step reasoning for concise answers
@@ -133,12 +127,12 @@ python answer_by_reasoning.py
 We get a summary of the long reasoning chain:
 
 {% code overflow="wrap" %}
-
 ```
 The average temperature in Northern California going up by 5 degrees Fahrenheit would cause the air to heat up, leading to more precipitation, swelling rivers, flooding, melting snow, faster plant growth, more active animals, and more active bacteria.
 ```
-
 {% endcode %}
+
+<figure><img src="../../.gitbook/assets/Screenshot I8RpVqHV@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## **Exercise**
 
@@ -147,11 +141,9 @@ Let's apply this to the math problem we saw in the chapter on checking reasoning
 > Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?
 
 {% code overflow="wrap" %}
-
 ```
 python answer_by_reasoning.py --question "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 ```
-
 {% endcode %}
 
 The answer:

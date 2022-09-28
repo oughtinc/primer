@@ -17,9 +17,11 @@ While we're at it, let's take the opportunity to switch from asking subquestions
 
 This is a good opportunity to use subrecipes—we'd like to turn our work from earlier chapters into generalizable components.
 
-## Exercises
+## Exercise
 
-1. Implement generalized amplification as outlined above.
+Implement generalized amplification as outlined above.
+
+Hint: This is a fairly small tweak to [iterative action selection](action-selection/iterative-action-selection.md).&#x20;
 
 <details>
 
