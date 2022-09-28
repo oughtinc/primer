@@ -66,14 +66,14 @@ python paper_qa.py --paper papers/keenan-2018.pdf
 ... you should get an answer like this:
 
 {% code overflow="wrap" %}
-
 ```
 The study population was children 1 to 59 months of age who weighed at least 38
 ```
-
 {% endcode %}
 
-Take a look at the trace to see how it all fits together.
+Take a look at the trace to see how it all fits together:
+
+<figure><img src="../../.gitbook/assets/Screenshot qhkZ8C53@2x.png" alt=""><figcaption></figcaption></figure>
 
 ### Exercises
 

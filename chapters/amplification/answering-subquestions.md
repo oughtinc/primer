@@ -48,7 +48,6 @@ recipe.main(answer_by_amplification)
 If we run this, we get back a list of subquestions and their answers:
 
 {% code overflow="wrap" %}
-
 ```python
 [
     (
@@ -73,5 +72,8 @@ If we run this, we get back a list of subquestions and their answers:
     )
 ]
 ```
-
 {% endcode %}
+
+The trace:
+
+<figure><img src="../../.gitbook/assets/Screenshot Aqftwig3@2x.png" alt=""><figcaption></figcaption></figure>

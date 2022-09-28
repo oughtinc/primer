@@ -7,7 +7,6 @@ description: Answering questions without extra information
 Let's make our first recipe that calls out to an agent:
 
 {% code title="qa_simple.py" %}
-
 ```python
 from ice.recipe import recipe
 
@@ -28,20 +27,23 @@ async def answer(question: str = "What is happening on 9/9/2022?"):
 
 recipe.main(answer)
 ```
-
 {% endcode %}
 
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
-- `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
-- `human`: Elicit answers from you using a command-line interface.
-- `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
+* `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
+* `human`: Elicit answers from you using a command-line interface.
+* `augmented`: Elicit answers from you, but providing the machine-generated answer as a default.
 
 You specify the mode like this:
 
 ```shell
 python qa_simple.py --mode human
 ```
+
+Looking at the trace, we see two nodes - one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
+
+<figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption></figcaption></figure>
 
 Try running your recipe in different modes.
 

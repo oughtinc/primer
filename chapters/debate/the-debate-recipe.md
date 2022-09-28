@@ -9,7 +9,6 @@ If you want to challenge yourself, pause and see if you can use the pieces we've
 Once you're ready, or if you just want to see the result, take a look at this recipe:
 
 {% code title="debate/recipe.py" %}
-
 ```python
 from ice.agents.base import Agent
 from ice.recipe import recipe
@@ -37,19 +36,17 @@ async def debate(question: str = "Should we legalize all drugs?"):
 
 recipe.main(debate)
 ```
-
 {% endcode %}
 
 Once you've saved the recipe you can run it as usual:
 
 ```shell
-python debate.py
+python debate/recipe.py
 ```
 
 You should see a debate like this:
 
 {% code overflow="wrap" %}
-
 ```
 Question: "Should we legalize all drugs?"
 Alice: "I'm in favor."
@@ -63,8 +60,11 @@ Bob: "Treatment is expensive, and most addicts can't afford it. Legalizing drugs
 Alice: "The government could fund treatment programs. And people would be less likely to need treatment if they could get drugs legally."
 Bob: "It's not that simple. Legalizing drugs would create a lot of new problems."
 ```
-
 {% endcode %}
+
+The trace looks like this:
+
+<figure><img src="../../.gitbook/assets/Screenshot kwP5dN7n@2x.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.

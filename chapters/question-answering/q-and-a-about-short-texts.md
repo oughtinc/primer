@@ -4,10 +4,9 @@ description: Answering questions about a few paragraphs
 
 # Q\&A about short texts
 
-It's only a small change from the above to support answering questions about short texts (e.g. individual paragraphs):
+It's only a small change to support answering questions about short texts (e.g. individual paragraphs):
 
 {% code title="qa.py" %}
-
 ```python
 from ice.recipe import recipe
 
@@ -38,7 +37,6 @@ async def answer(
 
 recipe.main(answer)
 ```
-
 {% endcode %}
 
 You should see a response like this:
@@ -46,6 +44,10 @@ You should see a response like this:
 ```
 A hackathon is happening on 9/9/2022.
 ```
+
+And a trace like this:
+
+<figure><img src="../../.gitbook/assets/Screenshot b7XyvpXx@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## Exercises
 

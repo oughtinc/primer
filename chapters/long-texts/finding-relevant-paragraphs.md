@@ -56,6 +56,10 @@ You should see a result like this:
 0.024985359096987403
 ```
 
+The trace looks simple:
+
+<figure><img src="../../.gitbook/assets/Screenshot TZm32cpZ@2x.png" alt=""><figcaption></figcaption></figure>
+
 According to the model, the first paragraph is unlikely to answer the question.
 
 ## Classifying all paragraphs in parallel with `map_async`
@@ -180,3 +184,7 @@ python paper_qa_ranker.py --paper papers/keenan-2018.pdf --question "What was th
 ]
 ```
 {% endcode %}
+
+The trace:
+
+<figure><img src="../../.gitbook/assets/Screenshot Zcfucb9z@2x.png" alt=""><figcaption></figcaption></figure>

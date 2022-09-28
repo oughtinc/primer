@@ -7,7 +7,6 @@ description: From question to more questions
 Let's start by making a recipe that returns subquestions given a question:
 
 {% code title="subquestions.py" %}
-
 ```python
 from ice.recipe import recipe
 
@@ -31,7 +30,6 @@ async def ask_subquestions(
 
 recipe.main(ask_subquestions)
 ```
-
 {% endcode %}
 
 If we run this we get:
@@ -45,3 +43,7 @@ If we run this we get:
     'What are the side effects of creatine on cognition?'
 ]
 ```
+
+The trace:
+
+<figure><img src="../../.gitbook/assets/Screenshot aTuRIdPR@2x.png" alt=""><figcaption></figcaption></figure>
