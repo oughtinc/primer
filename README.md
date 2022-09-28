@@ -1,9 +1,6 @@
 ---
-description: >-
-  Use language models like GPT-3 for complex reasoning tasks by composing
-  reasoning steps
-cover: >-
-  https://oughtinc.github.io/static/images/primer-cover.jpeg
+description: How to write compositional language model programs
+cover: https://oughtinc.github.io/static/images/primer-cover.jpeg
 coverY: 0
 ---
 
@@ -11,7 +8,7 @@ coverY: 0
 
 You'll learn how to:
 
-* Amplify language model reasoning through recursive question-answering and debate
+* Amplify language models like GPT-3 through recursive question-answering and debate
 * Reason about long texts by combining search and generation
 * Run decompositions quickly by parallelizing language model calls
 * Build human-in-the-loop agents
