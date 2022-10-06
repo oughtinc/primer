@@ -190,7 +190,7 @@ async def answer_by_search(
     results = await search(question)
     results_str = render_results(results)
     prompt = make_search_result_prompt(results_str, question)
-    answer = (await recipe.agent().answer(prompt=prompt, max_tokens=100)).strip('" ')
+    answer = await recipe.agent().complete(prompt=prompt, max_tokens=100, stop='"')
     return answer
 
 
@@ -277,7 +277,7 @@ def render_results(data: dict) -> str:
 
 async def choose_query(question: str) -> str:
     prompt = make_search_query_prompt(question)
-    query = (await recipe.agent().answer(prompt=prompt)).strip('" ')
+    query = await recipe.agent().complete(prompt=prompt, stop='"')
     return query
 
 
@@ -288,7 +288,7 @@ async def answer_by_search(
     results = await search(query)
     results_str = render_results(results)
     prompt = make_search_result_prompt(results_str, query, question)
-    answer = (await recipe.agent().answer(prompt=prompt, multiline=False)).strip('" ')
+    answer = await recipe.agent().complete(prompt=prompt, stop='"')
     return answer
 
 
