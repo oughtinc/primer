@@ -1,3 +1,12 @@
 {
-   "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "stuhlmueller",
+      "id": 382515,
+      "comment_id": 1270833126,
+      "created_at": "2022-10-06T23:17:04Z",
+      "repoId": 535086273,
+      "pullRequestNo": 15
+    }
+  ]
 }
