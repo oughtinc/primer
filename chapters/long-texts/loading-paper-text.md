@@ -38,8 +38,8 @@ Paragraph(sentences=['We hypothesized that mass distribution of a broad-spectrum
 
 Note that:
 
-- Papers are represented as lists of paragraphs
-- Paragraphs are represented as lists of sentences
-- Each paragraph has information about which section it's from
+- Papers are represented as lists of paragraphs.
+- Paragraphs are represented as lists of sentences.
+- Each paragraph has information about which section it's from.
 
 Try it with your own PDF papers!

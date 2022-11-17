@@ -6,9 +6,9 @@ description: Subquestions can have subquestions
 
 Now we'd like to generalize the recipe above so that we can run it at different depths:
 
-* Depth 0: Just answer the question, no subquestions
-* Depth 1: One layer of subquestions
-* Depth 2: Use subquestions when answering subquestions
+* Depth 0: Just answer the question, no subquestions.
+* Depth 1: One layer of subquestions.
+* Depth 2: Use subquestions when answering subquestions.
 * Etc.
 
 To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
