@@ -16,7 +16,7 @@ If you run the last question using the question-answerer, you might get an answe
 The current president of the United States is Donald Trump.
 ```
 
-Let's start by simply providing the list of search results as additional context before answering a question. To do this, let's write a helper function that uses [SerpAPI](https://serpapi.com/) to retrieve the search results. (You could similarly use the Bing API. In either case you need an API key.)
+Let’s start by simply providing the list of search results as additional context before answering a question. To do this, let’s write a helper function that uses [SerpAPI](https://serpapi.com/) to retrieve the search results. (You could similarly use the Bing API. In either case you need an API key.)
 
 ## Running web searches
 
@@ -198,13 +198,13 @@ recipe.main(answer_by_search)
 ```
 {% endcode %}
 
-If we run this file...
+If we run this file…
 
 ```shell
 python answer_by_search_direct.py
 ```
 
-...we get:
+…we get:
 
 {% code overflow="wrap" %}
 ```
@@ -218,11 +218,11 @@ Much better!
 
 ## Choosing better queries
 
-There's still something unsatisfying--we're directly searching for the question, but it could be better to let the model control what search terms we use. This is especially true for complex questions that we don't expect to get a full answer to through Google, like:
+There’s still something unsatisfying—we’re directly searching for the question, but it could be better to let the model control what search terms we use. This is especially true for complex questions that we don’t expect to get a full answer to through Google, like:
 
 > Based on the weather on Sep 14th 2022, how many people do you think went to the beach in San Francisco?
 
-Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method (remember to update the code below with your own API key):
+Here it’s probably better to just research the weather on that date using Google, not to enter the whole question. So let’s introduce a `choose_query` method (remember to update the code below with your own API key):
 
 {% code title="answer_by_search.py" overflow="wrap" %}
 ```python
@@ -296,7 +296,7 @@ recipe.main(answer_by_search)
 ```
 {% endcode %}
 
-If we run our question...
+If we run our question…
 
 {% code overflow="wrap" %}
 ```shell
@@ -304,7 +304,7 @@ python answer_by_search.py --question "Based on the weather on Sep 12th 2022, ho
 ```
 {% endcode %}
 
-...we get:
+…we get:
 
 {% code overflow="wrap" %}
 ```
@@ -312,13 +312,13 @@ I couldn't find an exact answer to your question, but based on the weather forec
 ```
 {% endcode %}
 
-The query chosen by the model was "beach weather san francisco september 12th 2022". The results here may differ on each run. For another example, see this trace:
+The query chosen by the model was “beach weather san francisco september 12th 2022”. The results here may differ on each run. For another example, see this trace:
 
 <figure><img src="../../.gitbook/assets/Screenshot Y6Q4jlZA@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0WYTARJR6PK7QY5RJDGZPR">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 
-1. It's nice to look at search results, but often the results are in the actual web pages. Extend the recipe to add the text of the first web page.
+1. It’s nice to look at search results, but often the results are in the actual web pages. Extend the recipe to add the text of the first web page.
 2. Use the model to decide which of the search results to expand.
 
 <details>

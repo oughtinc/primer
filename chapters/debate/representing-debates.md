@@ -4,7 +4,7 @@ description: Debates have turns, turns have authors and messages
 
 # Representing debates
 
-We'll represent debates as lists of turns. Each turn has the name of an agent and a message from that agent. For example, including some types:
+We’ll represent debates as lists of turns. Each turn has the name of an agent and a message from that agent. For example, including some types:
 
 {% code title="debate/types.py" %}
 
@@ -23,7 +23,7 @@ my_debate: Debate = [
 
 {% endcode %}
 
-Here's how we'll initialize and render debates:
+Here’s how we’ll initialize and render debates:
 
 {% code title="debate/utils.py" %}
 
@@ -50,7 +50,7 @@ def render_debate(debate: Debate, self_name: Name | None = None) -> str:
 
 {% endcode %}
 
-When we render debates, we also provide the option to replace an agent name with "You", like this:
+When we render debates, we also provide the option to replace an agent name with “You”, like this:
 
 ```python
 >>> print(render_debate(my_debate, self_name="Alice"))

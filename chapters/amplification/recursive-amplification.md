@@ -4,14 +4,14 @@ description: Subquestions can have subquestions
 
 # Recursive amplification
 
-Now we'd like to generalize the recipe above so that we can run it at different depths:
+Now we’d like to generalize the recipe above so that we can run it at different depths:
 
 * Depth 0: Just answer the question, no subquestions.
 * Depth 1: One layer of subquestions.
 * Depth 2: Use subquestions when answering subquestions.
 * Etc.
 
-To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we're at depth > 0. This simplifies the amplification recipe to:
+To do this, we add a `depth` parameter to `answer_by_amplification` and `get_subs` and only get subquestions if we’re at depth > 0. This simplifies the amplification recipe to:
 
 {% code title="amplify.py" overflow="wrap" %}
 ```python
@@ -106,9 +106,9 @@ The trace for depth 2, partially expanded:
 
 ## Exercises
 
-1. Right now we're answering subquestions without the context of the question they're intended to help with. Provide the question (or questions) that are further up in the hierarchy as additional context to the model.
-2. Running subquestions in parallel is nice because it's fast, but has the disadvantage that the answers to later subquestions can't inform what question to ask next. Modify the recipe to support sequential choice of questions based on earlier responses.
-3. Now make the recipe from step 1 adaptive: Let the model decide whether to answer or whether to ask another subquestion. If you don't limit the depth, what is the effective depth that the model ends up with for different questions?
+1. Right now we’re answering subquestions without the context of the question they’re intended to help with. Provide the question (or questions) that are further up in the hierarchy as additional context to the model.
+2. Running subquestions in parallel is nice because it’s fast, but has the disadvantage that the answers to later subquestions can’t inform what question to ask next. Modify the recipe to support sequential choice of questions based on earlier responses.
+3. Now make the recipe from step 1 adaptive: Let the model decide whether to answer or whether to ask another subquestion. If you don’t limit the depth, what is the effective depth that the model ends up with for different questions?
 
 <details>
 

@@ -10,7 +10,7 @@ Now we want to use the subquestions recipe to help a question-answerer like [the
 2. Use `map_async` to answer all the subquestions in parallel.
 3. Provide answers from subquestions as advice in the overall question-answering prompt.
 
-Let's start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
+Let’s start with (1) and (2), reusing the [subquestions subrecipe](asking-subquestions.md):
 
 {% code title="subquestions_answered.py" %}
 ```python

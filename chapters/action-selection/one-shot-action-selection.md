@@ -6,14 +6,14 @@ description: Choosing a cognitive action
 
 The plan:
 
-1. [Choose what action we'd ideally execute in a context](one-shot-action-selection.md#choosing-actions)
+1. [Choose what action we’d ideally execute in a context](one-shot-action-selection.md#choosing-actions)
 2. [Actually execute the action that was chosen](one-shot-action-selection.md#executing-actions)
 
 ## Choosing actions
 
-Let's start by just making a prompt for choosing an action, without hooking it up to actually executing the action. This way, we can check whether the model is even capable of making reasonable choices.
+Let’s start by just making a prompt for choosing an action, without hooking it up to actually executing the action. This way, we can check whether the model is even capable of making reasonable choices.
 
-There's a long list of actions we could choose between. For this first version, we'll limit ourselves to:
+There’s a long list of actions we could choose between. For this first version, we’ll limit ourselves to:
 
 1. Web search
 2. Computation
@@ -21,7 +21,7 @@ There's a long list of actions we could choose between. For this first version, 
 
 ### **Representing actions**
 
-Let's first represent the actions as a data type. For each action we'll also store an associated description that will help the model choose between them, and the recipe that runs the action:
+Let’s first represent the actions as a data type. For each action we’ll also store an associated description that will help the model choose between them, and the recipe that runs the action:
 
 {% code title="answer_by_dispatch/types.py" overflow="wrap" %}
 ```python
@@ -112,7 +112,7 @@ A: I want to use option #
 
 ### **Choosing the right action**
 
-We'll treat action choice as a classification task, and print out the probability of each action:
+We’ll treat action choice as a classification task, and print out the probability of each action:
 
 {% code title="answer_by_dispatch/classify.py" %}
 ```python
@@ -131,7 +131,7 @@ recipe.main(answer_by_dispatch)
 ```
 {% endcode %}
 
-Let's test it:
+Let’s test it:
 
 {% code overflow="wrap" %}
 ```shell
@@ -197,9 +197,9 @@ Mostly a web search question, but might need some clarification.
 
 ### Executing actions
 
-Now let's combine the action selector with the chapters on web search, computation, and reasoning to get a single agent that can choose the appropriate action.
+Now let’s combine the action selector with the chapters on web search, computation, and reasoning to get a single agent that can choose the appropriate action.
 
-This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do is run the chosen subrecipe:
+This is extremely straightforward—since all the actions are already associated with subrecipes, all we need to do is run the chosen subrecipe:
 
 {% code title="answer_by_dispatch/execute.py" %}
 ```python
@@ -225,7 +225,7 @@ recipe.main(answer_by_dispatch)
 ```
 {% endcode %}
 
-Let's try it with our examples above:
+Let’s try it with our examples above:
 
 {% code overflow="wrap" %}
 ```
@@ -249,7 +249,7 @@ It is up to each individual to decide whether or not they believe transhumanism 
 ```
 {% endcode %}
 
-These are arguably better answers than we'd get without augmentation.
+These are arguably better answers than we’d get without augmentation.
 
 <figure><img src="../../.gitbook/assets/Screenshot U08LXEri@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XVZW2TA6X0WC205WY5N42">view online</a>)</p></figcaption></figure>
 

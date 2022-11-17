@@ -4,7 +4,7 @@ description: Answering questions about a few paragraphs
 
 # Q\&A about short texts
 
-It's only a small change to support answering questions about short texts (e.g. individual paragraphs):
+It’s only a small change to support answering questions about short texts (e.g., individual paragraphs):
 
 {% code title="qa.py" %}
 ```python
@@ -51,9 +51,9 @@ And a trace like this:
 
 ## Exercises
 
-1. Instead of answering directly, add "Let's think step by step" as a prefix to the answer part of the prompt. This is often referred to as chain-of-thought prompting.
+1. Instead of answering directly, add “Let’s think step by step.” as a prefix to the answer part of the prompt. This is often referred to as chain-of-thought prompting.
 2. After getting the answer, add another step that shows the question and answer to the agent and asks it to improve the answer.
-3. Now iterate the improvement step until the answer stops changing or some # of steps is exceeded. Does this work? This is similar to diffusion models which take a noisy image and iteratively refine it until it's clear and detailed.
+3. Now iterate the improvement step until the answer stops changing or some # of steps is exceeded. Does this work? This is similar to diffusion models which take a noisy image and iteratively refine it until it’s clear and detailed.
 
 <details>
 

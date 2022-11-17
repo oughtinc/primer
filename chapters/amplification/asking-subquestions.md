@@ -4,7 +4,7 @@ description: From question to more questions
 
 # Asking subquestions
 
-Let's start by making a recipe that returns subquestions given a question:
+Let’s start by making a recipe that returns subquestions given a question:
 
 {% code title="subquestions.py" %}
 ```python

@@ -4,9 +4,9 @@ description: Executing code for more accurate computation
 
 # Interpreters
 
-Sometimes the limitation isn't factual knowledge, but ability to do computation.
+Sometimes the limitation isn’t factual knowledge, but ability to do computation.
 
-For example, if we ask [the basic question-answerer](../question-answering/q-and-a-without-context.md) "What is 578921 days \* 12312 miles/day?":
+For example, if we ask [the basic question-answerer](../question-answering/q-and-a-without-context.md) “What is 578921 days \* 12312 miles/day?”:
 
 ```shell
 python qa_simple.py --question "What is 578921 days * 12312 miles/day?"
@@ -22,7 +22,7 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 
 ## Evaluating Python expressions
 
-Let's add a method for evaluating Python expressions:
+Let’s add a method for evaluating Python expressions:
 
 {% code title="eval_direct.py" %}
 ```python
@@ -55,7 +55,7 @@ python eval_direct.py --question "1 + 1"
 2
 ```
 
-Of course, it doesn't work for natural language questions that benefit from compute:
+Of course, it doesn’t work for natural language questions that benefit from compute:
 
 {% code overflow="wrap" %}
 ```shell
@@ -70,12 +70,12 @@ Error: invalid syntax (<string>, line 1)
 So, we need to choose what to evaluate.
 
 {% hint style="warning" %}
-Evaluating arbitrary expressions is dangerous. Don't use this approach outside of Docker.
+Evaluating arbitrary expressions is dangerous. Don’t use this approach outside of Docker.
 {% endhint %}
 
 ## Choosing what to evaluate
 
-We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We'll also print out the result of evaluating this expression:
+We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We’ll also print out the result of evaluating this expression:
 
 {% code title="eval_selective.py" %}
 ```python
@@ -115,7 +115,7 @@ recipe.main(eval_selective)
 ```
 {% endcode %}
 
-If we run this on our example...
+If we run this on our example…
 
 {% code overflow="wrap" %}
 ```shell
@@ -123,7 +123,7 @@ python eval_selective.py --question "What is 578921 days * 12312 miles/day?"
 ```
 {% endcode %}
 
-...we get:
+…we get:
 
 ```
 ('578921 * 12312', '7127675352')
@@ -189,7 +189,7 @@ recipe.main(answer_by_computation)
 ```
 {% endcode %}
 
-Rerunning our test case...
+Rerunning our test case…
 
 {% code overflow="wrap" %}
 ```shell
@@ -197,7 +197,7 @@ python answer_by_computation.py --question "What is 578921 days * 12312 miles/da
 ```
 {% endcode %}
 
-...we get the correct answer:
+…we get the correct answer:
 
 ```
 7127675352 miles
@@ -223,14 +223,14 @@ If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at t
 ```
 {% endcode %}
 
-In contrast, the basic question-answerer says "You would have $1,034,957.29 at the end."
+In contrast, the basic question-answerer says “You would have $1,034,957.29 at the end.”
 
 <figure><img src="../../.gitbook/assets/Screenshot bMP2ErpR@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0XFAVDNWSP5TNWZ944NWSW">view online</a>)</p></figcaption></figure>
 
 ## Exercises
 
 1. Many questions can only be answered using longer algorithms in Python. Extend the code above to support multi-line Python programs ([example](https://twitter.com/sergeykarayev/status/1569377881440276481/photo/1)).
-2. Another approach to (1) is to let the model "enter" multiple expressions into the interpreter. Extend the recipe to support this.
+2. Another approach to (1) is to let the model “enter” multiple expressions into the interpreter. Extend the recipe to support this.
 
 <details>
 

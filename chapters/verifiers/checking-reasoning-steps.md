@@ -4,11 +4,11 @@ description: Where did we go wrong?
 
 # Checking reasoning steps
 
-Let's change the interface of the verifier so that it doesn't just take an answer, but also a sequence of reasoning steps leading up to it. This way, we can check each step independently and get a probability that it's correct.
+Let’s change the interface of the verifier so that it doesn’t just take an answer, but also a sequence of reasoning steps leading up to it. This way, we can check each step independently and get a probability that it’s correct.
 
 ## **Representing and rendering reasoning steps**
 
-First, let's represent reasoning steps as a list (so that we can more easily manipulate them programmatically) and make a function to render them as a string (so that we can use them in prompts):
+First, let’s represent reasoning steps as a list (so that we can more easily manipulate them programmatically) and make a function to render them as a string (so that we can use them in prompts):
 
 {% code title="verify/utils.py" overflow="wrap" %}
 ```python
@@ -40,9 +40,9 @@ If we run `render_steps(DEFAULT_STEPS)`, we get back the original numbered list:
 
 ## **Verifying a step**
 
-Given a list of steps, let's first think about how we can verify the last step, assuming all previous ones are correct.
+Given a list of steps, let’s first think about how we can verify the last step, assuming all previous ones are correct.
 
-This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We'll also already factor out the step-verification into a function `check_step` so that we can reuse it later.
+This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We’ll also already factor out the step-verification into a function `check_step` so that we can reuse it later.
 
 {% code title="verify/last.py" overflow="wrap" %}
 ```python
@@ -94,7 +94,7 @@ We get:
 0.8373182599538002
 ```
 
-Note that (as we'd expect) this probability of the last step being correct is significantly higher than the probability the model assigned to the entire answer being correct.
+Note that (as we’d expect) this probability of the last step being correct is significantly higher than the probability the model assigned to the entire answer being correct.
 
 ## **Verifying all steps**
 
@@ -158,7 +158,7 @@ The more difficult the math, the lower the probability the model assigns to the 
 ## Exercises
 
 1. How could you use the probabilities we get for each step? One idea is to use a model to resample steps that are wrong. Can you use this to answer questions more correctly?
-2. If we multiply the probabilities above to get the probability that the argument overall is correct, we get $$0.76 \cdot 0.57 \cdot 0.51 \cdot 0.83 = 0.18$$. In general, the more steps, the lower we should expect the product probability to be. If we can't get high probability by [just checking the answer](checking-answers.md), and we can't get it by checking many steps, how can we ever confidently conclude that an answer is correct? What does your answer to this question mean for how to implement and check reasoning using language models?
+2. If we multiply the probabilities above to get the probability that the argument overall is correct, we get $$0.76 \cdot 0.57 \cdot 0.51 \cdot 0.83 = 0.18$$. In general, the more steps, the lower we should expect the product probability to be. If we can’t get high probability by [just checking the answer](checking-answers.md), and we can’t get it by checking many steps, how can we ever confidently conclude that an answer is correct? What does your answer to this question mean for how to implement and check reasoning using language models?
 
 <details>
 

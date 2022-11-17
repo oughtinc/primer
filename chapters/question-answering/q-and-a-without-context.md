@@ -4,7 +4,7 @@ description: Answering questions without extra information
 
 # Q\&A without context
 
-Let's make our first recipe that calls out to an agent:
+Let’s make our first recipe that calls out to an agent:
 
 {% code title="qa_simple.py" %}
 ```python
@@ -41,12 +41,12 @@ You specify the mode like this:
 python qa_simple.py --mode human
 ```
 
-Looking at the trace, we see two nodes - one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
+Looking at the trace, we see two nodes—one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
 
 <figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0H8AM335QSV25E3ZYZ1PGM">view online</a>)</p></figcaption></figure>
 
 Try running your recipe in different modes.
 
 {% hint style="info" %}
-Because the agent's `answer` method is async, we use `await` when we call it.
+Because the agent’s `answer` method is async, we use `await` when we call it.
 {% endhint %}

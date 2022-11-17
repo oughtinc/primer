@@ -6,7 +6,7 @@ description: Paragraph-wise classification with parallelism
 
 ## Classifying individual paragraphs using `classify`
 
-Let's start by just classifying whether the first paragraph answers a question. To do this, we'll use a new agent method, `classify`. It takes a prompt and a list of choices, and returns a choice, a choice probability, and for some agent implementations an explanation.
+Let’s start by just classifying whether the first paragraph answers a question. To do this, we’ll use a new agent method, `classify`. It takes a prompt and a list of choices, and returns a choice, a choice probability, and for some agent implementations an explanation.
 
 Our single-paragraph classifier looks like this:
 
@@ -166,7 +166,7 @@ recipe.main(answer_for_paper)
 ```
 {% endcode %}
 
-Running the same command again...
+Running the same command again…
 
 {% code overflow="wrap" %}
 ```shell
@@ -174,7 +174,7 @@ python paper_qa_ranker.py --paper papers/keenan-2018.pdf --question "What was th
 ```
 {% endcode %}
 
-...we indeed get paragraphs that answer the question what the study population was!
+…we indeed get paragraphs that answer the question what the study population was!
 
 {% code overflow="wrap" %}
 ```python

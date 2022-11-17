@@ -4,7 +4,7 @@ description: Does this sound plausible?
 
 # Checking answers
 
-Let's start with the simplest possible way of verifying an answer—just ask the model whether it's correct. Our recipe:
+Let’s start with the simplest possible way of verifying an answer—just ask the model whether it’s correct. Our recipe:
 
 {% code title="verify_answer.py" %}
 ```python
@@ -32,11 +32,11 @@ recipe.main(verify_answer)
 ```
 {% endcode %}
 
-The interesting bit here is that we don't just want a boolean Yes/No answer from the model, but that we want the probability of the "Yes" answer to the correctness question. This way, we get a more graded signal that we can use, e.g. to only show or use model responses when they exceed a threshold.
+The interesting bit here is that we don’t just want a boolean Yes/No answer from the model, but that we want the probability of the “Yes” answer to the correctness question. This way, we get a more graded signal that we can use, e.g., to only show or use model responses when they exceed a threshold.
 
 ## Sanity checks
 
-Let's test it:
+Let’s test it:
 
 {% code overflow="wrap" %}
 ```shell
@@ -78,7 +78,7 @@ Also correct.
 
 ## A math problem
 
-Let's try something harder: A problem from the GSM8K math problems dataset:
+Let’s try something harder: A problem from the GSM8K math problems dataset:
 
 > Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?
 
@@ -94,7 +94,7 @@ python verify_answer.py --question "Beth bakes 4x 2 dozen batches of cookies in 
 0.06723949284762187
 ```
 
-The model can't see that the answer is correct.
+The model can’t see that the answer is correct.
 
 What if we also give the reasoning steps?
 

@@ -1,14 +1,14 @@
 ---
-description: Let's think step by step.
+description: Let’s think step by step.
 ---
 
 # Chain of Thought
 
-The idea behind chain-of-thought is trivially simple: Instead of directly asking the model to generate an answer, we add a prefix like "Let's think step by step.".
+The idea behind chain-of-thought is trivially simple: Instead of directly asking the model to generate an answer, we add a prefix like “Let’s think step by step.”.
 
 ## Step-by-step answers
 
-Let's start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
+Let’s start with the question-answerer and add a parameter to the prompt so that we can see the effect of different prefixes:
 
 {% code title="chain_of_thought.py" overflow="wrap" %}
 ```python
@@ -36,7 +36,7 @@ recipe.main(chain_of_thought)
 ```
 {% endcode %}
 
-Let's first run the recipe without answer prefix:
+Let’s first run the recipe without answer prefix:
 
 ```shell
 python chain_of_thought.py --answer-prefix ""
@@ -50,7 +50,7 @@ If the average temperature in Northern California went up by 5 degrees Fahrenhei
 ```
 {% endcode %}
 
-If we provide "Let's think step by step." as an answer prefix...
+If we provide “Let’s think step by step.” as an answer prefix…
 
 {% code overflow="wrap" %}
 ```shell
@@ -58,7 +58,7 @@ python chain_of_thought.py --answer-prefix "Let's think step by step."
 ```
 {% endcode %}
 
-...we get a much more elaborate answer:
+…we get a much more elaborate answer:
 
 {% code overflow="wrap" %}
 ```
@@ -136,7 +136,7 @@ The average temperature in Northern California going up by 5 degrees Fahrenheit 
 
 ## **Exercise**
 
-Let's apply this to the math problem we saw in the chapter on checking reasoning steps:
+Let’s apply this to the math problem we saw in the chapter on checking reasoning steps:
 
 > Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?
 
