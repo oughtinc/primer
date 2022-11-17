@@ -11,7 +11,7 @@ The plan:
 
 ## Choosing actions
 
-Let's start by just making a prompt for choosing an action, without hooking it up actually executing the action. This way, we can check whether the model is even capable of making reasonable choices.
+Let's start by just making a prompt for choosing an action, without hooking it up to actually executing the action. This way, we can check whether the model is even capable of making reasonable choices.
 
 There's a long list of actions we could choose between. For this first version, we'll limit ourselves to:
 
@@ -199,7 +199,7 @@ Mostly a web search question, but might need some clarification.
 
 Now let's combine the action selector with the chapters on web search, computation, and reasoning to get a single agent that can choose the appropriate action.
 
-This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do its run the chosen subrecipe:
+This is extremely straightforward -- since all the actions are already associated with subrecipes, all we need to do is run the chosen subrecipe:
 
 {% code title="answer_by_dispatch/execute.py" %}
 ```python
@@ -255,7 +255,7 @@ These are arguably better answers than we'd get without augmentation.
 
 ### Exercises
 
-1. Suppose that actions are taking place within the context of a long document. Add an action type for searching for a particular phrase in the document and returning the results.a
+1. Suppose that actions are taking place within the context of a long document. Add an action type for searching for a particular phrase in the document and returning the results.
 2. Add an action type for debate:
 
 {% code overflow="wrap" %}

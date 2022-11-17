@@ -50,7 +50,7 @@ If the average temperature in Northern California went up by 5 degrees Fahrenhei
 ```
 {% endcode %}
 
-If we provide "Let's think step by step" as an answer prefix...
+If we provide "Let's think step by step." as an answer prefix...
 
 {% code overflow="wrap" %}
 ```shell
@@ -70,7 +70,7 @@ The first thing that would happen is that the air would heat up. This would caus
 
 In the previous example chain-of-thought is used to elicit a more elaborate answer. However, often chain-of-thought is used in cases where all we want to do is improve the correctness of a final answer, without changing the answer format itself.
 
-We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the moel without chain-of-thought:
+We can achieve this by separately eliciting the reasoning and the final answer, so that we can more directly compare the answer to the model without chain-of-thought:
 
 {% code title="answer_by_reasoning.py" overflow="wrap" %}
 ```python

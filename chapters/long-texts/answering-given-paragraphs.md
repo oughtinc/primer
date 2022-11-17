@@ -63,7 +63,7 @@ Running the same command again...
 python paper_qa.py --paper papers/keenan-2018.pdf
 ```
 
-... you should get an answer like this:
+...you should get an answer like this:
 
 {% code overflow="wrap" %}
 ```

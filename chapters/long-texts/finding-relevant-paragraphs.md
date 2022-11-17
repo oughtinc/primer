@@ -174,7 +174,7 @@ python paper_qa_ranker.py --paper papers/keenan-2018.pdf --question "What was th
 ```
 {% endcode %}
 
-...we indeed get paragraphs that answer the question who the study population was!
+...we indeed get paragraphs that answer the question what the study population was!
 
 {% code overflow="wrap" %}
 ```python

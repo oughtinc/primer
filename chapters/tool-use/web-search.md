@@ -220,7 +220,7 @@ Much better!
 
 There's still something unsatisfying--we're directly searching for the question, but it could be better to let the model control what search terms we use. This is especially true for complex questions that we don't expect to get a full answer to through Google, like:
 
-> Based on the weather on Sep 14th 2022, how many people went do you think went to the beach in San Francisco?
+> Based on the weather on Sep 14th 2022, how many people do you think went to the beach in San Francisco?
 
 Here it's probably better to just research the weather on that date using Google, not to enter the whole question. So let's introduce a `choose_query` method (remember to update the code below with your own API key):
 
@@ -300,7 +300,7 @@ If we run our question...
 
 {% code overflow="wrap" %}
 ```shell
-python answer_by_search.py --question "Based on the weather on Sep 12th 2022, how many people went do you think went to the beach in San Francisco?"
+python answer_by_search.py --question "Based on the weather on Sep 12th 2022, how many people do you think went to the beach in San Francisco?"
 ```
 {% endcode %}
 

@@ -119,7 +119,7 @@ If we run this on our example...
 
 {% code overflow="wrap" %}
 ```shell
-python eval_eval_selective.py --question "What is 578921 days * 12312 miles/day?"
+python eval_selective.py --question "What is 578921 days * 12312 miles/day?"
 ```
 {% endcode %}
 
@@ -189,7 +189,7 @@ recipe.main(answer_by_computation)
 ```
 {% endcode %}
 
-Rerunning our test case
+Rerunning our test case...
 
 {% code overflow="wrap" %}
 ```shell
@@ -197,7 +197,7 @@ python answer_by_computation.py --question "What is 578921 days * 12312 miles/da
 ```
 {% endcode %}
 
-we get the correct answer:
+...we get the correct answer:
 
 ```
 7127675352 miles

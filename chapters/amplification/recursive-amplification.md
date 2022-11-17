@@ -108,7 +108,7 @@ The trace for depth 2, partially expanded:
 
 1. Right now we're answering subquestions without the context of the question they're intended to help with. Provide the question (or questions) that are further up in the hierarchy as additional context to the model.
 2. Running subquestions in parallel is nice because it's fast, but has the disadvantage that the answers to later subquestions can't inform what question to ask next. Modify the recipe to support sequential choice of questions based on earlier responses.
-3. Now make the recipe from step 1 adaptive: Let the model decide whether to answer or whether to ask another subquestion. If you don't limit the depth, what is the effective depth that the model ends up for different questions?
+3. Now make the recipe from step 1 adaptive: Let the model decide whether to answer or whether to ask another subquestion. If you don't limit the depth, what is the effective depth that the model ends up with for different questions?
 
 <details>
 
@@ -121,6 +121,6 @@ If you want feedback on your exercise solutions, submit them through [this form]
 ## References
 
 1. Christiano, Paul, Buck Shlegeris, and Dario Amodei. [Supervising Strong Learners by Amplifying Weak Experts](https://arxiv.org/abs/1810.08575). October 19, 2018.
-2. Leike, Jan, David Krueger, Tom Everitt, Miljan Martic, Vishal Maini, and Shane Legg. [Scalable Agent Alignment via Reward Modeling: A Research Direction](https://arxiv.org/abs/1811.07871). _ArXiv.Org_ cs.LG (November 19, 2018).
-3. Wu, Jeff, Long Ouyang, Daniel M. Ziegler, Nisan Stiennon, Ryan Lowe, Jan Leike, and Paul Christiano. [Recursively Summarizing Books with Human Feedback](http://arxiv.org/abs/2109.10862). arXiv, September 27, 2021.
+2. Leike, Jan, David Krueger, Tom Everitt, Miljan Martic, Vishal Maini, and Shane Legg. [Scalable Agent Alignment via Reward Modeling: A Research Direction](https://arxiv.org/abs/1811.07871). _arXiv_ cs.LG, November 19, 2018.
+3. Wu, Jeff, Long Ouyang, Daniel M. Ziegler, Nisan Stiennon, Ryan Lowe, Jan Leike, and Paul Christiano. [Recursively Summarizing Books with Human Feedback](http://arxiv.org/abs/2109.10862). _arXiv_, September 27, 2021.
 4. Perez, Ethan, Patrick Lewis, Wen-tau Yih, Kyunghyun Cho, and Douwe Kiela. [Unsupervised Question Decomposition for Question Answering.](https://aclanthology.org/2020.emnlp-main.713.pdf) In _Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)_, 8864–80. Online: Association for Computational Linguistics, 2020.

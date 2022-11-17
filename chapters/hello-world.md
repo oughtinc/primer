@@ -4,7 +4,7 @@ description: The simplest recipe
 
 # Hello World
 
-Let's first get used to the infrastructure for writing, running, and debugging recipes:
+Let's first get used to the infrastructure for writing, running, and debugging recipes.
 
 Create a file `hello.py` anywhere in the ICE directory:
 

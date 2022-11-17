@@ -4,7 +4,7 @@ description: Does this sound plausible?
 
 # Checking answers
 
-Let's start with the simplest possible way of verifying an answer—just ask the model whether's it's correct. Our recipe:
+Let's start with the simplest possible way of verifying an answer—just ask the model whether it's correct. Our recipe:
 
 {% code title="verify_answer.py" %}
 ```python

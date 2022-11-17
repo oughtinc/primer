@@ -42,7 +42,7 @@ If we run `render_steps(DEFAULT_STEPS)`, we get back the original numbered list:
 
 Given a list of steps, let's first think about how we can verify the last step, assuming all previous ones are correct.
 
-This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We'll also already factor out the step verification into a function `check_step` so that we can reuse it later.
+This is effectively the same as the global verifier above, except that we need to render the steps before we make the prompt. We'll also already factor out the step-verification into a function `check_step` so that we can reuse it later.
 
 {% code title="verify/last.py" overflow="wrap" %}
 ```python
@@ -98,7 +98,7 @@ Note that (as we'd expect) this probability of the last step being correct is si
 
 ## **Verifying all steps**
 
-To verify all steps, we simply replace `verify_answer` with an (async) map over all prefixes of steps:
+To verify all steps, we simply replace `verify_answer` with an (async) map over the prefix of each step:
 
 {% code title="verify/steps.py" %}
 ```python
