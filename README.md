@@ -6,7 +6,7 @@ coverY: 0
 
 # Factored Cognition Primer
 
-You'll learn how to:
+You’ll learn how to:
 
 * Amplify language models like GPT-3 through recursive question-answering and debate
 * Reason about long texts by combining search and generation

@@ -4,7 +4,7 @@ description: How to install and run the Interaction Composition Explorer
 
 # Before We Start
 
-The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you'd like to follow along with the implementation (strongly recommended), set it up first.
+The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you’d like to follow along with the implementation (strongly recommended), set it up first.
 
 ## Install Docker
 
@@ -22,7 +22,7 @@ Obtain an [`OPENAI_API_KEY`](https://beta.openai.com/account/api-keys) and creat
 
 ```shell
 # .env
-OPENAI_API_KEY=sk-...f8 # Replace with your API key. 
+OPENAI_API_KEY=sk-...f8 # Replace with your API key.
 ```
 
 Start ICE in its own terminal and leave it running:

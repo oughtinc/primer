@@ -4,9 +4,9 @@ description: Going back and forth between agents
 
 # The debate recipe
 
-If you want to challenge yourself, pause and see if you can use the pieces we've seen so far to write a recipe that has agents take turns at a debate about a question.
+If you want to challenge yourself, pause and see if you can use the pieces we’ve seen so far to write a recipe that has agents take turns at a debate about a question.
 
-Once you're ready, or if you just want to see the result, take a look at this recipe:
+Once you’re ready, or if you just want to see the result, take a look at this recipe:
 
 {% code title="debate/recipe.py" %}
 ```python
@@ -38,7 +38,7 @@ recipe.main(debate)
 ```
 {% endcode %}
 
-Once you've saved the recipe you can run it as usual:
+Once you’ve saved the recipe you can run it as usual:
 
 ```shell
 python debate/recipe.py
@@ -67,7 +67,7 @@ The trace looks like this:
 <figure><img src="../../.gitbook/assets/Screenshot kwP5dN7n@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0VA96FWT7SSQNXD6CQH4BT">view online</a>)</p></figcaption></figure>
 
 {% hint style="info" %}
-In `agents = [recipe.agent(), recipe.agent()]` we're creating two agents. This doesn't actually matter since all the agents we're using in ICE right now don't have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.
+In `agents = [recipe.agent(), recipe.agent()]` we’re creating two agents. This doesn’t actually matter since all the agents we’re using in ICE right now don’t have implicit state (except for humans), so we could just have created agents on the fly in the `turn` function.
 {% endhint %}
 
 ## Exercises

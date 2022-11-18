@@ -41,10 +41,10 @@
 
 ## Appendix
 
-* [What's next?](appendix/whats-next.md)
+* [What’s next?](appendix/whats-next.md)
 
 ## Links
 
-* [We're Hiring](https://ought.org/careers)
+* [We’re Hiring](https://ought.org/careers)
 * [Our Slack Community](https://join.slack.com/t/ice-1mh7029/shared\_invite/zt-1guya9qf7-y\_N0Uv0nEt3vMTuaXp5k3Q)
 * [ICE on Github](https://github.com/oughtinc/ice)

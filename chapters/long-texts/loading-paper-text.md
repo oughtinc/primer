@@ -4,7 +4,7 @@ description: Loading papers as structured data
 
 # Loading paper text
 
-ICE has built-in functionality for parsing and loading papers, and includes some example papers in its `papers` folder. Here's a minimal recipe that loads a paper and prints out the first paragraph (often the abstract):
+ICE has built-in functionality for parsing and loading papers, and includes some example papers in its `papers` folder. Here’s a minimal recipe that loads a paper and prints out the first paragraph (often the abstract):
 
 {% code title="paper_hello.py" %}
 ```python
@@ -26,7 +26,7 @@ You can run the recipe as follows, providing the paper as a keyword argument:
 python paper_hello.py --paper papers/keenan-2018.pdf
 ```
 
-You'll see a result like this:
+You’ll see a result like this:
 
 {% code overflow="wrap" %}
 
@@ -38,8 +38,8 @@ Paragraph(sentences=['We hypothesized that mass distribution of a broad-spectrum
 
 Note that:
 
-- Papers are represented as lists of paragraphs
-- Paragraphs are represented as lists of sentences
-- Each paragraph has information about which section it's from
+- Papers are represented as lists of paragraphs.
+- Paragraphs are represented as lists of sentences.
+- Each paragraph has information about which section it’s from.
 
 Try it with your own PDF papers!

@@ -4,7 +4,7 @@ description: The simplest recipe
 
 # Hello World
 
-Let's first get used to the infrastructure for writing, running, and debugging recipes:
+Let’s first get used to the infrastructure for writing, running, and debugging recipes.
 
 Create a file `hello.py` anywhere in the ICE directory:
 
@@ -48,7 +48,7 @@ If you follow the trace link (yours will be different), you will see a function 
 * `recipe.main` must appear at the bottom of the file.
 * The entry point must be async.
 * Most recipe functions will be async so that language model calls are parallelized as much as possible.
-* Different recipes take different arguments, which will be provided as keyword arguments to the entry point. This recipe doesn't use any arguments.
+* Different recipes take different arguments, which will be provided as keyword arguments to the entry point. This recipe doesn’t use any arguments.
 
 </details>
 

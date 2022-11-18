@@ -4,18 +4,18 @@ description: Subquestions and so much more
 
 # Amplification Revisited
 
-Now that we've seen that language models can do many things besides just answer questions directly—
+Now that we’ve seen that language models can do many things besides just answer questions directly—
 
 * [Check answers and reasoning](verifiers/)
 * [Do a web search](tool-use/web-search.md)
 * [Run a Python program](tool-use/interpreters.md)
 * [Write out some reasoning steps](deduction/chain-of-thought.md)
 
-—let's revisit [our recursive question-answerer](amplification/recursive-amplification.md). Instead of either directly answering the question or asking more subquestions, let's also provide the ability of doing any of the steps above.
+—let’s revisit [our recursive question-answerer](amplification/recursive-amplification.md). Instead of either directly answering the question or asking more subquestions, let’s also provide the ability of doing any of the steps above.
 
-While we're at it, let's take the opportunity to switch from asking subquestions in parallel to asking them sequentially, so that later subquestions can depend on the results of earlier subquestions.
+While we’re at it, let’s take the opportunity to switch from asking subquestions in parallel to asking them sequentially, so that later subquestions can depend on the results of earlier subquestions.
 
-This is a good opportunity to use subrecipes—we'd like to turn our work from earlier chapters into generalizable components.
+This is a good opportunity to use subrecipes—we’d like to turn our work from earlier chapters into generalizable components.
 
 ## Exercise
 

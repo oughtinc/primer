@@ -4,7 +4,7 @@ description: Answering given subquestion answers
 
 # One-step amplification
 
-We need an equivalent of `make_qa_prompt` that optionally takes a list of subquestions and answers and provides those in the prompt. Let's introduce a type `Subs` for pairs of questions and answers and extend `make_qa_prompt` to use it if given:
+We need an equivalent of `make_qa_prompt` that optionally takes a list of subquestions and answers and provides those in the prompt. Let’s introduce a type `Subs` for pairs of questions and answers and extend `make_qa_prompt` to use it if given:
 
 {% code title="amplify_one/utils.py" %}
 ```python
