@@ -25,6 +25,7 @@ This is similar to the correct answer `7127675352 miles`, but not the same.
 Let’s add a method for evaluating Python expressions:
 
 {% code title="eval_direct.py" %}
+
 ```python
 from ice.recipe import recipe
 
@@ -43,6 +44,7 @@ async def answer_by_computation(question: str):
 
 recipe.main(answer_by_computation)
 ```
+
 {% endcode %}
 
 This works as expected for expressions that are literally Python code:
@@ -58,9 +60,11 @@ python eval_direct.py --question "1 + 1"
 Of course, it doesn’t work for natural language questions that benefit from compute:
 
 {% code overflow="wrap" %}
+
 ```shell
 python eval_direct.py --question "What is 578921 days * 12312 miles/day?"
 ```
+
 {% endcode %}
 
 ```
@@ -70,7 +74,7 @@ Error: invalid syntax (<string>, line 1)
 So, we need to choose what to evaluate.
 
 {% hint style="warning" %}
-Evaluating arbitrary expressions is dangerous. Don’t use this approach outside of Docker.
+Evaluating arbitrary expressions is dangerous. Don’t use this approach outside of highly experimental code.
 {% endhint %}
 
 ## Choosing what to evaluate
@@ -78,6 +82,7 @@ Evaluating arbitrary expressions is dangerous. Don’t use this approach outside
 We make a prompt that asks the model what expression to enter into a Python interpreter to answer the question. We’ll also print out the result of evaluating this expression:
 
 {% code title="eval_selective.py" %}
+
 ```python
 from ice.recipe import recipe
 
@@ -113,14 +118,17 @@ async def eval_selective(question: str):
 
 recipe.main(eval_selective)
 ```
+
 {% endcode %}
 
 If we run this on our example…
 
 {% code overflow="wrap" %}
+
 ```shell
 python eval_selective.py --question "What is 578921 days * 12312 miles/day?"
 ```
+
 {% endcode %}
 
 …we get:
@@ -138,6 +146,7 @@ This is a helpful expression and result!
 Now all we need to do this provide this expression and result as additional context for the basic question-answerer.
 
 {% code title="answer_by_computation.py" %}
+
 ```python
 from ice.recipe import recipe
 
@@ -187,14 +196,17 @@ async def answer_by_computation(question: str):
 
 recipe.main(answer_by_computation)
 ```
+
 {% endcode %}
 
 Rerunning our test case…
 
 {% code overflow="wrap" %}
+
 ```shell
 python answer_by_computation.py --question "What is 578921 days * 12312 miles/day?"
 ```
+
 {% endcode %}
 
 …we get the correct answer:
@@ -210,17 +222,21 @@ Another example:
 Running this:
 
 {% code overflow="wrap" %}
+
 ```shell
 python answer_by_computation.py --question "If I have \$500 and get 3.7% interest over 16 years, what do I have at the end?"
 ```
+
 {% endcode %}
 
 We get:
 
 {% code overflow="wrap" %}
+
 ```
 If you have $500 and get 3.7% interest over 16 years, you will have $894.19 at the end.
 ```
+
 {% endcode %}
 
 In contrast, the basic question-answerer says “You would have $1,034,957.29 at the end.”
