@@ -6,39 +6,39 @@ description: How to install and run the Interaction Composition Explorer
 
 The recipes in this primer are implemented using the [Interactive Composition Explorer](https://github.com/oughtinc/ice) (ICE). If you’d like to follow along with the implementation (strongly recommended), set it up first.
 
-## Install Docker
+## Requirements
 
-ICE comes as a Docker container with everything you need to start writing language model recipes. To run it, you need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+ICE requires Python 3.10. If you only have newer or older version(s) of Python installed, we recommend using [pyenv](https://github.com/pyenv/pyenv) to install Python 3.10 and manage multiple Python versions.
+
+If you use Windows, you'll need to run ICE inside of [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 ## Run ICE
 
-Clone ICE:
+As part of general good Python practice, consider first creating and activating a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid installing ICE 'globally'. For example:
 
 ```shell
-git clone https://github.com/oughtinc/ice.git
+python3.10 -m venv venv
+source venv/bin/activate
+```
+
+Install ICE:
+
+```shell
+pip install ought-ice
 ```
 
 Obtain an [`OPENAI_API_KEY`](https://beta.openai.com/account/api-keys) and create an `.env` file containing it in the ICE folder:
 
+{% code title="~/.ought-ice/.env" %}
+
 ```shell
-# .env
 OPENAI_API_KEY=sk-...f8 # Replace with your API key.
 ```
 
-Start ICE in its own terminal and leave it running:
+{% endcode %}
+
+Start the ICE server in its own terminal and leave it running:
 
 ```shell
-scripts/run-local.sh
+python -m ice.server
 ```
-
-On the first run, downloading the Docker container will take a few minutes.
-
-## Enter the container
-
-Open a shell in the container and use it to run all commands in the upcoming chapters:
-
-```shell
-docker compose exec ice bash
-```
-
-This command gives you a shell in the `ice` directory. Any files you create under this directory will be visible in the container.
