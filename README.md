@@ -18,3 +18,29 @@ You’ll learn how to:
 <figure><img src=".gitbook/assets/CleanShot 2022-09-16 at 16.44.png" alt=""><figcaption><p>Example of a decomposition for <a href="chapters/long-texts/">reasoning about papers</a>.</p></figcaption></figure>
 
 The book focuses on techniques that are likely to remain relevant for better language models.
+
+<details>
+
+<summary>How to cite this book</summary>
+
+Please cite this book as:
+
+{% code overflow="wrap" %}
+```
+A. Stuhlmüller and J. Reppert and L. Stebbing (2022). Factored Cognition Primer. Retrieved December 6, 2022 from https://primer.ought.org.
+```
+{% endcode %}
+
+BibTeX:
+
+```latex
+@misc{primer2022,
+  author = {Stuhlmüller, Andreas and Reppert, Justin and Stebbing, Luke},
+  title = {Factored Cognition Primer},
+  year = {2022},
+  howpublished = {\url{https://primer.ought.org}},
+  urldate = {2022-12-06}
+}
+```
+
+</details>
