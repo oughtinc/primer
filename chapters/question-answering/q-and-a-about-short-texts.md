@@ -8,6 +8,8 @@ It’s only a small change to support answering questions about short texts (e.g
 
 {% code title="qa.py" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
@@ -17,14 +19,16 @@ DEFAULT_QUESTION = "What is happening on 9/9/2022?"
 
 
 def make_qa_prompt(context: str, question: str) -> str:
-    return f"""
+    return F(
+        f"""
 Background text: "{context}"
 
 Answer the following question about the background text above:
 
 Question: "{question}"
 Answer: "
-""".strip()
+"""
+    ).strip()
 
 
 async def answer(

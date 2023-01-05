@@ -12,15 +12,19 @@ Let’s start with the question-answerer and add a parameter to the prompt so th
 
 {% code title="chain_of_thought.py" overflow="wrap" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
 def make_chain_of_thought_prompt(question: str, answer_prefix: str = "") -> str:
-    return f"""Answer the following question:
+    return F(
+        f"""Answer the following question:
 
 Question: "{question}"
 Answer: "{answer_prefix}
-""".strip()
+"""
+    ).strip()
 
 
 async def chain_of_thought(
@@ -74,24 +78,30 @@ We can achieve this by separately eliciting the reasoning and the final answer, 
 
 {% code title="answer_by_reasoning.py" overflow="wrap" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
 def generate_reasoning_prompt(question: str) -> str:
-    return f"""Answer the following question:
+    return F(
+        f"""Answer the following question:
 
 Question: "{question}"
 Answer: "Let's think step by step.
-""".strip()
+"""
+    ).strip()
 
 
 def generate_answer_prompt(question: str, reasoning: str) -> str:
-    return f"""Answer the following question using the reasoning shown below:
+    return F(
+        f"""Answer the following question using the reasoning shown below:
 
 Question: "{question}"
 Reasoning: "{reasoning}"
 Short answer: "
-""".strip()
+"""
+    ).strip()
 
 
 async def get_reasoning(question: str) -> str:

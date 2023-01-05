@@ -14,17 +14,21 @@ Let’s start with (1) and (2), reusing the [subquestions subrecipe](asking-subq
 
 {% code title="subquestions_answered.py" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 from ice.recipes.primer.subquestions import ask_subquestions
 from ice.utils import map_async
 
 
 def make_qa_prompt(question: str) -> str:
-    return f"""Answer the following question:
+    return F(
+        f"""Answer the following question:
 
 Question: "{question}"
 Answer: "
-""".strip()
+"""
+    ).strip()
 
 
 async def answer(question: str) -> str:

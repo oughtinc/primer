@@ -12,17 +12,21 @@ Our single-paragraph classifier looks like this:
 
 {% code title="paper_qa_class.py" %}
 ```python
+from fvalues import F
+
 from ice.paper import Paper
 from ice.paper import Paragraph
 from ice.recipe import recipe
 
 
 def make_prompt(paragraph: Paragraph, question: str) -> str:
-    return f"""
+    return F(
+        f"""
 Here is a paragraph from a research paper: "{paragraph}"
 
 Question: Does this paragraph answer the question '{question}'? Say Yes or No.
-Answer:""".strip()
+Answer:"""
+    ).strip()
 
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
@@ -70,6 +74,8 @@ For mapping, we use the utility `map_async` which runs the language model calls 
 
 {% code title="paper_qa_classes.py" %}
 ```python
+from fvalues import F
+
 from ice.paper import Paper
 from ice.paper import Paragraph
 from ice.recipe import recipe
@@ -77,10 +83,12 @@ from ice.utils import map_async
 
 
 def make_prompt(paragraph: Paragraph, question: str) -> str:
-    return f"""Here is a paragraph from a research paper: "{paragraph}"
+    return F(
+        f"""Here is a paragraph from a research paper: "{paragraph}"
 
 Question: Does this paragraph answer the question '{question}'? Say Yes or No.
 Answer:"""
+    )
 
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:
@@ -129,6 +137,8 @@ Now all we need to do is add a utility function for looking up the paragraphs wi
 
 {% code title="paper_qa_ranker.py" %}
 ```python
+from fvalues import F
+
 from ice.paper import Paper
 from ice.paper import Paragraph
 from ice.recipe import recipe
@@ -136,10 +146,12 @@ from ice.utils import map_async
 
 
 def make_classification_prompt(paragraph: Paragraph, question: str) -> str:
-    return f"""Here is a paragraph from a research paper: "{paragraph}"
+    return F(
+        f"""Here is a paragraph from a research paper: "{paragraph}"
 
 Question: Does this paragraph answer the question '{question}'? Say Yes or No.
 Answer:"""
+    )
 
 
 async def classify_paragraph(paragraph: Paragraph, question: str) -> float:

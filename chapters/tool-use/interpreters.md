@@ -27,6 +27,8 @@ Let’s add a method for evaluating Python expressions:
 {% code title="eval_direct.py" %}
 
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
@@ -34,7 +36,7 @@ def eval_python(expression: str) -> str:
     try:
         result = eval(expression)
     except Exception as e:
-        result = f"Error: {e}"
+        result = F(f"Error: {e}")
     return str(result)
 
 
@@ -84,23 +86,27 @@ We make a prompt that asks the model what expression to enter into a Python inte
 {% code title="eval_selective.py" %}
 
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
 def make_computation_choice_prompt(question: str) -> str:
-    return f"""You've been asked to answer the question "{question}".
+    return F(
+        f"""You've been asked to answer the question "{question}".
 
 You have access to a Python interpreter.
 
 Enter an expression that will help you answer the question.
 >>>"""
+    )
 
 
 def eval_python(expression: str) -> str:
     try:
         result = eval(expression)
     except Exception as e:
-        result = f"Error: {e}"
+        result = F(f"Error: {e}")
     return str(result)
 
 
@@ -148,20 +154,25 @@ Now all we need to do this provide this expression and result as additional cont
 {% code title="answer_by_computation.py" %}
 
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
 def make_computation_choice_prompt(question: str) -> str:
-    return f"""You've been asked to answer the question "{question}".
+    return F(
+        f"""You've been asked to answer the question "{question}".
 
 You have access to a Python interpreter.
 
 Enter an expression that will help you answer the question.
 >>>"""
+    )
 
 
 def make_compute_qa_prompt(question: str, expression: str, result: str) -> str:
-    return f"""A recording of a Python interpreter session:
+    return F(
+        f"""A recording of a Python interpreter session:
 
 >>> {expression}: {result}
 
@@ -169,14 +180,15 @@ Answer the following question, using the Python session if helpful:
 
 Question: "{question}"
 Answer: "
-""".strip()
+"""
+    ).strip()
 
 
 def eval_python(expression: str) -> str:
     try:
         result = eval(expression)
     except Exception as e:
-        result = f"Error: {e}"
+        result = F(f"Error: {e}")
     return str(result)
 
 
