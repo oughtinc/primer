@@ -33,6 +33,8 @@ recipe.main(answer)
 ```
 {% endcode %}
 
+Wrapping f-strings in `fvalues.F` is entirely optional, but [it makes traces a little bit nicer to work with](https://github.com/oughtinc/ice/wiki/ICE-UI-guide#transparent-f-strings-using-fvalues).
+
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
 * `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
