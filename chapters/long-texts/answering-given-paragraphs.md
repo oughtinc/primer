@@ -10,8 +10,6 @@ We could just paste in the code from [the question-answering recipe](../question
 
 {% code title="paper_qa.py" %}
 ```python
-from collections.abc import Sequence
-
 from fvalues import F
 
 from ice.paper import Paper
@@ -51,12 +49,12 @@ async def get_relevant_paragraphs(
 
 
 async def answer_for_paper(
-    paper: Paper, question: str = "What was the study population?", top_n: int = 3
-) -> tuple[str, Sequence[str]]:
-    relevant_paragraphs = await get_relevant_paragraphs(paper, question, top_n=top_n)
+    paper: Paper, question: str = "What was the study population?"
+):
+    relevant_paragraphs = await get_relevant_paragraphs(paper, question)
     relevant_str = F("\n\n").join(str(p) for p in relevant_paragraphs)
     response = await answer(context=relevant_str, question=question)
-    return response, [str(p) for p in relevant_paragraphs]
+    return response
 
 
 recipe.main(answer_for_paper)
