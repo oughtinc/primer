@@ -12,6 +12,8 @@ First, let’s represent reasoning steps as a list (so that we can more easily m
 
 {% code title="verify/utils.py" overflow="wrap" %}
 ```python
+from fvalues import F
+
 DEFAULT_QUESTION = "Beth bakes 4x 2 dozen batches of cookies in a week. If these cookies are shared amongst 16 people equally, how many cookies does each person consume?"
 
 DEFAULT_STEPS = [
@@ -23,7 +25,7 @@ DEFAULT_STEPS = [
 
 
 def render_steps(steps: list[str]) -> str:
-    return "\n".join(f"{i}. {step}" for (i, step) in enumerate(steps, start=1))
+    return F("\n").join(F(f"{i}. {step}") for (i, step) in enumerate(steps, start=1))
 ```
 {% endcode %}
 
@@ -46,12 +48,15 @@ This is effectively the same as the global verifier above, except that we need t
 
 {% code title="verify/last.py" overflow="wrap" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 from ice.recipes.primer.verify.utils import *
 
 
 def make_verification_prompt(question: str, steps: list[str]) -> str:
-    return f"""Consider this question: "{question}"
+    return F(
+        f"""Consider this question: "{question}"
 
 Here are the first few steps of an answer:
 
@@ -59,6 +64,7 @@ Here are the first few steps of an answer:
 
 Q: Is step {len(steps)} correct, assuming that the previous steps are correct? Say "A: Yes" or "A: No".
 A:"""
+    )
 
 
 async def check_step(question: str, steps: list[str]) -> float:

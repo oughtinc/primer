@@ -8,15 +8,19 @@ Let’s start by making a recipe that returns subquestions given a question:
 
 {% code title="subquestions.py" %}
 ```python
+from fvalues import F
+
 from ice.recipe import recipe
 
 
 def make_subquestion_prompt(question: str) -> str:
-    return f"""Decompose the following question into 2-5 subquestions that would help you answer the question. Make the questions stand alone, so that they can be answered without the context of the original question.
+    return F(
+        f"""Decompose the following question into 2-5 subquestions that would help you answer the question. Make the questions stand alone, so that they can be answered without the context of the original question.
 
 Question: "{question}"
 Subquestions:
--""".strip()
+-"""
+    ).strip()
 
 
 async def ask_subquestions(
