@@ -35,6 +35,16 @@ recipe.main(answer)
 
 Wrapping f-strings in `fvalues.F` is entirely optional, but [it makes traces a little bit nicer to work with](https://github.com/oughtinc/ice/wiki/ICE-UI-guide#transparent-f-strings-using-fvalues).
 
+Now let's try running this recipe:
+
+```shell
+python qa_simple.py
+```
+
+Looking at the trace, we see two nodes—one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
+
+<figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0H8AM335QSV25E3ZYZ1PGM">view online</a>)</p></figcaption></figure>
+
 We can run recipes in different modes, which controls what type of agent is used. Some examples:
 
 * `machine`: Use an automated agent (usually GPT-3 if no hint is provided in the agent call). This is the default mode.
@@ -46,10 +56,6 @@ You specify the mode like this:
 ```shell
 python qa_simple.py --mode human
 ```
-
-Looking at the trace, we see two nodes—one for the answer function we implemented, and one for the agent method call. If we click on the agent method, we see the exact prompt that was passed to the agent:
-
-<figure><img src="../../.gitbook/assets/Screenshot ZwfyIIV9@2x.png" alt=""><figcaption><p>Execution trace (<a href="https://ice.ought.org/traces/01GE0H8AM335QSV25E3ZYZ1PGM">view online</a>)</p></figcaption></figure>
 
 Try running your recipe in different modes.
 
