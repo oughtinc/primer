@@ -27,18 +27,4 @@ Install ICE:
 pip install ought-ice
 ```
 
-Obtain an [`OPENAI_API_KEY`](https://beta.openai.com/account/api-keys) and create an `.env` file containing it in the ICE folder:
-
-{% code title="~/.ought-ice/.env" %}
-
-```shell
-OPENAI_API_KEY=sk-...f8 # Replace with your API key.
-```
-
-{% endcode %}
-
-Start the ICE server in its own terminal and leave it running:
-
-```shell
-python -m ice.server
-```
+The first time you run a recipe that uses `recipe.agent()`, you will be prompted for an [OpenAI API key](https://beta.openai.com/account/api-keys) that will automatically be stored in `~/.ought-ice/.env`.
