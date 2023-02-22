@@ -8,7 +8,7 @@ The recipes in this primer are implemented using the [Interactive Composition Ex
 
 ## Requirements
 
-ICE requires Python 3.10. If you only have newer or older version(s) of Python installed, we recommend using [pyenv](https://github.com/pyenv/pyenv) to install Python 3.10 and manage multiple Python versions.
+ICE requires Python 3.9, 3.10, or 3.11. If you don't have a supported version of Python installed, we recommend using [pyenv](https://github.com/pyenv/pyenv) to install a supported Python version and manage multiple Python versions.
 
 If you use Windows, you'll need to run ICE inside of [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
